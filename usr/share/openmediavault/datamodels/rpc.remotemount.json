@@ -1,0 +1,44 @@
+[{
+	"type": "rpc",
+	"id": "rpc.remotemount.set",
+	"params": {
+		"type": "object",
+		"properties": {
+			"uuid": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"name": {
+				"type": "string",
+				"required": true
+			},
+			"mntentref": {
+				"type": "string",
+				"format": "uuidv4",
+				"required": true
+			},
+			"mounttype": {
+				"type": "string",
+				"enum": ["cifs","nfs","sshfs"]
+			},
+			"server": {
+				"type": "string",
+				"required": true
+			},
+			"sharename": {
+				"type": "string",
+				"required": true
+			},
+			"username": {
+				"type": "string"
+			},
+			"password": {
+				"type": "string"
+			},
+			"options": {
+				"type": "string"
+			}
+		}
+	}
+}]

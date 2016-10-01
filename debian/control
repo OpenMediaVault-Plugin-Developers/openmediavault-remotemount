@@ -1,0 +1,16 @@
+Source: openmediavault-remotemount
+Section: net
+Priority: optional
+Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+XB-Plugin-Section: filesystems
+
+Package: openmediavault-remotemount
+Architecture: all
+Depends: cifs-utils,
+         openmediavault (>= 3.0.40),
+         php5-cli,
+         ${misc:Depends}
+Description: Remote mount plugin for OpenMediaVault.
+ Makes it possible to mount remote shares.

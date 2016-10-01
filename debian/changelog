@@ -1,0 +1,5 @@
+openmediavault-remotemount (3.0) stable; urgency=low
+
+  * Initial release
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 01 Oct 2016 18:27:57 -0500

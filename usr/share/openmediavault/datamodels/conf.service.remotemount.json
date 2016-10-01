@@ -1,0 +1,52 @@
+{
+	"type": "config",
+	"title": "Remote Mount",
+	"id": "conf.service.remotemount.mount",
+	"queryinfo": {
+		"xpath": "/config/services/remotemount/mount",
+		"iterable": true,
+		"idproperty": "uuid"
+	},
+	"properties": {
+		"uuid": {
+			"description": "The unique identifier for a remote mount",
+			"type": "string",
+			"format": "uuidv4"
+		},
+		"name": {
+			"description": "A virtual label for a remote mount",
+			"type": "string",
+			"minLength": 1
+		},
+		"mntentref": {
+			"description": "Reference to a mount entity",
+			"type": "string",
+			"format": "uuidv4"
+		},
+		"mounttype": {
+			"description": "The type of remote mount",
+			"type": "string",
+			"enum": ["cifs","nfs","sshfs"]
+		},
+		"server": {
+			"description": "Server FQDN or IP address",
+			"type": "string"
+		},
+		"sharename": {
+			"description": "Share or export on remote server",
+			"type": "string"
+		},
+		"username": {
+			"description": "Username to authenticate against remote server",
+			"type": "string"
+		},
+		"password": {
+			"description": "Password to authenticate against remote server",
+			"type": "string"
+		},
+		"options": {
+			"description": "Additional mount options",
+			"type": "string"
+		}
+	}
+}
