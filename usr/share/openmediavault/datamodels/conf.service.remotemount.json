@@ -36,6 +36,14 @@
 			"description": "Share or export on remote server",
 			"type": "string"
 		},
+		"port": {
+			"description": "Port that server is listening on",
+			"type": "integer"
+		},
+		"nfs4": {
+			"description": "Use nfs v4 or nfs v3",
+			"type": "boolean"
+		},
 		"username": {
 			"description": "Username to authenticate against remote server",
 			"type": "string"

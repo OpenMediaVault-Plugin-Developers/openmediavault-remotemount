@@ -30,6 +30,12 @@
 				"type": "string",
 				"required": true
 			},
+			"port": {
+				"type": "integer"
+			},
+			"nfs4": {
+				"type": "boolean"
+			},
 			"username": {
 				"type": "string"
 			},

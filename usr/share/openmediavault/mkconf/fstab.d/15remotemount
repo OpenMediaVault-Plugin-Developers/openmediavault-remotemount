@@ -29,11 +29,9 @@ $objects = Rpc::call('RemoteMount', 'getList', ['start' => 0, 'limit' => null], 
 
 foreach ($objects['data'] as $object) {
     $mountPoint = Filesystem::buildMountPath($object['uuid']);
-
-    $options = [];
-
     switch ($object['mounttype']) {
         case 'cifs':
+            $options = [];
             $credFile = $cifsCreds . $object['mntentref'];
             if (!empty($object['username'])) {
                 file_put_contents(
@@ -46,8 +44,6 @@ foreach ($objects['data'] as $object) {
                 unlink($credFile);
                 $options[] = 'guest';
             }
-            $options[] = '_netdev';
-            $options[] = 'iocharset=utf8';
             if (!empty($object['options'])) {
                 $options[] = explode(',', $object['options']);
             }
@@ -59,8 +55,18 @@ foreach ($objects['data'] as $object) {
                 implode(',', $options)
             );
             break;
+
         case 'nfs':
+            echo sprintf(
+                '%s:%s %s %s %s 0 0\n',
+                $object['server'],
+                $object['sharename'],
+                $mountPoint,
+                ($object['nfs4'] == 0) ? 'nfs' : 'nfs4',
+                $object['options']
+            );
             break;
+
         case 'sshfs':
             break;
     }

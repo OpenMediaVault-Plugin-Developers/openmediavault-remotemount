@@ -29,6 +29,30 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
 
     plugins: [{
         ptype: 'configobject'
+    },{
+        ptype: 'linkedfields',
+        correlations: [{
+            conditions: [{
+                name: 'mounttype',
+                value: 'cifs'
+            }],
+            name: ['nfs4', 'port'],
+            properties: ['!show', '!submitValue']
+        },{
+            conditions: [{
+                name: 'mounttype',
+                value: 'nfs'
+            }],
+            name: ['username', 'password', 'port'],
+            properties: ['!show', '!submitValue']
+        },{
+            conditions: [{
+                name: 'mounttype',
+                value: 'sshfs'
+            }],
+            name: ['nfs4'],
+            properties: ['!show', '!submitValue']
+        }]
     }],
 
     hideResetButton: true,
@@ -60,6 +84,10 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             ],
             editable      : false,
             triggerAction : "all",
+            listeners: {
+                change: this.onTypeChange.bind(this),
+                scope: this
+            },
             value         : "cifs"
         },{
             xtype: 'textfield',
@@ -71,6 +99,21 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             name: 'sharename',
             fieldLabel: _('Share'),
             value: ''
+        },{
+            xtype: 'numberfield',
+            name: 'port',
+            fieldLabel: _('Port'),
+            vtype: 'port',
+            minValue: 1,
+            maxValue: 65535,
+            allowDecimals: false,
+            allowBlank: false,
+            value: 22
+        },{
+            xtype: 'checkbox',
+            name: 'nfs4',
+            fieldLabel: _('Use NFS v4'),
+            checked: false
         },{
             xtype: 'textfield',
             name: 'username',
@@ -85,7 +128,23 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             xtype: 'textfield',
             name: 'options',
             fieldLabel: _('Options'),
-            value: ''
+            value: '_netdev,iocharset=utf8'
         }];
+    },
+
+    onTypeChange: function(combo, newValue, oldValue) {
+        var options = this.findField('options');
+
+        if (newValue === 'cifs') {
+            options.setValue('_netdev,iocharset=utf8');
+        }
+
+        if (newValue === 'nfs') {
+            options.setValue('rsize=8192,wsize=8192,timeo=14,intr');
+        }
+
+        if (newValue === 'sshfs') {
+            options.setValue('_netdev');
+        }
     }
 });
