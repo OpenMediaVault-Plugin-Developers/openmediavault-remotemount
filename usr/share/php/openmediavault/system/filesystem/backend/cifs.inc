@@ -46,15 +46,7 @@ class Cifs extends RemoteAbstract
         $uuid = $args;
 
         if (!is_uuid($args)) {
-            // Assume we got the mount directory.
-            //$mountPoint = $args;
-
-            // Check if it's the real fsname and handle it (the real fsname
-            // contains ':' to separate the branches).
-            //if (strpos($args, '//') !== false) {
-                $mountPoint = self::fetchMountPointFromFstabByFsnameAndType($args, $this->type);
-            //}
-
+            $mountPoint = self::fetchMountPointFromFstabByFsnameAndType($args, $this->type);
             $uuid = self::extractUuidFromMountPoint($mountPoint);
         }
 
