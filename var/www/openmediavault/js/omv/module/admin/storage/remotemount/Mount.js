@@ -63,6 +63,23 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
 
     getFormItems: function() {
         return [{
+            xtype: 'combo',
+            name: 'mounttype',
+            fieldLabel: _('Mount Type'),
+            queryMode: 'local',
+            store: [
+                [ 'nfs', _('NFS') ],
+                [ 'cifs', _('SMB/CIFS') ],
+                [ 'sshfs', _('SSHFS') ]
+            ],
+            editable: false,
+            triggerAction: "all",
+            listeners: {
+                change: this.onTypeChange.bind(this),
+                scope: this
+            },
+            value: "cifs"
+        },{
             xtype: 'textfield',
             name: 'name',
             fieldLabel: _('Name'),
@@ -72,23 +89,6 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             xtype: 'hiddenfield',
             name: 'mntentref',
             value: OMV.UUID_UNDEFINED
-        },{
-            xtype: 'combo',
-            name: 'mounttype',
-            fieldLabel: _('Mount Type'),
-            queryMode: 'local',
-            store : [
-                [ 'nfs', _('NFS') ],
-                [ 'cifs', _('SMB/CIFS') ],
-                [ 'sshfs', _('SSHFS') ]
-            ],
-            editable      : false,
-            triggerAction : "all",
-            listeners: {
-                change: this.onTypeChange.bind(this),
-                scope: this
-            },
-            value         : "cifs"
         },{
             xtype: 'textfield',
             name: 'server',
@@ -118,7 +118,11 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             xtype: 'textfield',
             name: 'username',
             fieldLabel: _('Username'),
-            value: ''
+            value: '',
+            plugins: [{
+                ptype: "fieldinfo",
+                text: _("For SMB/CIFS, leave blank to authenticate as guest")
+            }]
         },{
             xtype: 'passwordfield',
             name: 'password',
