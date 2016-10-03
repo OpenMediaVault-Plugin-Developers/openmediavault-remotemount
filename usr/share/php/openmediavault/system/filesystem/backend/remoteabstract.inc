@@ -50,7 +50,17 @@ abstract class RemoteAbstract extends BackendAbstract
     public function enumerate()
     {
         $filesystems = [];
-        $objects = $this->database->get($this->dataModelPath);
+        $objects = [];
+
+        try {
+            foreach ($this->database->get($this->dataModelPath) as $object) {
+                if ($object->get('mounttype') === $this->type) {
+                    $objects[] = $object;
+                }
+            }
+        } catch (DatabaseException $e) {
+            return $filesystems;
+        }
 
         foreach ($objects as $object) {
             $filesystem = $this->getImpl($object->get('uuid'));
@@ -108,18 +118,77 @@ abstract class RemoteAbstract extends BackendAbstract
         return false;
     }
 
-    /**
-     * Get the object of the class that represents and implements a filesystem
-     * of this filesystem backend.
+/**
+     * @param string $args A string with either the UUID, mount point or the
+     *                     fsname.
      *
-     * @param array $args
+     * @return Remote
      *
-     * @return \OMV\System\Filesystem\RemoteMount
+     * @throws Exception
      */
     public function getImpl($args)
     {
-        // BackendAbstract is already implementing this method so we can't mark
-        // it as abstract.
-        throw Exception('Unimplemented method. Implement this in the derived class.');
+        $uuid = $args;
+
+        if (!is_uuid($args)) {
+            $mountPoint = $this->fetchMountPointFromFstabByFsnameAndType($args, $this->type);
+            $uuid = $this->extractUuidFromMountPoint($mountPoint);
+        }
+
+        $object = $this->database->get($this->dataModelPath, $uuid);
+
+        return new RemoteMount($object, $this);
+    }
+
+    /**
+     * Extract the UUID of a mount by it's mount point.
+     *
+     * @param string $mountPoint
+     *
+     * @return string
+     *
+     * @throws Exception
+     */
+    public static function extractUuidFromMountPoint($mountPoint)
+    {
+        $uuid = end(explode(DIRECTORY_SEPARATOR, $mountPoint));
+
+        if (!is_uuid($uuid)) {
+            throw new Exception(sprintf(
+                'Couldn\'t extract a UUID from the provided path \'%s\'.',
+                $mountPoint
+            ));
+        }
+
+        return $uuid;
+    }
+
+    /**
+     * Fetch the mount point from either '/etc/fstab' or /proc/mounts'.
+     *
+     * @param string $fsname
+     * @param string $type
+     *
+     * @return string
+     *
+     * @throws Exception
+     */
+    private static function fetchMountPointFromFstabByFsnameAndType($fsname, $type)
+    {
+        $mountsFile = strpos($fsname, DIRECTORY_SEPARATOR) !== false ? '/etc/fstab' : '/proc/mounts';
+
+        foreach (new SplFileObject($mountsFile) as $content) {
+            $splitContent = preg_split('/\s+/', $content);
+
+            if (($fsname === $splitContent[0] || $fsname === $splitContent[1])
+                && $type === $splitContent[2]) {
+                return $splitContent[1];
+            }
+        }
+
+        throw new Exception(sprintf(
+            'Could not fetch a matching mount point from the provided fsname: \'%s\'.',
+            $fsname
+        ));
     }
 }

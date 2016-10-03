@@ -19,7 +19,7 @@ case "$1" in
 
             # get mount directory and lazy unmount (in case filesystem is in use)
             dir=$(omv_config_get "/config/system/fstab/mntent[uuid='${mntentref}']/dir")
-            umount -l ${dir}
+            #umount -l ${dir}
 
             # delete mntent entry
             omv_config_delete "/config/system/fstab/mntent[uuid='${mntentref}']"
