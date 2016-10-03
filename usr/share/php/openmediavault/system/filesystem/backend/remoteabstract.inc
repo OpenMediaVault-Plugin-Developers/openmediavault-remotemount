@@ -22,7 +22,7 @@ namespace OMV\System\Filesystem\Backend;
 use OMV\Config\Database;
 use OMV\Config\DatabaseException;
 use OMV\Exception;
-use OMV\System\Filesystem\Remote as RemoteMount;
+use OMV\System\Filesystem\Remote;
 use SplFileObject;
 
 abstract class RemoteAbstract extends BackendAbstract
@@ -137,7 +137,7 @@ abstract class RemoteAbstract extends BackendAbstract
 
         $object = $this->database->get($this->dataModelPath, $uuid);
 
-        return new RemoteMount($object, $this);
+        return new Remote($object, $this);
     }
 
     /**
