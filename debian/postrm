@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -12,14 +12,20 @@ case "$1" in
 
         # delete mntent entries
         count=$(omv_config_get_count "${XPATH_MOUNT}")
-        index=0
+        index=1
         while [ ${index} -le ${count} ]; do
             # get mntent uuid
             mntentref=$(omv_config_get "${XPATH_MOUNT}[position()=${index}]/mntentref")
 
             # get mount directory and lazy unmount (in case filesystem is in use)
             dir=$(omv_config_get "/config/system/fstab/mntent[uuid='${mntentref}']/dir")
-            #umount -l ${dir}
+
+            if [ -n "${dir}" ]; then
+                echo "Unmounting ${dir} directory..."
+                if mount | grep ${dir} > /dev/null; then
+                    umount -l ${dir}
+                fi
+            fi
 
             # delete mntent entry
             omv_config_delete "/config/system/fstab/mntent[uuid='${mntentref}']"
