@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# Copyright (C) 2014-2015 OpenMediaVault Plugin Developers
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+
+# Don't bother to mount when lo is configured.
+if [ "$IFACE" = lo ]; then
+    exit 0
+fi
+
+# Only run from ifup.
+if [ "$MODE" != start ]; then
+    exit 0
+fi
+
+# we only cares about inet and inet6.
+if [ "$ADDRFAM" != inet ] && [ "$ADDRFAM" != inet6 ]; then
+    exit 0
+fi
+
+
+fstabFiles=$({
+    echo /etc/fstab
+    if [ -d /etc/fstab.d ]; then
+        ls -1 /etc/fstab.d | grep '\.fstab$' | sed -e 's;^;/etc/fstab.d/;'
+    fi
+})
+
+for file in ${fstabFiles}; do
+    NETDEV=""
+    if [ -f "$file" ]; then
+        while read DEV MTPT FSTYPE OPTS REST; do
+            case "$DEV" in
+                ""|\#*)
+                    continue
+                    ;;
+            esac
+            case "$OPTS" in
+                noauto|*,noauto|noauto,*|*,noauto,*)
+                    continue
+                    ;;
+                _netdev|*,_netdev|_netdev,*|*,_netdev,*)
+                    NETDEV=yes
+                    ;;
+            esac
+        done < "$file"
+    fi
+done
+
+# at least one filesystem with option _netdev found so try mounting those devices
+if [ "$NETDEV" ]; then
+    mount -a -O _netdev
+fi

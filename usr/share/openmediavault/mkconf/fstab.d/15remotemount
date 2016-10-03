@@ -31,7 +31,6 @@ foreach ($objects['data'] as $object) {
     $mountPoint = Filesystem::buildMountPath($object['uuid']);
     switch ($object['mounttype']) {
         case 'cifs':
-            $options = [];
             $credFile = $cifsCreds . $object['mntentref'];
             if (!empty($object['username'])) {
                 file_put_contents(
@@ -39,20 +38,17 @@ foreach ($objects['data'] as $object) {
                     sprintf("username=%s\npassword=%s", $object['username'], $object['password'])
                 );
                 chmod($credFile, 0600);
-                $options[] = 'credentials=' . $credFile;
+                $creds = 'credentials=' . $credFile;
             } else {
                 unlink($credFile);
-                $options[] = 'guest';
-            }
-            if (!empty($object['options'])) {
-                $options[] = explode(',', $object['options']);
+                $creds = 'guest';
             }
             echo sprintf(
                 '//%s/%s %s cifs %s 0 0\n',
                 $object['server'],
                 $object['sharename'],
                 $mountPoint,
-                implode(',', $options)
+                (!empty($object['options'])) ? $creds.','.$object['options'] : $creds
             );
             break;
 

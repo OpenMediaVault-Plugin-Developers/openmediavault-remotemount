@@ -7,7 +7,33 @@ set -e
 
 case "$1" in
     purge)
-        omv_config_delete "/config/services/remotemount"
+        XPATH="/config/services/remotemount"
+        XPATH_MOUNT="${XPATH}/mount"
+
+        # delete mntent entries
+        count=$(omv_config_get_count "${XPATH_MOUNT}")
+        index=0
+        while [ ${index} -le ${count} ]; do
+            # get mntent uuid
+            mntentref=$(omv_config_get "${XPATH_MOUNT}[position()=${index}]/mntentref")
+
+            # get mount directory and lazy unmount (in case filesystem is in use)
+            dir=$(omv_config_get "/config/system/fstab/mntent[uuid='${mntentref}']/dir")
+            umount -l ${dir}
+
+            # delete mntent entry
+            omv_config_delete "/config/system/fstab/mntent[uuid='${mntentref}']"
+
+            index=$(( ${index} + 1 ))
+        done
+
+        omv_config_delete ${XPATH}
+
+        # Regenerate fstab
+        omv-mkconf fstab
+
+        # remove credential files
+        rm -f /root/.cifscredentials-*
     ;;
 
     remove)

@@ -132,7 +132,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             xtype: 'textfield',
             name: 'options',
             fieldLabel: _('Options'),
-            value: '',
+            value: '_netdev,iocharset=utf8',
             plugins: [{
                 ptype: 'fieldinfo',
                 text: _('For SMB/CIFS options, see man page for ') +
