@@ -66,8 +66,5 @@ foreach ($objects['data'] as $object) {
                 $object['options']
             );
             break;
-
-        case 'sshfs':
-            break;
     }
 }

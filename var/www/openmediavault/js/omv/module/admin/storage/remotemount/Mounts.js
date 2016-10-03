@@ -52,9 +52,6 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
                 case 'nfs':
                     content = _("NFS");
                     break;
-                case 'sshfs':
-                    content = _("SSHFS");
-                    break;
             }
             return content;
         }

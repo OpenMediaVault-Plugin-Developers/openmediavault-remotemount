@@ -34,21 +34,14 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         correlations: [{
             conditions: [{
                 name: 'mounttype',
-                value: 'cifs'
-            }],
-            name: ['nfs4', 'port'],
-            properties: ['!show', '!submitValue']
-        },{
-            conditions: [{
-                name: 'mounttype',
                 value: 'nfs'
             }],
-            name: ['username', 'password', 'port'],
+            name: ['username','password'],
             properties: ['!show', '!submitValue']
         },{
             conditions: [{
                 name: 'mounttype',
-                value: 'sshfs'
+                value: 'cifs'
             }],
             name: ['nfs4'],
             properties: ['!show', '!submitValue']
@@ -69,22 +62,25 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             queryMode: 'local',
             store: [
                 [ 'nfs', _('NFS') ],
-                [ 'cifs', _('SMB/CIFS') ],
-                [ 'sshfs', _('SSHFS') ]
+                [ 'cifs', _('SMB/CIFS') ]
             ],
             editable: false,
-            triggerAction: "all",
+            triggerAction: 'all',
             listeners: {
                 change: this.onTypeChange.bind(this),
                 scope: this
             },
-            value: "cifs"
+            value: 'cifs'
         },{
             xtype: 'textfield',
             name: 'name',
             fieldLabel: _('Name'),
             allowBlank: false,
-            readOnly: this.uuid !== OMV.UUID_UNDEFINED
+            readOnly: this.uuid !== OMV.UUID_UNDEFINED,
+            plugins: [{
+                ptype: 'fieldinfo',
+                text: _('Used for display in OpenMediaVault web interface only.')
+            }]
         },{
             xtype: 'hiddenfield',
             name: 'mntentref',
@@ -93,35 +89,39 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             xtype: 'textfield',
             name: 'server',
             fieldLabel: _('Server'),
-            value: ''
+            value: '',
+            plugins: [{
+                ptype: 'fieldinfo',
+                text: _('Use FQDN, hostname, or IP address.')
+            }]
         },{
             xtype: 'textfield',
             name: 'sharename',
             fieldLabel: _('Share'),
-            value: ''
-        },{
-            xtype: 'numberfield',
-            name: 'port',
-            fieldLabel: _('Port'),
-            vtype: 'port',
-            minValue: 1,
-            maxValue: 65535,
-            allowDecimals: false,
-            allowBlank: false,
-            value: 22
+            value: '',
+            plugins: [{
+                ptype: 'fieldinfo',
+                text: _('For SMB/CIFS, use the share name only.') +
+                        '<br />' +
+                      _('For NFS, use the export path (ie /export/nfs_share_name).')
+            }]
         },{
             xtype: 'checkbox',
             name: 'nfs4',
             fieldLabel: _('Use NFS v4'),
-            checked: false
+            checked: false,
+            plugins: [{
+                ptype: 'fieldinfo',
+                text: _('Will use NFS v2/v3 if unchecked and NFS v4 if checked.')
+            }]
         },{
             xtype: 'textfield',
             name: 'username',
             fieldLabel: _('Username'),
             value: '',
             plugins: [{
-                ptype: "fieldinfo",
-                text: _("For SMB/CIFS, leave blank to authenticate as guest")
+                ptype: 'fieldinfo',
+                text: _('For SMB/CIFS, leave blank to authenticate as guest.')
             }]
         },{
             xtype: 'passwordfield',
@@ -132,7 +132,15 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             xtype: 'textfield',
             name: 'options',
             fieldLabel: _('Options'),
-            value: '_netdev,iocharset=utf8'
+            value: '',
+            plugins: [{
+                ptype: 'fieldinfo',
+                text: _('For SMB/CIFS options, see man page for ') +
+                        '<a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a>' +
+                        '<br />' +
+                      _('For NFS options, see man page for ') +
+                        '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>'
+            }]
         }];
     },
 
@@ -145,10 +153,6 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
 
         if (newValue === 'nfs') {
             options.setValue('rsize=8192,wsize=8192,timeo=14,intr');
-        }
-
-        if (newValue === 'sshfs') {
-            options.setValue('_netdev');
         }
     }
 });

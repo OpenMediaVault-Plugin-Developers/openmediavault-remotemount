@@ -20,7 +20,7 @@
 			},
 			"mounttype": {
 				"type": "string",
-				"enum": ["cifs","nfs","sshfs"]
+				"enum": ["cifs","nfs"]
 			},
 			"server": {
 				"type": "string",
@@ -29,9 +29,6 @@
 			"sharename": {
 				"type": "string",
 				"required": true
-			},
-			"port": {
-				"type": "integer"
 			},
 			"nfs4": {
 				"type": "boolean"
