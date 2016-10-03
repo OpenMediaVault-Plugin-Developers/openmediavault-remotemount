@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: openmediavault-remotemount\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-03 13:27-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language-Team: Russian (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "Add mount"
+msgstr ""
+
+msgid "Edit mount"
+msgstr ""
+
+msgid "For NFS options, see man page for "
+msgstr ""
+
+msgid "For NFS, use the export path (ie /export/nfs_share_name)."
+msgstr ""
+
+msgid "For SMB/CIFS options, see man page for "
+msgstr ""
+
+msgid "For SMB/CIFS, leave blank to authenticate as guest."
+msgstr ""
+
+msgid "For SMB/CIFS, use the share name only."
+msgstr ""
+
+msgid "Mount Type"
+msgstr ""
+
+msgid "Mounts"
+msgstr ""
+
+msgid "NFS"
+msgstr ""
+
+msgid ""
+"NOTE: The changes won't take effect until you've restarted the system or "
+"manually remounted the mount."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Remote Mount"
+msgstr ""
+
+msgid "SMB/CIFS"
+msgstr ""
+
+msgid "Server"
+msgstr ""
+
+msgid "Share"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "UUID"
+msgstr ""
+
+msgid "Use FQDN, hostname, or IP address."
+msgstr ""
+
+msgid "Use NFS v4"
+msgstr ""
+
+msgid "Used for display in OpenMediaVault web interface only."
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
+msgstr ""
