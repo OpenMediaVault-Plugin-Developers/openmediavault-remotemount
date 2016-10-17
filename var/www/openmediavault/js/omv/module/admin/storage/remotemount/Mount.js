@@ -90,6 +90,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             name: 'server',
             fieldLabel: _('Server'),
             value: '',
+            allowBlank: false,
             plugins: [{
                 ptype: 'fieldinfo',
                 text: _('Use FQDN, hostname, or IP address.')
@@ -99,6 +100,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             name: 'sharename',
             fieldLabel: _('Share'),
             value: '',
+            allowBlank: false,
             plugins: [{
                 ptype: 'fieldinfo',
                 text: _('For SMB/CIFS, use the share name only.') +
