@@ -22,7 +22,8 @@ require_once '/usr/share/php/openmediavault/globals.inc';
 use OMV\Rpc\Rpc;
 use OMV\System\Filesystem\Filesystem;
 
-$cifsCreds = "/root/.cifscredentials-";
+$cifsCreds = '/root/.cifscredentials-';
+$netrc='/root/.netrc';
 
 $context = ['username' => 'admin', 'role' => OMV_ROLE_ADMINISTRATOR];
 $objects = Rpc::call('RemoteMount', 'getList', ['start' => 0, 'limit' => null], $context, Rpc::MODE_REMOTE);
@@ -49,6 +50,24 @@ foreach ($objects['data'] as $object) {
                 $object['sharename'],
                 $mountPoint,
                 (!empty($object['options'])) ? $creds.','.$object['options'] : $creds
+            );
+            break;
+
+        case 'ftpfs':
+            if (!empty($object['username'])) {
+                // TODO - check for existing credentials or same server
+                file_put_contents(
+                    $netrc,
+                    sprintf("machine %s\nlogin %s\npassword=%s\n", $object['server'], $object['username'], $object['password']),
+                    FILE_APPEND
+                );
+                chmod($netrc, 0600);
+            }
+            echo sprintf(
+                'curlftpfs#%s %s fuse %s 0 0\n',
+                $object['server'],
+                $mountPoint,
+                $object['options']
             );
             break;
 

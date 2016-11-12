@@ -9,6 +9,7 @@ XB-Plugin-Section: filesystems
 Package: openmediavault-remotemount
 Architecture: all
 Depends: cifs-utils,
+         curlftpfs,
          openmediavault (>= 3.0.40),
          php5-cli,
          ${misc:Depends}

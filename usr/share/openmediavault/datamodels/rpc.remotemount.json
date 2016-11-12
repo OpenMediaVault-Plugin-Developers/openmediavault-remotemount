@@ -27,8 +27,7 @@
 				"required": true
 			},
 			"sharename": {
-				"type": "string",
-				"required": true
+				"type": "string"
 			},
 			"nfs4": {
 				"type": "boolean"

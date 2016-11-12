@@ -45,6 +45,13 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             }],
             name: ['nfs4'],
             properties: ['!show', '!submitValue']
+        },{
+            conditions: [{
+                name: 'mounttype',
+                value: 'ftpfs'
+            }],
+            name: ['nfs4','sharename'],
+            properties: ['!show', '!submitValue']
         }]
     }],
 
@@ -61,6 +68,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             fieldLabel: _('Mount Type'),
             queryMode: 'local',
             store: [
+                [ 'ftpfs', _('FTPFS') ],
                 [ 'nfs', _('NFS') ],
                 [ 'cifs', _('SMB/CIFS') ]
             ],
@@ -123,7 +131,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             value: '',
             plugins: [{
                 ptype: 'fieldinfo',
-                text: _('For SMB/CIFS, leave blank to authenticate as guest.')
+                text: _('For FTPFS or SMB/CIFS, leave blank to authenticate as guest.')
             }]
         },{
             xtype: 'passwordfield',
@@ -140,6 +148,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                 text: _('For SMB/CIFS options, see man page for ') +
                         '<a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a>' +
                         '<br />' +
+                      _('For FTPFS options, see man page for ') +
+                        '<a href="https://linux.die.net/man/1/curlftpfs" target="_blank">curlftpfs</a>' +
+                        '<br />' +
                       _('For NFS options, see man page for ') +
                         '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>'
             }]
@@ -151,6 +162,10 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
 
         if (newValue === 'cifs') {
             options.setValue('_netdev,iocharset=utf8');
+        }
+
+        if (newValue === 'ftpfs') {
+            options.setValue('rw,_netdev,gid=100,allow_other');
         }
 
         if (newValue === 'nfs') {

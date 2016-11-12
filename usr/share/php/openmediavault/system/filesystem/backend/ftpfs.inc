@@ -16,15 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace OMV\System\Filesystem\Backend;
 
 use OMV\Config\Database;
-use OMV\System\Filesystem\Backend\Manager;
-use OMV\System\Filesystem\Backend\Cifs;
-use OMV\System\Filesystem\Backend\Ftpfs;
-use OMV\System\Filesystem\Backend\Nfs;
 
-$database = Database::getInstance();
-$filesystemBackendManager = Manager::getInstance();
-$filesystemBackendManager->registerBackend(new Cifs($database));
-$filesystemBackendManager->registerBackend(new Ftpfs($database));
-$filesystemBackendManager->registerBackend(new Nfs($database));
+class Ftpfs extends RemoteAbstract
+{
+    public function __construct(Database $database)
+    {
+        parent::__construct($database);
+
+        $this->type = 'ftpfs';
+        //$this->properties = self::PROP_POSIX_ACL;
+    }
+}
