@@ -8,8 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-03 13:27-0500\n"
+"POT-Creation-Date: 2016-11-12 21:18-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: zubr139 <zubr139@ukr.net>, 2016\n"
 "Language-Team: Ukrainian (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
@@ -23,6 +24,12 @@ msgstr ""
 msgid "Edit mount"
 msgstr ""
 
+msgid "FTPFS"
+msgstr ""
+
+msgid "For FTPFS options, see man page for "
+msgstr ""
+
 msgid "For NFS options, see man page for "
 msgstr ""
 
@@ -32,10 +39,10 @@ msgstr ""
 msgid "For SMB/CIFS options, see man page for "
 msgstr ""
 
-msgid "For SMB/CIFS, leave blank to authenticate as guest."
+msgid "For SMB/CIFS, use the share name only."
 msgstr ""
 
-msgid "For SMB/CIFS, use the share name only."
+msgid "Leave blank to authenticate as guest."
 msgstr ""
 
 msgid "Mount Type"
@@ -45,7 +52,7 @@ msgid "Mounts"
 msgstr ""
 
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 msgid ""
 "NOTE: The changes won't take effect until you've restarted the system or "
@@ -53,13 +60,13 @@ msgid ""
 msgstr ""
 
 msgid "Name"
-msgstr ""
+msgstr "Ім'я"
 
 msgid "Options"
 msgstr ""
 
 msgid "Password"
-msgstr ""
+msgstr "Пароль"
 
 msgid "Remote Mount"
 msgstr ""
@@ -68,16 +75,16 @@ msgid "SMB/CIFS"
 msgstr ""
 
 msgid "Server"
-msgstr ""
+msgstr "Сервер"
 
 msgid "Share"
-msgstr ""
+msgstr "Спільний ресурс"
 
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "Use FQDN, hostname, or IP address."
 msgstr ""
@@ -89,7 +96,7 @@ msgid "Used for display in OpenMediaVault web interface only."
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "Ім’я користувача"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
 msgstr ""

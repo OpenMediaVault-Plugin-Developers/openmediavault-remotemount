@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-03 13:27-0500\n"
+"POT-Creation-Date: 2016-11-12 21:18-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,12 @@ msgstr "Add mount"
 msgid "Edit mount"
 msgstr "Edit mount"
 
+msgid "FTPFS"
+msgstr "FTPFS"
+
+msgid "For FTPFS options, see man page for "
+msgstr "For FTPFS options, see man page for "
+
 msgid "For NFS options, see man page for "
 msgstr "For NFS options, see man page for "
 
@@ -32,11 +38,11 @@ msgstr "For NFS, use the export path (ie /export/nfs_share_name)."
 msgid "For SMB/CIFS options, see man page for "
 msgstr "For SMB/CIFS options, see man page for "
 
-msgid "For SMB/CIFS, leave blank to authenticate as guest."
-msgstr "For SMB/CIFS, leave blank to authenticate as guest."
-
 msgid "For SMB/CIFS, use the share name only."
 msgstr "For SMB/CIFS, use the share name only."
+
+msgid "Leave blank to authenticate as guest."
+msgstr "Leave blank to authenticate as guest."
 
 msgid "Mount Type"
 msgstr "Mount Type"

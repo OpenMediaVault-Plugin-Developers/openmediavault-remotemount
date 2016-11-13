@@ -8,8 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-03 13:27-0500\n"
+"POT-Creation-Date: 2016-11-12 21:18-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2016\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
@@ -18,78 +19,89 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 msgid "Add mount"
-msgstr ""
+msgstr "Přidat připojení"
 
 msgid "Edit mount"
+msgstr "Upravit připojení"
+
+msgid "FTPFS"
+msgstr ""
+
+msgid "For FTPFS options, see man page for "
 msgstr ""
 
 msgid "For NFS options, see man page for "
-msgstr ""
+msgstr "Totéž pro NFS naleznete v manuálové stránce "
 
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
 msgstr ""
+"U NFS použijte popis umístění exportu (tj. /export/nazev_nfs_sdileni)."
 
 msgid "For SMB/CIFS options, see man page for "
-msgstr ""
-
-msgid "For SMB/CIFS, leave blank to authenticate as guest."
-msgstr ""
+msgstr "Informace o předvolbách pro SMB/CIFS naleznete v manuálové stránce "
 
 msgid "For SMB/CIFS, use the share name only."
+msgstr "V případě SMB/CIFS použijte pouze název sdílení."
+
+msgid "Leave blank to authenticate as guest."
 msgstr ""
 
 msgid "Mount Type"
-msgstr ""
+msgstr "Typ připojení"
 
 msgid "Mounts"
-msgstr ""
+msgstr "Připojení"
 
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 msgid ""
 "NOTE: The changes won't take effect until you've restarted the system or "
 "manually remounted the mount."
 msgstr ""
+"UPOZORNĚNÍ: Změny projeví až po restartu serveru nebo ručním odpojení a "
+"opětovném připojení (mount)."
 
 msgid "Name"
-msgstr ""
+msgstr "Název"
 
 msgid "Options"
-msgstr ""
+msgstr "Předvolby"
 
 msgid "Password"
-msgstr ""
+msgstr "Heslo"
 
 msgid "Remote Mount"
-msgstr ""
+msgstr "Využití jiného síťového úložiště"
 
 msgid "SMB/CIFS"
-msgstr ""
+msgstr "SMB/CIFS"
 
 msgid "Server"
-msgstr ""
+msgstr "Server"
 
 msgid "Share"
-msgstr ""
+msgstr "Sdílení"
 
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 msgid "UUID"
-msgstr ""
+msgstr "Univerzálně jedinečný identifikátor"
 
 msgid "Use FQDN, hostname, or IP address."
-msgstr ""
+msgstr "Použijte úplný doménový název, název stroje nebo IP adresu."
 
 msgid "Use NFS v4"
-msgstr ""
+msgstr "Používat NFS verze 4"
 
 msgid "Used for display in OpenMediaVault web interface only."
-msgstr ""
+msgstr "Zobrazuje se pouze ve webovém rozhraní OpenMediaVault."
 
 msgid "Username"
-msgstr ""
+msgstr "Uživatelské jméno"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
 msgstr ""
+"Pokud toto není zapnuto, bude používáno NFS verzí 2/3. V opačném případě "
+"verze 4."

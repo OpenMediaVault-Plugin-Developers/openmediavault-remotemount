@@ -8,8 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-03 13:27-0500\n"
+"POT-Creation-Date: 2016-11-12 21:18-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: songming <by@songming.me>, 2016\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
@@ -18,78 +19,84 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Add mount"
-msgstr ""
+msgstr "添加挂载"
 
 msgid "Edit mount"
+msgstr "编辑挂载"
+
+msgid "FTPFS"
+msgstr ""
+
+msgid "For FTPFS options, see man page for "
 msgstr ""
 
 msgid "For NFS options, see man page for "
-msgstr ""
+msgstr "查看 NFS 选项主页"
 
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
-msgstr ""
+msgstr "NFS 输出路径：(例如 /export/nfs_share_name)。"
 
 msgid "For SMB/CIFS options, see man page for "
-msgstr ""
-
-msgid "For SMB/CIFS, leave blank to authenticate as guest."
-msgstr ""
+msgstr "查看 SMB/CIFS 选项主页"
 
 msgid "For SMB/CIFS, use the share name only."
+msgstr "只能使用 SMB/CIFS 共享名。"
+
+msgid "Leave blank to authenticate as guest."
 msgstr ""
 
 msgid "Mount Type"
-msgstr ""
+msgstr "挂载模式"
 
 msgid "Mounts"
-msgstr ""
+msgstr "挂载"
 
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 msgid ""
 "NOTE: The changes won't take effect until you've restarted the system or "
 "manually remounted the mount."
-msgstr ""
+msgstr "注意：这些变更不会立即生效，除非你重启系统或手动挂载。"
 
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 msgid "Options"
-msgstr ""
+msgstr "选项"
 
 msgid "Password"
-msgstr ""
+msgstr "密码"
 
 msgid "Remote Mount"
-msgstr ""
+msgstr "远程挂载"
 
 msgid "SMB/CIFS"
-msgstr ""
+msgstr "SMB/CIFS"
 
 msgid "Server"
-msgstr ""
+msgstr "服务器"
 
 msgid "Share"
-msgstr ""
+msgstr "共享"
 
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "Use FQDN, hostname, or IP address."
-msgstr ""
+msgstr "使用 FQDN、主机名、IP地址。"
 
 msgid "Use NFS v4"
-msgstr ""
+msgstr "使用 NFS v4"
 
 msgid "Used for display in OpenMediaVault web interface only."
-msgstr ""
+msgstr "仅显示在 OpenMediaVault 标签页。"
 
 msgid "Username"
-msgstr ""
+msgstr "用户名"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
-msgstr ""
+msgstr "如果没有勾选 NFS v4 选项，则使用 NFS v2/v3。"

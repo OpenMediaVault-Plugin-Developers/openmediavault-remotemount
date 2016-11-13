@@ -1,7 +1,7 @@
 openmediavault-remotemount (3.0.2) stable; urgency=low
 
   * Add ftpfs option
-  * Adapt for OMV 3.0.53
+  * Adapt for OMV 3.0.52
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 12 Nov 2016 20:43:52 -0600
 
