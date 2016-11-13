@@ -10,7 +10,7 @@ Package: openmediavault-remotemount
 Architecture: all
 Depends: cifs-utils,
          curlftpfs,
-         openmediavault (>= 3.0.53),
+         openmediavault (>= 3.0.52),
          php5-cli,
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.
