@@ -172,13 +172,23 @@ class Remote implements IFilesystem, ISharedFolderCandidate
     }
 
     /**
+     * Get the special device file to present in the UI instead of the
+     * value of the getDeviceFile method.
+     * @return Returns the device file.
+     */
+    public function getPreferredDeviceFile()
+    {
+        return $this->getDeviceFile();
+    }
+
+    /**
      * Get all devices that make up the filesystem.
      *
      * @return array
      */
     public function getDeviceFiles()
     {
-        return [$this->getDeviceFile()];
+        return [$this->getPreferredDeviceFile()];
     }
 
     /**

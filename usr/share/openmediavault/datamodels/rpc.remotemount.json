@@ -20,7 +20,7 @@
 			},
 			"mounttype": {
 				"type": "string",
-				"enum": ["cifs","nfs"]
+				"enum": ["cifs","ftpfs","nfs"]
 			},
 			"server": {
 				"type": "string",

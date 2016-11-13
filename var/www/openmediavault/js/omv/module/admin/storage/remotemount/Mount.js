@@ -41,7 +41,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         },{
             conditions: [{
                 name: 'mounttype',
-                value: 'cifs'
+                value: ['cifs', 'ftpfs']
             }],
             name: ['nfs4'],
             properties: ['!show', '!submitValue']
@@ -50,8 +50,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                 name: 'mounttype',
                 value: 'ftpfs'
             }],
-            name: ['nfs4','sharename'],
-            properties: ['!show', '!submitValue']
+            name: ['sharename'],
+            properties: ['!show', '!submitValue', 'allowBlank']
         }]
     }],
 
@@ -131,7 +131,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             value: '',
             plugins: [{
                 ptype: 'fieldinfo',
-                text: _('For FTPFS or SMB/CIFS, leave blank to authenticate as guest.')
+                text: _('Leave blank to authenticate as guest.')
             }]
         },{
             xtype: 'passwordfield',

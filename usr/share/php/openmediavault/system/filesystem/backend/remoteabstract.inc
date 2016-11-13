@@ -180,8 +180,9 @@ abstract class RemoteAbstract extends BackendAbstract
         foreach (new SplFileObject($mountsFile) as $content) {
             $splitContent = preg_split('/\s+/', $content);
 
-            if (($fsname === $splitContent[0] || $fsname === $splitContent[1])
-                && $type === $splitContent[2]) {
+//            if (($fsname === $splitContent[0] || $fsname === $splitContent[1])
+//                && $type === $splitContent[2]) {
+            if ($fsname === $splitContent[0] || $fsname === $splitContent[1]) {
                 return $splitContent[1];
             }
         }
