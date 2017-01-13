@@ -390,10 +390,7 @@ class Remote implements IFilesystem, ISharedFolderCandidate
 				$options = [ $options ];
 			$cmdArgs[] = sprintf("-o %s", implode(",", $options));
 		}
-		if (TRUE === $this->hasUuid())
-			$cmdArgs[] = sprintf("-U %s", $this->getUuid());
-		else
-			$cmdArgs[] = escapeshellarg($this->getDeviceFile());
+		$cmdArgs[] = escapeshellarg($this->getDeviceFile());
 		$cmd = new \OMV\System\Process("mount", $cmdArgs);
 		$cmd->setRedirect2to1();
 		$cmd->execute();
