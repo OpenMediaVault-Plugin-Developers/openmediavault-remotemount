@@ -20,7 +20,7 @@ require_once '/usr/share/php/openmediavault/autoloader.inc';
 require_once '/usr/share/php/openmediavault/globals.inc';
 
 use OMV\Rpc\Rpc;
-use OMV\System\Filesystem\Filesystem;
+use OMV\System\MountPoint;
 
 $cifsCreds = '/root/.cifscredentials-';
 
@@ -28,7 +28,7 @@ $context = ['username' => 'admin', 'role' => OMV_ROLE_ADMINISTRATOR];
 $objects = Rpc::call('RemoteMount', 'getList', ['start' => 0, 'limit' => null], $context, Rpc::MODE_REMOTE);
 
 foreach ($objects['data'] as $object) {
-    $mountPoint = Filesystem::buildMountPath($object['uuid']);
+    $mountPoint = MountPoint::buildPath($object['uuid']);
     switch ($object['mounttype']) {
         case 'cifs':
             $credFile = $cifsCreds . $object['mntentref'];

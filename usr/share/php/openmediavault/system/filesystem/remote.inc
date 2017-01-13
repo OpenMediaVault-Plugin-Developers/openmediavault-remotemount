@@ -23,6 +23,7 @@ use OMV\Exception;
 use OMV\ExecException;
 use OMV\System\Filesystem\Backend\BackendAbstract;
 use OMV\System\Process;
+use OMV\System\MountPoint;
 
 class Remote implements IFilesystem, ISharedFolderCandidate
 {
@@ -80,7 +81,7 @@ class Remote implements IFilesystem, ISharedFolderCandidate
         $this->type = $this->backend->getType();
         $this->uuid = $object->get('uuid');
 
-        $this->mountPoint = Filesystem::buildMountPath($this->uuid);
+        $this->mountPoint = MountPoint::buildPath($this->uuid);
     }
 
     /**
@@ -382,7 +383,20 @@ class Remote implements IFilesystem, ISharedFolderCandidate
      */
     public function mount($options = '')
     {
-        throw new Exception('Unsupported operation.');
+		$cmdArgs = [];
+		$cmdArgs[] = "-v";
+		if (!empty($options)) {
+			if (!is_array($options))
+				$options = [ $options ];
+			$cmdArgs[] = sprintf("-o %s", implode(",", $options));
+		}
+		if (TRUE === $this->hasUuid())
+			$cmdArgs[] = sprintf("-U %s", $this->getUuid());
+		else
+			$cmdArgs[] = escapeshellarg($this->getDeviceFile());
+		$cmd = new \OMV\System\Process("mount", $cmdArgs);
+		$cmd->setRedirect2to1();
+		$cmd->execute();
     }
 
     /**
@@ -409,6 +423,15 @@ class Remote implements IFilesystem, ISharedFolderCandidate
      */
     public function umount($force = false, $lazy = false)
     {
-        throw new Exception('Unsupported operation.');
+		$cmdArgs = [];
+		$cmdArgs[] = "-v";
+		if (TRUE === $force)
+			$cmdArgs[] = "-f";
+		if (TRUE === $lazy)
+			$cmdArgs[] = "-l";
+		$cmdArgs[] = escapeshellarg($this->getDeviceFile());
+		$cmd = new \OMV\System\Process("umount", $cmdArgs);
+		$cmd->setRedirect2to1();
+		$cmd->execute();
     }
 }

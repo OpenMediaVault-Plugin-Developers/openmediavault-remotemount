@@ -26,6 +26,7 @@ use OMV\Rpc\Rpc;
 use OMV\Rpc\ServiceAbstract;
 use OMV\System\Filesystem\Filesystem;
 use OMV\Uuid;
+use OMV\System\MountPoint;
 
 class RemoteMount extends ServiceAbstract
 {
@@ -193,7 +194,7 @@ class RemoteMount extends ServiceAbstract
      */
     private function setMntentEntry(ConfigObject $object)
     {
-        $mountPoint = Filesystem::buildMountPath($object->get('uuid'));
+        $mountPoint = MountPoint::buildPath($object->get('uuid'));
 
         $mntentEntry = [
             'uuid' => $object->get('mntentref'),
