@@ -25,10 +25,10 @@ msgid "Edit mount"
 msgstr "Upravit připojení"
 
 msgid "FTPFS"
-msgstr ""
+msgstr "FTPFS"
 
 msgid "For FTPFS options, see man page for "
-msgstr ""
+msgstr "Předvolby pro FTPFS naleznete v manuálové stránce"
 
 msgid "For NFS options, see man page for "
 msgstr "Totéž pro NFS naleznete v manuálové stránce "
@@ -44,7 +44,7 @@ msgid "For SMB/CIFS, use the share name only."
 msgstr "V případě SMB/CIFS použijte pouze název sdílení."
 
 msgid "Leave blank to authenticate as guest."
-msgstr ""
+msgstr "Nevyplněno znamená ověřovat se jako host."
 
 msgid "Mount Type"
 msgstr "Typ připojení"

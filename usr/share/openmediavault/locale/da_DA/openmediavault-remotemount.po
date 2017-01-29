@@ -25,10 +25,10 @@ msgid "Edit mount"
 msgstr "Rediger montering"
 
 msgid "FTPFS"
-msgstr ""
+msgstr "FTPFS"
 
 msgid "For FTPFS options, see man page for "
-msgstr ""
+msgstr "For FTPFS valgmuligheder, se man siden for dette"
 
 msgid "For NFS options, see man page for "
 msgstr "For NFS valgmuligheder, se man siden for dette"
@@ -43,7 +43,7 @@ msgid "For SMB/CIFS, use the share name only."
 msgstr "Til SMB/CIFS, brug kun delings navn."
 
 msgid "Leave blank to authenticate as guest."
-msgstr ""
+msgstr "Efterlad tom for godkendelse som gæst."
 
 msgid "Mount Type"
 msgstr "Monterings Type"

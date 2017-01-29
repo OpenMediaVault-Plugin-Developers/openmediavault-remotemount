@@ -1,6 +1,7 @@
 openmediavault-remotemount (3.0.4) stable; urgency=low
 
   * Allow samba shares with spaces in name
+  * Update locales
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 29 Jan 2017 08:48:22 -0600
 
