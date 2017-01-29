@@ -46,7 +46,7 @@ foreach ($objects['data'] as $object) {
             echo sprintf(
                 '//%s/%s %s cifs %s 0 0\n',
                 $object['server'],
-                $object['sharename'],
+                str_replace(" ", "\\\\040", $object['sharename']),
                 $mountPoint,
                 (!empty($object['options'])) ? $creds.','.$object['options'] : $creds
             );
