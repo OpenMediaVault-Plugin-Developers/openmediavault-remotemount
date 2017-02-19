@@ -180,9 +180,8 @@ class RemoteMount extends ServiceAbstract
 
         // FIXME: Check that the filesystem is not used before deleting it.
         $object = $this->database->get($this->dataModelPath, $params['uuid']);
-        $this->database->delete($object);
-
         Rpc::call('FsTab', 'delete', ['uuid' => $object->get('mntentref')], $context);
+        $this->database->delete($object);
     }
 
     /**
