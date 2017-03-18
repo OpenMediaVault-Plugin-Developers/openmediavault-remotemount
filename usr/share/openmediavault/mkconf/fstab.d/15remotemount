@@ -1,7 +1,7 @@
 #!/usr/bin/env php5
 <?php
 /**
- * Copyright (C) 2016 OpenMediaVault Plugin Developers.
+ * Copyright (C) 2016-2017 OpenMediaVault Plugin Developers.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ foreach ($objects['data'] as $object) {
 
         case 'ftpfs':
             echo sprintf(
-                'curlftpfs#%s %s fuse %s 0 0\n',
+                '%s %s fuse.curlftpfs %s 0 0\n',
                 $object['server'],
                 $mountPoint,
                 $object['options']

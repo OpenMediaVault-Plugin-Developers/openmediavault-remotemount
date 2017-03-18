@@ -11,7 +11,7 @@ Architecture: all
 Depends: cifs-utils,
          curlftpfs,
          omvextras-netrc,
-         openmediavault (>= 3.0.60),
+         openmediavault (>= 3.0.67),
          php5-cli,
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.

@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014-2016 OpenMediaVault Plugin Developers
+ * Copyright (C) 2014-2017 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,10 +35,12 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
     reloadOnActivate: true,
 
     columns: [{
+        xtype: "textcolumn",
         header: _('UUID'),
         hidden: true,
         dataIndex: 'uuid'
     },{
+        xtype: "textcolumn",
         header: _('Type'),
         flex: 1,
         sortable: true,
@@ -59,16 +61,19 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
             return content;
         }
     },{
+        xtype: "textcolumn",
         header: _('Name'),
         flex: 1,
         sortable: true,
         dataIndex: 'name'
     },{
+        xtype: "textcolumn",
         header: _('Server'),
         flex: 1,
         sortable: true,
         dataIndex: 'server'
     },{
+        xtype: "textcolumn",
         header: _('Share'),
         flex: 1,
         sortable: true,

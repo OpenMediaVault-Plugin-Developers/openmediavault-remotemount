@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014-2016 OpenMediaVault Plugin Developers
+ * Copyright (C) 2014-2017 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             fieldLabel: _('Mount Type'),
             queryMode: 'local',
             store: [
-                [ 'ftpfs', _('FTPFS') ],
+//                [ 'ftpfs', _('FTPFS') ],
                 [ 'nfs', _('NFS') ],
                 [ 'cifs', _('SMB/CIFS') ]
             ],
@@ -161,15 +161,15 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         var options = this.findField('options');
 
         if (newValue === 'cifs') {
-            options.setValue('_netdev,iocharset=utf8');
+            options.setValue('_netdev,iocharset=utf8,nofail');
         }
 
         if (newValue === 'ftpfs') {
-            options.setValue('rw,_netdev,gid=100,allow_other');
+            options.setValue('rw,_netdev,gid=100,allow_other,nofail');
         }
 
         if (newValue === 'nfs') {
-            options.setValue('rsize=8192,wsize=8192,timeo=14,intr');
+            options.setValue('rsize=8192,wsize=8192,timeo=14,intr,nofail');
         }
     }
 });
