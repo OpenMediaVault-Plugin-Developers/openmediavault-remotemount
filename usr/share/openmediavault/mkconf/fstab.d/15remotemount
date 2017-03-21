@@ -44,7 +44,7 @@ foreach ($objects['data'] as $object) {
                 $creds = 'guest';
             }
             echo sprintf(
-                '//%s/%s %s cifs %s 0 0\n',
+                "//%s/%s %s cifs %s 0 0\n",
                 $object['server'],
                 str_replace(" ", "\\\\040", $object['sharename']),
                 $mountPoint,
@@ -54,7 +54,7 @@ foreach ($objects['data'] as $object) {
 
         case 'ftpfs':
             echo sprintf(
-                '%s %s fuse.curlftpfs %s 0 0\n',
+                "%s %s fuse.curlftpfs %s 0 0\n",
                 $object['server'],
                 $mountPoint,
                 $object['options']
@@ -63,7 +63,7 @@ foreach ($objects['data'] as $object) {
 
         case 'nfs':
             echo sprintf(
-                '%s:%s %s %s %s 0 0\n',
+                "%s:%s %s %s %s 0 0\n",
                 $object['server'],
                 $object['sharename'],
                 $mountPoint,
