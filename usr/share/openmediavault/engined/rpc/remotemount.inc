@@ -36,9 +36,6 @@ class RemoteMount extends ServiceAbstract
     /** @var string */
     private $dataModelPath = 'conf.service.remotemount.mount';
 
-    /** @var string */
-    private $mountPointDataModelPath = 'conf.system.filesystem.mountpoint';
-
     public function __construct(Database $database = null)
     {
         $this->database = $database ?: Database::getInstance();

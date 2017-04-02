@@ -28,7 +28,8 @@ $context = ['username' => 'admin', 'role' => OMV_ROLE_ADMINISTRATOR];
 $objects = Rpc::call('RemoteMount', 'getList', ['start' => 0, 'limit' => null], $context, Rpc::MODE_REMOTE);
 
 foreach ($objects['data'] as $object) {
-    $mountPoint = MountPoint::buildPath($object['uuid']);
+    $mntent = Rpc::call('FsTab', 'get', ['uuid' => $object['mntentref']], $context, Rpc::MODE_REMOTE);
+    $mountPoint = $mntent['dir'];
     switch ($object['mounttype']) {
         case 'cifs':
             $credFile = $cifsCreds . $object['mntentref'];

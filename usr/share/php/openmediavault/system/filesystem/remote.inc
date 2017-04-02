@@ -215,11 +215,21 @@ class Remote implements IFilesystem, ISharedFolderCandidate
     /**
      * Get the device of the storage device which contains this file system.
      *
-     * @return string
+     * @return string|false
      */
     public function getParentDeviceFile()
     {
-        return null;
+         return false;
+    }
+
+    /**
+     * Get a predictable device file.
+     *
+     * @return string
+     */
+    public function getPredictableDeviceFile()
+    {
+        return $this->getDeviceFile();
     }
 
     /**
@@ -383,17 +393,17 @@ class Remote implements IFilesystem, ISharedFolderCandidate
      */
     public function mount($options = '')
     {
-		$cmdArgs = [];
-		$cmdArgs[] = "-v";
-		if (!empty($options)) {
-			if (!is_array($options))
-				$options = [ $options ];
-			$cmdArgs[] = sprintf("-o %s", implode(",", $options));
-		}
-		$cmdArgs[] = escapeshellarg($this->getDeviceFile());
-		$cmd = new \OMV\System\Process("mount", $cmdArgs);
-		$cmd->setRedirect2to1();
-		$cmd->execute();
+        $cmdArgs = [];
+        $cmdArgs[] = "-v";
+        if (!empty($options)) {
+            if (!is_array($options))
+                $options = [ $options ];
+            $cmdArgs[] = sprintf("-o %s", implode(",", $options));
+        }
+        $cmdArgs[] = escapeshellarg($this->getDeviceFile());
+        $cmd = new \OMV\System\Process("mount", $cmdArgs);
+        $cmd->setRedirect2to1();
+        $cmd->execute();
     }
 
     /**
@@ -420,15 +430,15 @@ class Remote implements IFilesystem, ISharedFolderCandidate
      */
     public function umount($force = false, $lazy = false)
     {
-		$cmdArgs = [];
-		$cmdArgs[] = "-v";
-		if (TRUE === $force)
-			$cmdArgs[] = "-f";
-		if (TRUE === $lazy)
-			$cmdArgs[] = "-l";
-		$cmdArgs[] = escapeshellarg($this->getDeviceFile());
-		$cmd = new \OMV\System\Process("umount", $cmdArgs);
-		$cmd->setRedirect2to1();
-		$cmd->execute();
+        $cmdArgs = [];
+        $cmdArgs[] = "-v";
+        if (TRUE === $force)
+            $cmdArgs[] = "-f";
+        if (TRUE === $lazy)
+            $cmdArgs[] = "-l";
+        $cmdArgs[] = escapeshellarg($this->getDeviceFile());
+        $cmd = new \OMV\System\Process("umount", $cmdArgs);
+        $cmd->setRedirect2to1();
+        $cmd->execute();
     }
 }

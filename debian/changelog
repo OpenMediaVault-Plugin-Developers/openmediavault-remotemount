@@ -1,3 +1,9 @@
+openmediavault-remotemount (3.0.8) stable; urgency=low
+
+  * Update for changes to OMV 3.0.68
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 02 Apr 2017 13:49:25 -0500
+
 openmediavault-remotemount (3.0.7) stable; urgency=low
 
   * Fix linefeed issue in fstab
