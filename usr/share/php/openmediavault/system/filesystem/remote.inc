@@ -66,22 +66,13 @@ class Remote implements IFilesystem, ISharedFolderCandidate
      * @param string          $uuid    The UUID or the mount point of the filesystem.
      * @param BackendAbstract $backend The backend that manages this filesystem.
      */
-    public function __construct(ConfigObject $object, BackendAbstract $backend)
+    public function __construct($uuid, $mountPoint, $label, BackendAbstract $backend)
     {
-        if ($object->getModelId() !== $this->dataModelPath) {
-            throw new Exception(sprintf(
-                'Expected the param \'$object\' the be a ConfigObject with the model ID: \'%s\'',
-                $this->dataModelPath
-            ));
-        }
-
         $this->backend = $backend;
-
-        $this->label = $object->get('name');
+        $this->label = $label;
+        $this->mountPoint = $mountPoint;
         $this->type = $this->backend->getType();
-        $this->uuid = $object->get('uuid');
-
-        $this->mountPoint = MountPoint::buildPath($this->uuid);
+        $this->uuid = $uuid;
     }
 
     /**

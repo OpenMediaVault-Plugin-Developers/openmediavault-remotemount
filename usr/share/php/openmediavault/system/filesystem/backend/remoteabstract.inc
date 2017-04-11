@@ -37,6 +37,11 @@ abstract class RemoteAbstract extends BackendAbstract
      */
     protected $dataModelPath = 'conf.service.remotemount.mount';
 
+    /**
+     * @var string
+     */
+    private $mountPointDataModelPath = 'conf.system.filesystem.mountpoint';
+
     public function __construct(Database $database)
     {
         $this->database = $database;
@@ -135,9 +140,10 @@ abstract class RemoteAbstract extends BackendAbstract
             $uuid = $this->extractUuidFromMountPoint($mountPoint);
         }
 
-        $object = $this->database->get($this->dataModelPath, $uuid);
+        $remoteObject = $this->database->get($this->dataModelPath, $uuid);
+        $mntObject = $this->database->get($this->mountPointDataModelPath, $remoteObject->get('mntentref'));
 
-        return new Remote($object, $this);
+        return new Remote($mntObject->get('uuid'), $mntObject->get('dir'), $remoteObject->get('name'), $this);
     }
 
     /**

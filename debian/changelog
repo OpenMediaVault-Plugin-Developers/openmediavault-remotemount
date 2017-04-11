@@ -1,3 +1,9 @@
+openmediavault-remotemount (3.0.9) stable; urgency=low
+
+  * Fix failed to find mount point bug - github issue #2
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 11 Apr 2017 09:26:37 -0500
+
 openmediavault-remotemount (3.0.8) stable; urgency=low
 
   * Update for changes to OMV 3.0.68
