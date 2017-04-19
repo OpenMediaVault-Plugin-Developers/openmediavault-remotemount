@@ -1,3 +1,9 @@
+openmediavault-remotemount (3.0.10) UNRELEASED; urgency=medium
+
+  * Fix for spaces in UNC name - github issue #3
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 19 Apr 2017 07:05:10 -0500
+
 openmediavault-remotemount (3.0.9) stable; urgency=low
 
   * Fix failed to find mount point bug - github issue #2
