@@ -143,7 +143,7 @@ abstract class RemoteAbstract extends BackendAbstract
         $remoteObject = $this->database->get($this->dataModelPath, $uuid);
         $mntObject = $this->database->get($this->mountPointDataModelPath, $remoteObject->get('mntentref'));
 
-        return new Remote($mntObject->get('uuid'), $mntObject->get('dir'), $remoteObject->get('name'), $this);
+        return new Remote($remoteObject->get('uuid'), $mntObject->get('dir'), $remoteObject->get('name'), $this);
     }
 
     /**

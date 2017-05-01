@@ -136,27 +136,24 @@ class RemoteMount extends ServiceAbstract
         // UUID.
         $this->database->set($object);
 
-        // Create or update the mntent entry.
-        $mntent = $this->setMntentEntry($object);
+        // If it's a new entry we'll create a new mntent.
+        if ($isNewObject) {
+            $mntent = $this->setMntentEntry($object);
+            try {
+                $object->set('mntentref', $mntent['uuid']);
+                $this->database->set($object);
+            } catch (Exception $e) {
+                $this->database->delete($object);
+                Rpc::call('FsTab', 'delete', ['uuid' => $selfMntent['uuid']], $context);
+                throw $e;
+            }
+        }
 
         // The fstab module does not mark itself as dirty when a mntent
         // configuration is modified, only when created or deleted.
         if (!$isNewObject) {
             $moduleManager = ModuleManager::getInstance();
             $moduleManager->setModuleDirty('fstab');
-        }
-
-        if ($isNewObject) {
-            try {
-                $object->set('mntentref', $mntent['uuid']);
-
-                $this->database->set($object);
-            } catch (Exception $e) {
-                $this->database->delete($object);
-                Rpc::call('FsTab', 'delete', ['uuid' => $mntent['uuid']], $context);
-
-                throw $e;
-            }
         }
 
         return $object->getAssoc();
