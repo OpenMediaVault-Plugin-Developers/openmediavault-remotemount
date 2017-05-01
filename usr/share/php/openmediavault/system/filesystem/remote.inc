@@ -206,11 +206,12 @@ class Remote implements IFilesystem, ISharedFolderCandidate
     /**
      * Get the device of the storage device which contains this file system.
      *
-     * @return string|false
+	 * @return The device file of the underlying storage device or NULL
+	 *   on failure.
      */
     public function getParentDeviceFile()
     {
-         return false;
+         return NULL;
     }
 
     /**
