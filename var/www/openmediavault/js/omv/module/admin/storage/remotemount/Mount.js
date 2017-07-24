@@ -52,6 +52,13 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             }],
             name: ['sharename'],
             properties: ['!show', '!submitValue', 'allowBlank']
+	},{
+            conditions: [{
+                name: 'mounttype',
+                value: 'fuse.glusterfs'
+            }],
+            name: ['nfs4', 'username', 'password'],
+            properties: ['!show', '!submitValue']
         }]
     }],
 
@@ -69,6 +76,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             queryMode: 'local',
             store: [
 //                [ 'ftpfs', _('FTPFS') ],
+		[ 'fuse.glusterfs', _('GLUSTERFS') ],
                 [ 'nfs', _('NFS') ],
                 [ 'cifs', _('SMB/CIFS') ]
             ],
@@ -101,7 +109,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             allowBlank: false,
             plugins: [{
                 ptype: 'fieldinfo',
-                text: _('Use FQDN, hostname, or IP address.')
+                text: _('Use FQDN, hostname, or IP address.') +
+			'<br />' +
+		      _('For GLUSTERFS, use any node server name or IP address.')
             }]
         },{
             xtype: 'textfield',
@@ -113,7 +123,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                 ptype: 'fieldinfo',
                 text: _('For SMB/CIFS, use the share name only.') +
                         '<br />' +
-                      _('For NFS, use the export path (ie /export/nfs_share_name).')
+                      _('For NFS, use the export path (ie /export/nfs_share_name).') +
+			'<br />' +
+		      _('For GLUSTERFS, use volume name only.')
             }]
         },{
             xtype: 'checkbox',
@@ -152,7 +164,11 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                         '<a href="https://linux.die.net/man/1/curlftpfs" target="_blank">curlftpfs</a>' +
                         '<br />' +
                       _('For NFS options, see man page for ') +
-                        '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>'
+                        '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>' +
+			'<br />' +
+		      _('For GLUSTERFS options, see man page for ') +
+			'<a href="https://linux.die.net/man/8/mount.glusterfs" target="_blank">mount.glusterfs</a>'
+
             }]
         }];
     },
@@ -171,5 +187,10 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         if (newValue === 'nfs') {
             options.setValue('rsize=8192,wsize=8192,timeo=14,intr,nofail');
         }
+
+	if (newValue === 'fuse.glusterfs') {
+	    options.setValue('_netdev,acl');
+	}
+
     }
 });

@@ -57,6 +57,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
                 case 'nfs':
                     content = _("NFS");
                     break;
+		case 'fuse.glusterfs':
+		    content = _("GLUSTERFS");
+		    break;
             }
             return content;
         }

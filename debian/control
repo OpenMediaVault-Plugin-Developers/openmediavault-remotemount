@@ -10,6 +10,7 @@ Package: openmediavault-remotemount
 Architecture: all
 Depends: cifs-utils,
          curlftpfs,
+         glusterfs-client,
          omvextras-netrc,
          openmediavault (>= 3.0.74),
          php5-cli,

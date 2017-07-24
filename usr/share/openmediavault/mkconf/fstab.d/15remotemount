@@ -72,6 +72,17 @@ foreach ($objects['data'] as $object) {
                 $object['options']
             );
             break;
+
+        case 'fuse.glusterfs':
+            echo sprintf(
+                "%s:/%s %s glusterfs %s 0 0\n",
+                $object['server'],
+                $object['sharename'],
+                $mountPoint,
+                $object['options']
+            );
+            break;
+
     }
 }
 

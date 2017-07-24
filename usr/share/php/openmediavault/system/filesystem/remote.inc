@@ -416,7 +416,6 @@ class Remote implements IFilesystem, ISharedFolderCandidate
     public function mount($options = '')
     {
         $cmdArgs = [];
-        $cmdArgs[] = "-v";
         if (!empty($options)) {
             if (!is_array($options))
                 $options = [ $options ];
