@@ -26,7 +26,7 @@
 		"mounttype": {
 			"description": "The type of remote mount",
 			"type": "string",
-			"enum": ["cifs","ftpfs","nfs"]
+			"enum": ["cifs","ftpfs","nfs","fuse.glusterfs"]
 		},
 		"server": {
 			"description": "Server FQDN or IP address",
