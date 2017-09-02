@@ -12,8 +12,8 @@ Depends: cifs-utils,
          curlftpfs,
          glusterfs-client,
          omvextras-netrc,
-         openmediavault (>= 3.0.74),
-         php5-cli,
+         openmediavault (>= 4.0.4),
+         php7.0-cli,
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.
  Makes it possible to mount remote shares.

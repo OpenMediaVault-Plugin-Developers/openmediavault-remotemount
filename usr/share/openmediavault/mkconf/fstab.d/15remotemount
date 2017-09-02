@@ -1,4 +1,4 @@
-#!/usr/bin/env php5
+#!/usr/bin/env php7.0
 <?php
 /**
  * Copyright (C) 2016-2017 OpenMediaVault Plugin Developers.
