@@ -12,7 +12,7 @@ Depends: cifs-utils,
          curlftpfs,
          glusterfs-client,
          omvextras-netrc,
-         openmediavault (>= 4.0.4),
+         openmediavault (>= 4.1.0),
          php7.0-cli,
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.
