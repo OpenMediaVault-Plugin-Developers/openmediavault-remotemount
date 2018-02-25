@@ -25,7 +25,7 @@ use OMV\System\Filesystem\Backend\BackendAbstract;
 use OMV\System\Process;
 use OMV\System\MountPoint;
 
-class Remote implements IFilesystem, ISharedFolderCandidate
+class Remote implements FilesystemInterface, SharedFolderCandidateInterface
 {
     /**
      * @var BackendAbstract
