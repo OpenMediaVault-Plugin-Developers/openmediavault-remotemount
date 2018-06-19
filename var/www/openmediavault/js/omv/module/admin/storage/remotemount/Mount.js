@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014-2017 OpenMediaVault Plugin Developers
+ * Copyright (C) 2014-2018 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             }],
             name: ['sharename'],
             properties: ['!show', '!submitValue', 'allowBlank']
-	},{
+        },{
             conditions: [{
                 name: 'mounttype',
                 value: 'fuse.glusterfs'
@@ -76,7 +76,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             queryMode: 'local',
             store: [
 //                [ 'ftpfs', _('FTPFS') ],
-		[ 'fuse.glusterfs', _('GLUSTERFS') ],
+                [ 'fuse.glusterfs', _('GLUSTERFS') ],
                 [ 'nfs', _('NFS') ],
                 [ 'cifs', _('SMB/CIFS') ]
             ],
@@ -110,8 +110,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             plugins: [{
                 ptype: 'fieldinfo',
                 text: _('Use FQDN, hostname, or IP address.') +
-			'<br />' +
-		      _('For GLUSTERFS, use any node server name or IP address.')
+                        '<br />' +
+                      _('For GLUSTERFS, use any node server name or IP address.')
             }]
         },{
             xtype: 'textfield',
@@ -124,8 +124,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                 text: _('For SMB/CIFS, use the share name only.') +
                         '<br />' +
                       _('For NFS, use the export path (ie /export/nfs_share_name).') +
-			'<br />' +
-		      _('For GLUSTERFS, use volume name only.')
+                        '<br />' +
+                      _('For GLUSTERFS, use volume name only.')
             }]
         },{
             xtype: 'checkbox',
@@ -165,10 +165,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                         '<br />' +
                       _('For NFS options, see man page for ') +
                         '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>' +
-			'<br />' +
-		      _('For GLUSTERFS options, see man page for ') +
-			'<a href="https://linux.die.net/man/8/mount.glusterfs" target="_blank">mount.glusterfs</a>'
-
+                        '<br />' +
+                      _('For GLUSTERFS options, see man page for ') +
+                        '<a href="https://linux.die.net/man/8/mount.glusterfs" target="_blank">mount.glusterfs</a>'
             }]
         }];
     },
@@ -177,20 +176,13 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         var options = this.findField('options');
 
         if (newValue === 'cifs') {
-            options.setValue('_netdev,iocharset=utf8,nofail');
-        }
-
-        if (newValue === 'ftpfs') {
+            options.setValue('_netdev,iocharset=utf8,vers=2.0,nofail');
+        } else if (newValue === 'ftpfs') {
             options.setValue('rw,_netdev,gid=100,allow_other,nofail');
-        }
-
-        if (newValue === 'nfs') {
+        } else if (newValue === 'nfs') {
             options.setValue('rsize=8192,wsize=8192,timeo=14,intr,nofail');
+        } else if (newValue === 'fuse.glusterfs') {
+            options.setValue('_netdev,acl');
         }
-
-	if (newValue === 'fuse.glusterfs') {
-	    options.setValue('_netdev,acl');
-	}
-
     }
 });
