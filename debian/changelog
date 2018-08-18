@@ -1,3 +1,9 @@
+openmediavault-remotemount (4.0.3) stable; urgency=low
+
+  * Add nfs v4 support
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 18 Aug 2018 09:25:16 -0500
+
 openmediavault-remotemount (4.0.2) stable; urgency=low
 
   * Change cifs default options
