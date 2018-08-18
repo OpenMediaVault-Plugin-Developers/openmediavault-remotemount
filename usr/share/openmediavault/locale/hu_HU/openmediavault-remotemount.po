@@ -10,6 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-11-12 21:18-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Gyuris Gellért <bubu@ujevangelizacio.hu>, 2018\n"
 "Language-Team: Hungarian (Hungary) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
@@ -18,84 +19,88 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Add mount"
-msgstr ""
+msgstr "Kapcsolódás hozzáadása"
 
 msgid "Edit mount"
-msgstr ""
+msgstr "Kapcsolódás szerkesztése"
 
 msgid "FTPFS"
-msgstr ""
+msgstr "FTPFS"
 
 msgid "For FTPFS options, see man page for "
-msgstr ""
+msgstr "Az FTPFS beállításokról bővebben a man oldalon"
 
 msgid "For NFS options, see man page for "
-msgstr ""
+msgstr "Az NFS beállításokról bővebben a man oldalon"
 
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
 msgstr ""
+"Az NFS-hez az export útvonalat kell megadni (pl. "
+"/export/nfs_megosztas_neve)."
 
 msgid "For SMB/CIFS options, see man page for "
-msgstr ""
+msgstr "Az SMB/CIFS beállításokról bővebben a man oldalon"
 
 msgid "For SMB/CIFS, use the share name only."
-msgstr ""
+msgstr "Az SMB/CIFS-hez egyedül a megosztás nevét kell megadni."
 
 msgid "Leave blank to authenticate as guest."
-msgstr ""
+msgstr "Üresen hagyva vendégként lesz hitelesítve."
 
 msgid "Mount Type"
-msgstr ""
+msgstr "Csatolástípus"
 
 msgid "Mounts"
-msgstr ""
+msgstr "Csatolások"
 
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 msgid ""
 "NOTE: The changes won't take effect until you've restarted the system or "
 "manually remounted the mount."
 msgstr ""
+"FIGYELEM: A módosítások nem kerülnek érvényre, amíg nem bootol újra a "
+"rendszer vagy kézzel nem lesz újracsatoltva a csatolás."
 
 msgid "Name"
-msgstr ""
+msgstr "Név"
 
 msgid "Options"
-msgstr ""
+msgstr "Beállítások"
 
 msgid "Password"
-msgstr ""
+msgstr "Jelszó"
 
 msgid "Remote Mount"
-msgstr ""
+msgstr "Távoli csatolás"
 
 msgid "SMB/CIFS"
-msgstr ""
+msgstr "SMB/CIFS"
 
 msgid "Server"
-msgstr ""
+msgstr "Kiszolgáló"
 
 msgid "Share"
-msgstr ""
+msgstr "Megosztás"
 
 msgid "Type"
-msgstr ""
+msgstr "Típus"
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "Use FQDN, hostname, or IP address."
-msgstr ""
+msgstr "FQDN-t, kiszolgálónevet vagy IP-címet kell megadni."
 
 msgid "Use NFS v4"
-msgstr ""
+msgstr "NFS v4 alkalmazása"
 
 msgid "Used for display in OpenMediaVault web interface only."
-msgstr ""
+msgstr "Csak a OpenMediaVault webes felületén jelenik meg."
 
 msgid "Username"
-msgstr ""
+msgstr "Felhasználói név"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
-msgstr ""
+msgstr "Bejelölve az NFS v4 lesz alkalmazva, egyébként pedig a NFS v2/v3."
