@@ -189,7 +189,9 @@ abstract class RemoteAbstract extends BackendAbstract
 	    if ($splitContent[2] == 'glusterfs') {
 		$splitContent[2] = 'fuse.glusterfs';
 	    }
-
+	    if ($splitContent[2] == 'nfs4') {
+		$splitContent[2] = 'nfs';
+	    }
             if ($type === $splitContent[2]) {
                 if ($fsname === $splitContent[0] || $fsname === $splitContent[1]) {
                     return $splitContent[1];
