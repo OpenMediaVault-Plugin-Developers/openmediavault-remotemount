@@ -20,11 +20,11 @@
 			},
 			"mounttype": {
 				"type": "string",
-				"enum": ["cifs","ftpfs","nfs","fuse.glusterfs"]
+				"enum": ["cifs","ftpfs","nfs","fuse.glusterfs","9p"],
+				"required": true
 			},
 			"server": {
-				"type": "string",
-				"required": true
+				"type": "string"
 			},
 			"sharename": {
 				"type": "string"

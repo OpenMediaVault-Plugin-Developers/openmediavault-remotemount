@@ -59,6 +59,13 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             }],
             name: ['nfs4', 'username', 'password'],
             properties: ['!show', '!submitValue']
+        },{
+            conditions: [{
+                name: 'mounttype',
+                value: '9p'
+            }],
+            name: ['nfs4', 'username', 'password', 'server'],
+            properties: ['!show', '!submitValue', 'allowBlank']
         }]
     }],
 
@@ -78,7 +85,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
 //                [ 'ftpfs', _('FTPFS') ],
                 [ 'fuse.glusterfs', _('GLUSTERFS') ],
                 [ 'nfs', _('NFS') ],
-                [ 'cifs', _('SMB/CIFS') ]
+                [ 'cifs', _('SMB/CIFS') ],
+                [ '9p', _('9PFS') ]
             ],
             editable: false,
             triggerAction: 'all',
@@ -125,7 +133,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                         '<br />' +
                       _('For NFS, use the export path (ie /export/nfs_share_name).') +
                         '<br />' +
-                      _('For GLUSTERFS, use volume name only.')
+                      _('For GLUSTERFS, use volume name only.') +
+                        '<br />' +
+                      _('For 9PFS, use mount tag')
             }]
         },{
             xtype: 'checkbox',
@@ -167,8 +177,11 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                         '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>' +
                         '<br />' +
                       _('For GLUSTERFS options, see man page for ') +
-                        '<a href="https://linux.die.net/man/8/mount.glusterfs" target="_blank">mount.glusterfs</a>'
-            }]
+                        '<a href="https://linux.die.net/man/8/mount.glusterfs" target="_blank">mount.glusterfs</a>' +
+                        '<br />' +
+                      _('For 9PFS options, see man page for ') +
+                        '<a href="https://www.kernel.org/doc/Documentation/filesystems/9p.txt" target="_blank">mount.9pfs</a>'
+           }]
         }];
     },
 
@@ -183,6 +196,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             options.setValue('rsize=8192,wsize=8192,timeo=14,intr,nofail');
         } else if (newValue === 'fuse.glusterfs') {
             options.setValue('_netdev,acl');
+        } else if (newValue === '9p') {
+            options.setValue('trans=virtio,version=9p2000.L,nobootwait,rw,_netdev');
         }
     }
 });

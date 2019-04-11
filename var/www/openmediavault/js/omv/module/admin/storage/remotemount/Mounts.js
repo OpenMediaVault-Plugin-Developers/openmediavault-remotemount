@@ -60,6 +60,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
                 case 'fuse.glusterfs':
                     content = _("GLUSTERFS");
                     break;
+                case '9p':
+                    content = _("9PFS");
+                    break;
             }
             return content;
         }

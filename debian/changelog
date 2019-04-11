@@ -1,3 +1,9 @@
+openmediavault-remotemount (4.0.6) stable; urgency=low
+
+  * add 9pfs support
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 12 Apr 2019 01:08:04 +0900
+
 openmediavault-remotemount (4.0.5) stable; urgency=low
 
   * Fix filesystem tab error

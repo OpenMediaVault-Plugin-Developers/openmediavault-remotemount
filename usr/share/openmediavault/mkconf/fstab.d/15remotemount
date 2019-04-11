@@ -83,6 +83,14 @@ foreach ($objects['data'] as $object) {
             );
             break;
 
+        case '9p':
+           echo sprintf(
+               "%s %s 9p %s 0 0\n",
+               $object['sharename'],
+               $mountPoint,
+               $object['options']
+           );
+           break;
     }
 }
 
