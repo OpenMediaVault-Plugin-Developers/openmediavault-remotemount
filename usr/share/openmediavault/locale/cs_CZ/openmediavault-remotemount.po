@@ -1,22 +1,28 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Pavel Borecki <pavel.borecki@gmail.com>, 2016
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 21:18-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2019-04-11 15:04-0500\n"
+"PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2016\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+msgid "9PFS"
+msgstr ""
 
 msgid "Add mount"
 msgstr "Přidat připojení"
@@ -27,8 +33,23 @@ msgstr "Upravit připojení"
 msgid "FTPFS"
 msgstr "FTPFS"
 
+msgid "For 9PFS options, see man page for "
+msgstr ""
+
+msgid "For 9PFS, use mount tag"
+msgstr ""
+
 msgid "For FTPFS options, see man page for "
 msgstr "Předvolby pro FTPFS naleznete v manuálové stránce"
+
+msgid "For GLUSTERFS options, see man page for "
+msgstr ""
+
+msgid "For GLUSTERFS, use any node server name or IP address."
+msgstr ""
+
+msgid "For GLUSTERFS, use volume name only."
+msgstr ""
 
 msgid "For NFS options, see man page for "
 msgstr "Totéž pro NFS naleznete v manuálové stránce "
@@ -42,6 +63,9 @@ msgstr "Informace o předvolbách pro SMB/CIFS naleznete v manuálové stránce 
 
 msgid "For SMB/CIFS, use the share name only."
 msgstr "V případě SMB/CIFS použijte pouze název sdílení."
+
+msgid "GLUSTERFS"
+msgstr ""
 
 msgid "Leave blank to authenticate as guest."
 msgstr "Nevyplněno znamená ověřovat se jako host."

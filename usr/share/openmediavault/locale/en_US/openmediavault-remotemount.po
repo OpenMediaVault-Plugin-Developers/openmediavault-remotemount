@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 #, fuzzy
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 21:18-0600\n"
+"POT-Creation-Date: 2019-04-11 15:04-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,9 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: \n"
+
+msgid "9PFS"
+msgstr "9PFS"
 
 msgid "Add mount"
 msgstr "Add mount"
@@ -26,8 +29,23 @@ msgstr "Edit mount"
 msgid "FTPFS"
 msgstr "FTPFS"
 
+msgid "For 9PFS options, see man page for "
+msgstr "For 9PFS options, see man page for "
+
+msgid "For 9PFS, use mount tag"
+msgstr "For 9PFS, use mount tag"
+
 msgid "For FTPFS options, see man page for "
 msgstr "For FTPFS options, see man page for "
+
+msgid "For GLUSTERFS options, see man page for "
+msgstr "For GLUSTERFS options, see man page for "
+
+msgid "For GLUSTERFS, use any node server name or IP address."
+msgstr "For GLUSTERFS, use any node server name or IP address."
+
+msgid "For GLUSTERFS, use volume name only."
+msgstr "For GLUSTERFS, use volume name only."
 
 msgid "For NFS options, see man page for "
 msgstr "For NFS options, see man page for "
@@ -40,6 +58,9 @@ msgstr "For SMB/CIFS options, see man page for "
 
 msgid "For SMB/CIFS, use the share name only."
 msgstr "For SMB/CIFS, use the share name only."
+
+msgid "GLUSTERFS"
+msgstr "GLUSTERFS"
 
 msgid "Leave blank to authenticate as guest."
 msgstr "Leave blank to authenticate as guest."

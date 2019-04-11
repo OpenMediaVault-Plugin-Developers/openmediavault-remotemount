@@ -1,6 +1,7 @@
 openmediavault-remotemount (4.0.6) stable; urgency=low
 
   * add 9pfs support
+  * Update locales
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Fri, 12 Apr 2019 01:08:04 +0900
 

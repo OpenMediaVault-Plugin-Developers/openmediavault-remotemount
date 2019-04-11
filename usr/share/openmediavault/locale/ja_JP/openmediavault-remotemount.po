@@ -1,22 +1,28 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Toshihiro Kan <kansuke4649@gmail.com>, 2016
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-12 21:18-0600\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2019-04-11 15:04-0500\n"
+"PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2016\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/ja_JP/)\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "9PFS"
+msgstr ""
 
 msgid "Add mount"
 msgstr "マウントの追加"
@@ -27,8 +33,23 @@ msgstr "マウントの編集"
 msgid "FTPFS"
 msgstr "FTPFS"
 
+msgid "For 9PFS options, see man page for "
+msgstr ""
+
+msgid "For 9PFS, use mount tag"
+msgstr ""
+
 msgid "For FTPFS options, see man page for "
 msgstr "FTPFSのためのオプション、manページは以下から参照"
+
+msgid "For GLUSTERFS options, see man page for "
+msgstr ""
+
+msgid "For GLUSTERFS, use any node server name or IP address."
+msgstr ""
+
+msgid "For GLUSTERFS, use volume name only."
+msgstr ""
 
 msgid "For NFS options, see man page for "
 msgstr "NFSのためのオプション、manページは"
@@ -41,6 +62,9 @@ msgstr "SMB/CIFSのためのオプション、manページは"
 
 msgid "For SMB/CIFS, use the share name only."
 msgstr "SMB/CIFS向け、共有名でのみ使用します。"
+
+msgid "GLUSTERFS"
+msgstr ""
 
 msgid "Leave blank to authenticate as guest."
 msgstr "空白にするとゲストとして認証します。"
