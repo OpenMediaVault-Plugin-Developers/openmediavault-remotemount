@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2016
+# kochin <kochinc@outlook.com>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-11 15:04-0500\n"
+"POT-Creation-Date: 2019-05-12 12:34-0500\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>, 2016\n"
+"Last-Translator: kochin <kochinc@outlook.com>, 2019\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "9PFS"
-msgstr ""
+msgstr "9PFS"
 
 msgid "Add mount"
 msgstr "新增掛載"
@@ -34,22 +34,22 @@ msgid "FTPFS"
 msgstr "FTPFS"
 
 msgid "For 9PFS options, see man page for "
-msgstr ""
+msgstr "關於 9PFS 的選項，請參見手册頁的 "
 
 msgid "For 9PFS, use mount tag"
-msgstr ""
+msgstr "用於 9PFS 時，使用掛載標籤(mount tag)"
 
 msgid "For FTPFS options, see man page for "
 msgstr "關於 FTPFS 之選項，請參見手冊頁的 "
 
 msgid "For GLUSTERFS options, see man page for "
-msgstr ""
+msgstr "關於 GLUSTERFS 之選項，請參見手冊頁的 "
 
 msgid "For GLUSTERFS, use any node server name or IP address."
-msgstr ""
+msgstr "用於 GLUSTERFS 時，使用任何節點伺服器名稱或 IP 地址。"
 
 msgid "For GLUSTERFS, use volume name only."
-msgstr ""
+msgstr "用於 GLUSTERFS 時，只使用卷輯名稱。"
 
 msgid "For NFS options, see man page for "
 msgstr "關於 NFS 之選項，請參見手冊頁的 "
@@ -64,7 +64,7 @@ msgid "For SMB/CIFS, use the share name only."
 msgstr "用於 SMB/CIFS，只使用共享名稱。"
 
 msgid "GLUSTERFS"
-msgstr ""
+msgstr "GLUSTERFS"
 
 msgid "Leave blank to authenticate as guest."
 msgstr "留空白表示認證為訪客。"
@@ -77,6 +77,9 @@ msgstr "掛載"
 
 msgid "NFS"
 msgstr "NFS"
+
+msgid "NFS v4"
+msgstr ""
 
 msgid ""
 "NOTE: The changes won't take effect until you've restarted the system or "

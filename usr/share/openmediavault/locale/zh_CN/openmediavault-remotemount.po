@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-11 15:04-0500\n"
+"POT-Creation-Date: 2019-05-12 12:34-0500\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: songming <by@songming.me>, 2016\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/zh_CN/)\n"
@@ -77,6 +77,9 @@ msgstr "挂载"
 
 msgid "NFS"
 msgstr "NFS"
+
+msgid "NFS v4"
+msgstr ""
 
 msgid ""
 "NOTE: The changes won't take effect until you've restarted the system or "

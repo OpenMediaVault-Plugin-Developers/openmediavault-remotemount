@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-11 15:04-0500\n"
+"POT-Creation-Date: 2019-05-12 12:34-0500\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Language-Team: Occitan (post 1500) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/oc/)\n"
 "MIME-Version: 1.0\n"
@@ -72,6 +72,9 @@ msgid "Mounts"
 msgstr ""
 
 msgid "NFS"
+msgstr ""
+
+msgid "NFS v4"
 msgstr ""
 
 msgid ""
