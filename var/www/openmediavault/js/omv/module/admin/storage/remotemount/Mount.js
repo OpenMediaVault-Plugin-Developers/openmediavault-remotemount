@@ -1,5 +1,5 @@
 /**
- * Copyright (C) 2014-2018 OpenMediaVault Plugin Developers
+ * Copyright (C) 2014-2019 OpenMediaVault Plugin Developers
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,17 +34,17 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         correlations: [{
             conditions: [{
                 name: 'mounttype',
-                value: 'nfs'
+                value: ['nfs','fuse.glusterfs','9p']
             }],
             name: ['username','password'],
             properties: ['!show', '!submitValue']
         },{
             conditions: [{
                 name: 'mounttype',
-                value: ['cifs', 'ftpfs']
+                value: ['nfs']
             }],
             name: ['nfs4'],
-            properties: ['!show', '!submitValue']
+            properties: ['show', 'submitValue']
         },{
             conditions: [{
                 name: 'mounttype',
@@ -55,16 +55,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         },{
             conditions: [{
                 name: 'mounttype',
-                value: 'fuse.glusterfs'
-            }],
-            name: ['nfs4', 'username', 'password'],
-            properties: ['!show', '!submitValue']
-        },{
-            conditions: [{
-                name: 'mounttype',
                 value: '9p'
             }],
-            name: ['nfs4', 'username', 'password', 'server'],
+            name: ['server'],
             properties: ['!show', '!submitValue', 'allowBlank']
         }]
     }],
