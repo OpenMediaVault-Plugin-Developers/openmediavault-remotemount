@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-04-11 15:04-0500\n"
+"POT-Creation-Date: 2019-04-14 12:37+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,9 @@ msgid "Mounts"
 msgstr ""
 
 msgid "NFS"
+msgstr ""
+
+msgid "NFS v4"
 msgstr ""
 
 msgid "NOTE: The changes won't take effect until you've restarted the system or manually remounted the mount."

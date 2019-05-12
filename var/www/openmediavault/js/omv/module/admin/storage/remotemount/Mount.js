@@ -133,8 +133,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         },{
             xtype: 'checkbox',
             name: 'nfs4',
-            fieldLabel: _('Use NFS v4'),
+            fieldLabel: _('NFS v4'),
             checked: false,
+            boxLabel: _('Use NFS v4'),
             plugins: [{
                 ptype: 'fieldinfo',
                 text: _('Will use NFS v2/v3 if unchecked and NFS v4 if checked.')
