@@ -34,7 +34,7 @@ class RemoteMount extends ServiceAbstract
     private $database;
 
     /** @var string */
-    private $dataModelPath = 'conf.service.remotemount.mount';
+    private $dataModelPath = 'conf.service.remotemount';
 
     public function __construct(Database $database = null)
     {
@@ -154,6 +154,21 @@ class RemoteMount extends ServiceAbstract
         if (!$isNewObject) {
             $moduleManager = ModuleManager::getInstance();
             $moduleManager->setModuleDirty('fstab');
+        }
+
+        $objects = $this->database->get($this->dataModelPath);
+        $cifsCreds = '/root/.cifscredentials-';
+        foreach ($objects as $fs) {
+            if ($fs->get('mounttype') == 'cifs') {
+                if (!empty($fs->get('username'))) {
+                    $credFile = $cifsCreds . $fs->get('mntentref');
+                    file_put_contents(
+                        $credFile,
+                        sprintf("username=%s\npassword=%s", $fs->get('username'), $fs->get('password'))
+                    );
+                    chmod($credFile, 0600);
+                }
+            }
         }
 
         return $object->getAssoc();

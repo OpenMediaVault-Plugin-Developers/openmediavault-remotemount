@@ -186,9 +186,6 @@ abstract class RemoteAbstract extends BackendAbstract
         foreach (new SplFileObject($mountsFile) as $content) {
             $splitContent = preg_split('/\s+/', $content);
 
-	    if ($splitContent[2] == 'glusterfs') {
-		$splitContent[2] = 'fuse.glusterfs';
-	    }
 	    if ($splitContent[2] == 'nfs4') {
 		$fs = 'nfs';
 	    }

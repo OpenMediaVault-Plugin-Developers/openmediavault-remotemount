@@ -34,31 +34,17 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         correlations: [{
             conditions: [{
                 name: 'mounttype',
-                value: ['nfs','fuse.glusterfs','9p']
+                value: 'nfs'
             }],
             name: ['username','password'],
             properties: ['!show', '!submitValue']
         },{
             conditions: [{
                 name: 'mounttype',
-                value: ['nfs']
+                value: ['cifs']
             }],
             name: ['nfs4'],
-            properties: ['show', 'submitValue']
-        },{
-            conditions: [{
-                name: 'mounttype',
-                value: 'ftpfs'
-            }],
-            name: ['sharename'],
-            properties: ['!show', '!submitValue', 'allowBlank']
-        },{
-            conditions: [{
-                name: 'mounttype',
-                value: '9p'
-            }],
-            name: ['server'],
-            properties: ['!show', '!submitValue', 'allowBlank']
+            properties: ['!show', '!submitValue']
         }]
     }],
 
@@ -75,11 +61,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             fieldLabel: _('Mount Type'),
             queryMode: 'local',
             store: [
-//                [ 'ftpfs', _('FTPFS') ],
-                [ 'fuse.glusterfs', _('GLUSTERFS') ],
                 [ 'nfs', _('NFS') ],
-                [ 'cifs', _('SMB/CIFS') ],
-                [ '9p', _('9PFS') ]
+                [ 'cifs', _('SMB/CIFS') ]
             ],
             editable: false,
             triggerAction: 'all',
@@ -124,11 +107,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                 ptype: 'fieldinfo',
                 text: _('For SMB/CIFS, use the share name only.') +
                         '<br />' +
-                      _('For NFS, use the export path (ie /export/nfs_share_name).') +
-                        '<br />' +
-                      _('For GLUSTERFS, use volume name only.') +
-                        '<br />' +
-                      _('For 9PFS, use mount tag')
+                      _('For NFS, use the export path (ie /export/nfs_share_name).')
             }]
         },{
             xtype: 'checkbox',
@@ -164,17 +143,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                 text: _('For SMB/CIFS options, see man page for ') +
                         '<a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a>' +
                         '<br />' +
-                      _('For FTPFS options, see man page for ') +
-                        '<a href="https://linux.die.net/man/1/curlftpfs" target="_blank">curlftpfs</a>' +
-                        '<br />' +
                       _('For NFS options, see man page for ') +
-                        '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>' +
-                        '<br />' +
-                      _('For GLUSTERFS options, see man page for ') +
-                        '<a href="https://linux.die.net/man/8/mount.glusterfs" target="_blank">mount.glusterfs</a>' +
-                        '<br />' +
-                      _('For 9PFS options, see man page for ') +
-                        '<a href="https://www.kernel.org/doc/Documentation/filesystems/9p.txt" target="_blank">mount.9pfs</a>'
+                        '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>'
            }]
         }];
     },
@@ -184,14 +154,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
 
         if (newValue === 'cifs') {
             options.setValue('_netdev,iocharset=utf8,vers=2.0,nofail');
-        } else if (newValue === 'ftpfs') {
-            options.setValue('rw,_netdev,gid=100,allow_other,nofail');
         } else if (newValue === 'nfs') {
             options.setValue('rsize=8192,wsize=8192,timeo=14,intr,nofail');
-        } else if (newValue === 'fuse.glusterfs') {
-            options.setValue('_netdev,acl');
-        } else if (newValue === '9p') {
-            options.setValue('trans=virtio,version=9p2000.L,nobootwait,rw,_netdev');
         }
     }
 });

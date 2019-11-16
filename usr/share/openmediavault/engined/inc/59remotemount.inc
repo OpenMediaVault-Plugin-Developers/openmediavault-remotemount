@@ -20,17 +20,11 @@
 use OMV\Config\Database;
 use OMV\System\Filesystem\Backend\Manager;
 use OMV\System\Filesystem\Backend\Cifs;
-use OMV\System\Filesystem\Backend\Ftpfs;
 use OMV\System\Filesystem\Backend\Nfs;
 use OMV\System\Filesystem\Backend\Nfs4;
-use OMV\System\Filesystem\Backend\Glusterfs;
-use OMV\System\Filesystem\Backend\Plan9;
 
 $database = Database::getInstance();
 $filesystemBackendManager = Manager::getInstance();
 $filesystemBackendManager->registerBackend(new Cifs($database));
-$filesystemBackendManager->registerBackend(new Ftpfs($database));
 $filesystemBackendManager->registerBackend(new Nfs($database));
 $filesystemBackendManager->registerBackend(new Nfs4($database));
-$filesystemBackendManager->registerBackend(new Glusterfs($database));
-$filesystemBackendManager->registerBackend(new Plan9($database));

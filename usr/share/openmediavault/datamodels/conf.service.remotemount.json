@@ -1,7 +1,7 @@
 {
 	"type": "config",
 	"title": "Remote Mount",
-	"id": "conf.service.remotemount.mount",
+	"id": "conf.service.remotemount",
 	"queryinfo": {
 		"xpath": "/config/services/remotemount/mount",
 		"iterable": true,

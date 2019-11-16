@@ -9,11 +9,7 @@ XB-Plugin-Section: filesystems
 Package: openmediavault-remotemount
 Architecture: all
 Depends: cifs-utils,
-         curlftpfs,
-         glusterfs-client,
-         omvextras-netrc,
-         openmediavault (>= 4.1.0),
-         php7.0-cli,
+         openmediavault (>= 5),
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.
  Makes it possible to mount remote shares.

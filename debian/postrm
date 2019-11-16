@@ -5,10 +5,17 @@ set -e
 . /etc/default/openmediavault
 . /usr/share/openmediavault/scripts/helper-functions
 
+remove_action() {
+    # Activate trigger to purge cached files.
+    dpkg-trigger update-fixperms
+}
+
 case "$1" in
     purge)
         XPATH="/config/services/remotemount"
         XPATH_MOUNT="${XPATH}/mount"
+
+        remove_action
 
         # delete mntent entries
         count=$(omv_config_get_count "${XPATH_MOUNT}")
@@ -36,13 +43,14 @@ case "$1" in
         omv_config_delete ${XPATH}
 
         # Regenerate fstab
-        omv-mkconf fstab
+        omv-salt deploy run fstab
 
         # remove credential files
         rm -f /root/.cifscredentials-*
     ;;
 
     remove)
+        remove_action
     ;;
 
     upgrade|failed-upgrade|abort-install|abort-upgrade|disappear)

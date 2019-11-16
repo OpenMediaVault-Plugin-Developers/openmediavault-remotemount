@@ -51,17 +51,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
                 case 'cifs':
                     content = _("SMB/CIFS");
                     break;
-                case 'ftpfs':
-                    content = _("FTPFS");
-                    break;
                 case 'nfs':
                     content = _("NFS");
-                    break;
-                case 'fuse.glusterfs':
-                    content = _("GLUSTERFS");
-                    break;
-                case '9p':
-                    content = _("9PFS");
                     break;
             }
             return content;
