@@ -1,8 +1,8 @@
-openmediavault-remotemount (5.0) UNRELEASED; urgency=medium
+openmediavault-remotemount (5.0) stable; urgency=low
 
   * Update for OMV 5.x
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 16 Nov 2019 10:09:24 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 17 Nov 2019 08:15:02 -0600
 
 openmediavault-remotemount (4.0.7) stable; urgency=low
 
