@@ -34,7 +34,7 @@ class RemoteMount extends ServiceAbstract
     private $database;
 
     /** @var string */
-    private $dataModelPath = 'conf.service.remotemount';
+    private $dataModelPath = 'conf.service.remotemount.mount';
 
     public function __construct(Database $database = null)
     {

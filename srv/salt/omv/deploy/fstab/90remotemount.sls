@@ -1,35 +1,35 @@
-{% set config = salt['omv_conf.get']('conf.service.remotemount.mount') %}
+{% set config = salt['omv_conf.get']('conf.service.remotemount') %}
 {% set cifsCreds = '/root/.cifscredentials-' %}
 
-{% for mount in config.mount %}
+{% for mnt in config.mount %}
 {% set remotemount = salt['omv_conf.get_by_filter'](
   'conf.system.filesystem.mountpoint',
-  {'operator':'stringEquals', 'arg0':'uuid', 'arg1':mount.mntentref}) %}
+  {'operator':'stringEquals', 'arg0':'uuid', 'arg1':mnt.mntentref}) %}
 {% set mntDir = remotemount[0].dir %}
 
 {% set options = [] %}
-{% set options = mount.options.split(',') %}
-{%- if mount.mounttype == 'cifs' %}
-{%- if mount.username | length > 0 %}
-{% set _ = options.append('credentials=' + cifsCreds + mount.mntentref) %}
+{% set options = mnt.options.split(',') %}
+{%- if mnt.mounttype == 'cifs' %}
+{%- if mnt.username | length > 0 %}
+{% set _ = options.append('credentials=' + cifsCreds + mnt.mntentref) %}
 {%- else %}
 {% set _ = options.append('guest') %}
 {%- endif %}
-{% set share = '//' + mount.server + '/' + mount.sharename | replace('', '\\040') %}
-{% set fstype = mount.mounttype %}
-{%- elif mount.mounttype == 'nfs' %}
-{% set share = mount.server + ':' + mount.sharename %}
-{% set fstype = mount.mounttype %}
+{% set share = '//' + mnt.server + '/' + mnt.sharename | replace('', '\\040') %}
+{% set fstype = mnt.mounttype %}
+{%- elif mnt.mounttype == 'nfs' %}
+{% set share = mnt.server + ':' + mnt.sharename %}
+{% set fstype = mnt.mounttype %}
 {%- endif %}
 
-create_remotemount_mountpoint_{{ mount.uuid }}:
+create_remotemount_mountpoint_{{ mnt.uuid }}:
   file.accumulated:
     - filename: "/etc/fstab"
-    - text: "{{ share }}\t\t{{ mntDir }}\t{{ fstype }}\t{{ options }}\t{{ remotemount.freq }} {{ remotemount.passno }}"
+    - text: "{{ share }}\t\t{{ mntDir }}\t{{ fstype }}\t{{ options | join(',') }}\t0 0"
     - require_in:
       - file: append_fstab_entries
 
-mount_filesystem_mountpoint_{{ mount.uuid }}:
+mount_filesystem_mountpoint_{{ mnt.uuid }}:
   mount.mounted:
     - name: {{ mntDir }}
     - device: {{ share }}
