@@ -15,7 +15,7 @@
 {%- else %}
 {% set _ = options.append('guest') %}
 {%- endif %}
-{% set share = '//' + mnt.server + '/' + mnt.sharename | replace('', '\\040') %}
+{% set share = '//' + mnt.server + '/' + mnt.sharename | replace(' ', '\\040') %}
 {% set fstype = mnt.mounttype %}
 {%- elif mnt.mounttype == 'nfs' %}
 {% set share = mnt.server + ':' + mnt.sharename %}

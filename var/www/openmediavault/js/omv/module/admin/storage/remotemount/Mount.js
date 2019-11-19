@@ -137,7 +137,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             xtype: 'textfield',
             name: 'options',
             fieldLabel: _('Options'),
-            value: '_netdev,iocharset=utf8,vers=2.0,nofail',
+            value: '_netdev,iocharset=utf8,vers=3.0,nofail',
             plugins: [{
                 ptype: 'fieldinfo',
                 text: _('For SMB/CIFS options, see man page for ') +
@@ -153,7 +153,7 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         var options = this.findField('options');
 
         if (newValue === 'cifs') {
-            options.setValue('_netdev,iocharset=utf8,vers=2.0,nofail');
+            options.setValue('_netdev,iocharset=utf8,vers=3.0,nofail');
         } else if (newValue === 'nfs') {
             options.setValue('rsize=8192,wsize=8192,timeo=14,intr,nofail');
         }
