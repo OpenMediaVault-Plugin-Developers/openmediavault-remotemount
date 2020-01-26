@@ -2,7 +2,10 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Артур Мудрых <arturmon82@gmail.com>, 2016
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -12,10 +15,10 @@ msgstr ""
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Артур Мудрых <arturmon82@gmail.com>, 2016\n"
 "Language-Team: Russian (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/ru/)\n"
-"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 msgid "9PFS"
@@ -51,9 +54,6 @@ msgstr ""
 msgid "For NFS options, see man page for "
 msgstr "Для настройки NFS см справочную страницу для"
 
-msgid "For WebDAV options, see man page for "
-msgstr ""
-
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
 msgstr ""
 
@@ -81,8 +81,12 @@ msgstr "NFS"
 msgid "NFS v4"
 msgstr ""
 
-msgid "NOTE: The changes won't take effect until you've restarted the system or manually remounted the mount."
-msgstr "Примечание: Изменения не вступят в силу до тех пор, пока вы не перезагрузите систему или вручную не перемонтируете."
+msgid ""
+"NOTE: The changes won't take effect until you've restarted the system or "
+"manually remounted the mount."
+msgstr ""
+"Примечание: Изменения не вступят в силу до тех пор, пока вы не перезагрузите"
+" систему или вручную не перемонтируете."
 
 msgid "Name"
 msgstr "Имя"
@@ -98,9 +102,6 @@ msgstr ""
 
 msgid "SMB/CIFS"
 msgstr "SMB/CIFS"
-
-msgid "DAVFS"
-msgstr ""
 
 msgid "Server"
 msgstr ""
@@ -128,15 +129,3 @@ msgstr "Имя пользователя"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
 msgstr "Использовать NFS v4 или NFS v2/v3 если выключено."
-
-msgid "Mounted"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Shared"
-msgstr ""

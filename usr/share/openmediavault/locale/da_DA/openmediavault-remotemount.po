@@ -2,7 +2,10 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Stefan Thrane Overby <stoverby@gmail.com>, 2016
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -12,10 +15,10 @@ msgstr ""
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>, 2016\n"
 "Language-Team: Danish (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/da/)\n"
-"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "9PFS"
@@ -51,9 +54,6 @@ msgstr ""
 msgid "For NFS options, see man page for "
 msgstr "For NFS valgmuligheder, se man siden for dette"
 
-msgid "For WebDAV options, see man page for "
-msgstr ""
-
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
 msgstr "Til NFS, brug eksport stien (fx /export/nfs_share_name)."
 
@@ -81,8 +81,12 @@ msgstr "NFS"
 msgid "NFS v4"
 msgstr ""
 
-msgid "NOTE: The changes won't take effect until you've restarted the system or manually remounted the mount."
-msgstr "INFO: Ændringerne vil først træde i kraft, når du enten har genstartet systemet, eller manuelt genmonteret monteringen."
+msgid ""
+"NOTE: The changes won't take effect until you've restarted the system or "
+"manually remounted the mount."
+msgstr ""
+"INFO: Ændringerne vil først træde i kraft, når du enten har genstartet "
+"systemet, eller manuelt genmonteret monteringen."
 
 msgid "Name"
 msgstr "Navn"
@@ -98,9 +102,6 @@ msgstr "Ekstern Montering"
 
 msgid "SMB/CIFS"
 msgstr "SMB/CIFS"
-
-msgid "DAVFS"
-msgstr ""
 
 msgid "Server"
 msgstr "Server"
@@ -128,15 +129,3 @@ msgstr "Brugernavn"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
 msgstr "Vil bruge NFS v2/v3 uden flueben og NFS v4 med flueben."
-
-msgid "Mounted"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Shared"
-msgstr ""

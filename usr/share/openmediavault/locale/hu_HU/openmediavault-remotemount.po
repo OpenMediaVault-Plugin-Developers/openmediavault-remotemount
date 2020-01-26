@@ -2,7 +2,10 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Gyuris Gellért <bubu@ujevangelizacio.hu>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -12,10 +15,10 @@ msgstr ""
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Gyuris Gellért <bubu@ujevangelizacio.hu>, 2018\n"
 "Language-Team: Hungarian (Hungary) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/hu_HU/)\n"
-"Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "9PFS"
@@ -51,11 +54,10 @@ msgstr ""
 msgid "For NFS options, see man page for "
 msgstr "Az NFS beállításokról bővebben a man oldalon"
 
-msgid "For WebDAV options, see man page for "
-msgstr ""
-
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
-msgstr "Az NFS-hez az export útvonalat kell megadni (pl. /export/nfs_megosztas_neve)."
+msgstr ""
+"Az NFS-hez az export útvonalat kell megadni (pl. "
+"/export/nfs_megosztas_neve)."
 
 msgid "For SMB/CIFS options, see man page for "
 msgstr "Az SMB/CIFS beállításokról bővebben a man oldalon"
@@ -81,8 +83,12 @@ msgstr "NFS"
 msgid "NFS v4"
 msgstr ""
 
-msgid "NOTE: The changes won't take effect until you've restarted the system or manually remounted the mount."
-msgstr "FIGYELEM: A módosítások nem kerülnek érvényre, amíg nem bootol újra a rendszer vagy kézzel nem lesz újracsatoltva a csatolás."
+msgid ""
+"NOTE: The changes won't take effect until you've restarted the system or "
+"manually remounted the mount."
+msgstr ""
+"FIGYELEM: A módosítások nem kerülnek érvényre, amíg nem bootol újra a "
+"rendszer vagy kézzel nem lesz újracsatoltva a csatolás."
 
 msgid "Name"
 msgstr "Név"
@@ -98,9 +104,6 @@ msgstr "Távoli csatolás"
 
 msgid "SMB/CIFS"
 msgstr "SMB/CIFS"
-
-msgid "DAVFS"
-msgstr ""
 
 msgid "Server"
 msgstr "Kiszolgáló"
@@ -128,15 +131,3 @@ msgstr "Felhasználói név"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
 msgstr "Bejelölve az NFS v4 lesz alkalmazva, egyébként pedig a NFS v2/v3."
-
-msgid "Mounted"
-msgstr ""
-
-msgid "Mount"
-msgstr ""
-
-msgid "Unmount"
-msgstr ""
-
-msgid "Shared"
-msgstr ""
