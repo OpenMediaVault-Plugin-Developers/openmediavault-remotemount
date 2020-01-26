@@ -16,19 +16,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+namespace OMV\System\Filesystem\Backend;
 
 use OMV\Config\Database;
-use OMV\System\Filesystem\Backend\Manager;
-use OMV\System\Filesystem\Backend\Cifs;
-use OMV\System\Filesystem\Backend\Nfs;
-use OMV\System\Filesystem\Backend\Nfs4;
-use OMV\System\Filesystem\Backend\Davfs;
-use OMV\System\Filesystem\Backend\Fuse;
 
-$database = Database::getInstance();
-$filesystemBackendManager = Manager::getInstance();
-$filesystemBackendManager->registerBackend(new Cifs($database));
-$filesystemBackendManager->registerBackend(new Nfs($database));
-$filesystemBackendManager->registerBackend(new Nfs4($database));
-$filesystemBackendManager->registerBackend(new Davfs($database));
-$filesystemBackendManager->registerBackend(new Fuse($database));
+class Davfs extends RemoteAbstract
+{
+    public function __construct(Database $database)
+    {
+        parent::__construct($database);
+
+        $this->type = 'davfs';
+        $this->properties = self::PROP_POSIX_ACL;
+    }
+}

@@ -50,6 +50,9 @@ msgstr ""
 msgid "For NFS options, see man page for "
 msgstr ""
 
+msgid "For WebDAV options, see man page for "
+msgstr ""
+
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
 msgstr ""
 
@@ -95,6 +98,9 @@ msgstr ""
 msgid "SMB/CIFS"
 msgstr ""
 
+msgid "DAVFS"
+msgstr ""
+
 msgid "Server"
 msgstr ""
 
@@ -120,4 +126,16 @@ msgid "Username"
 msgstr ""
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
+msgstr ""
+
+msgid "Mounted"
+msgstr ""
+
+msgid "Mount"
+msgstr ""
+
+msgid "Unmount"
+msgstr ""
+
+msgid "Shared"
 msgstr ""

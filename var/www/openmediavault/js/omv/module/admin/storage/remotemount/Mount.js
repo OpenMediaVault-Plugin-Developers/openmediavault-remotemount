@@ -41,9 +41,16 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
         },{
             conditions: [{
                 name: 'mounttype',
-                value: ['cifs']
+                value: ['cifs', 'davfs']
             }],
             name: ['nfs4'],
+            properties: ['!show', '!submitValue']
+        },{
+            conditions: [{
+                name: 'mounttype',
+                value: 'davfs'
+            }],
+            name: ['sharename'],
             properties: ['!show', '!submitValue']
         }]
     }],
@@ -62,7 +69,8 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             queryMode: 'local',
             store: [
                 [ 'nfs', _('NFS') ],
-                [ 'cifs', _('SMB/CIFS') ]
+                [ 'cifs', _('SMB/CIFS') ],
+                [ 'davfs', _('DAVFS') ]
             ],
             editable: false,
             triggerAction: 'all',
@@ -144,7 +152,10 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
                         '<a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a>' +
                         '<br />' +
                       _('For NFS options, see man page for ') +
-                        '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>'
+                        '<a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>' +
+                        '<br />' +
+                      _('For WebDAV options, see man page for ') +
+                        '<a href="https://linux.die.net/man/8/mount.davfs" target="_blank">mount.davfs</a>'
            }]
         }];
     },
@@ -156,6 +167,15 @@ Ext.define('OMV.module.admin.storage.remotemount.Mount', {
             options.setValue('_netdev,iocharset=utf8,vers=3.0,nofail');
         } else if (newValue === 'nfs') {
             options.setValue('rsize=8192,wsize=8192,timeo=14,intr,nofail');
+        } else if (newValue === 'davfs') {
+            options.setValue('_netdev,defaults,nofail,file_mode=777,dir_mode=777');
         }
+                
+        var sharename = this.findField('sharename');
+        if (newValue === 'davfs') {
+            sharename.setValue('N.A.');
+        } else {
+            sharename.setValue('');
+        } 
     }
 });

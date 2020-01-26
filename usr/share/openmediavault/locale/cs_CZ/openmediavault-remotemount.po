@@ -2,10 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
-# Translators:
-# Pavel Borecki <pavel.borecki@gmail.com>, 2019
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -15,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2019\n"
 "Language-Team: Czech (Czech Republic) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/cs_CZ/)\n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: cs_CZ\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "9PFS"
@@ -46,8 +43,7 @@ msgid "For GLUSTERFS options, see man page for "
 msgstr "Předvolby pro GLUSTERFS naleznete v manuálové stránce"
 
 msgid "For GLUSTERFS, use any node server name or IP address."
-msgstr ""
-"V případě GLUSTERFS, použijte název nebo IP adresu libovolného z jeho uzlů."
+msgstr "V případě GLUSTERFS, použijte název nebo IP adresu libovolného z jeho uzlů."
 
 msgid "For GLUSTERFS, use volume name only."
 msgstr "V případě GLUSTERFS, použijte pouze název svazku."
@@ -55,9 +51,11 @@ msgstr "V případě GLUSTERFS, použijte pouze název svazku."
 msgid "For NFS options, see man page for "
 msgstr "Totéž pro NFS naleznete v manuálové stránce "
 
-msgid "For NFS, use the export path (ie /export/nfs_share_name)."
+msgid "For WebDAV options, see man page for "
 msgstr ""
-"U NFS použijte popis umístění exportu (tj. /export/nazev_nfs_sdileni)."
+
+msgid "For NFS, use the export path (ie /export/nfs_share_name)."
+msgstr "U NFS použijte popis umístění exportu (tj. /export/nazev_nfs_sdileni)."
 
 msgid "For SMB/CIFS options, see man page for "
 msgstr "Informace o předvolbách pro SMB/CIFS naleznete v manuálové stránce "
@@ -83,12 +81,8 @@ msgstr "NFS"
 msgid "NFS v4"
 msgstr ""
 
-msgid ""
-"NOTE: The changes won't take effect until you've restarted the system or "
-"manually remounted the mount."
-msgstr ""
-"UPOZORNĚNÍ: Změny projeví až po restartu serveru nebo ručním odpojení a "
-"opětovném připojení (mount)."
+msgid "NOTE: The changes won't take effect until you've restarted the system or manually remounted the mount."
+msgstr "UPOZORNĚNÍ: Změny projeví až po restartu serveru nebo ručním odpojení a opětovném připojení (mount)."
 
 msgid "Name"
 msgstr "Název"
@@ -104,6 +98,9 @@ msgstr "Využití jiného síťového úložiště"
 
 msgid "SMB/CIFS"
 msgstr "SMB/CIFS"
+
+msgid "DAVFS"
+msgstr ""
 
 msgid "Server"
 msgstr "Server"
@@ -130,6 +127,16 @@ msgid "Username"
 msgstr "Uživatelské jméno"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
+msgstr "Pokud toto není zapnuto, bude používáno NFS verzí 2/3. V opačném případě verze 4."
+
+msgid "Mounted"
 msgstr ""
-"Pokud toto není zapnuto, bude používáno NFS verzí 2/3. V opačném případě "
-"verze 4."
+
+msgid "Mount"
+msgstr ""
+
+msgid "Unmount"
+msgstr ""
+
+msgid "Shared"
+msgstr ""

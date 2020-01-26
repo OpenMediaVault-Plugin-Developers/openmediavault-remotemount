@@ -18,6 +18,13 @@ case "$1" in
         if [ -n "$2" ]; then
             omv-confdbadm migrate "conf.service.remotemount" "${2}"
         fi
+        
+        #copy secrets file
+        if [ ! -f "/etc/davfs2/secrets.orig" ]; then
+            if [ -f "/etc/davfs2/secrets" ]; then
+                cp "/etc/davfs2/secrets" "/etc/davfs2/secrets.orig"
+            fi
+        fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

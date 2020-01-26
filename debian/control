@@ -9,6 +9,7 @@ XB-Plugin-Section: filesystems
 Package: openmediavault-remotemount
 Architecture: all
 Depends: cifs-utils,
+         davfs2,
          openmediavault (>= 5),
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.

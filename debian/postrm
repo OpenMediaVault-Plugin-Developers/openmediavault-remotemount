@@ -47,6 +47,12 @@ case "$1" in
 
         # remove credential files
         rm -f /root/.cifscredentials-*
+        
+        # remove secrets files
+        if [ -f "/etc/davfs2/secrets.orig" ]; then
+            rm -f "/etc/davfs2/secrets"
+            cp "/etc/davfs2/secrets.orig" "/etc/davfs2/secrets"
+        fi
     ;;
 
     remove)

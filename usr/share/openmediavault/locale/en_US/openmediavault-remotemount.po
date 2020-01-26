@@ -2,7 +2,7 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 
 msgid "9PFS"
 msgstr "9PFS"
@@ -50,6 +50,9 @@ msgstr "For GLUSTERFS, use volume name only."
 msgid "For NFS options, see man page for "
 msgstr "For NFS options, see man page for "
 
+msgid "For WebDAV options, see man page for "
+msgstr "For WebDAV options, see man page for "
+
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
 msgstr "For NFS, use the export path (ie /export/nfs_share_name)."
 
@@ -77,12 +80,8 @@ msgstr "NFS"
 msgid "NFS v4"
 msgstr "NFS v4"
 
-msgid ""
-"NOTE: The changes won't take effect until you've restarted the system or "
-"manually remounted the mount."
-msgstr ""
-"NOTE: The changes won't take effect until you've restarted the system or "
-"manually remounted the mount."
+msgid "NOTE: The changes won't take effect until you've restarted the system or manually remounted the mount."
+msgstr "NOTE: The changes won't take effect until you've restarted the system or manually remounted the mount."
 
 msgid "Name"
 msgstr "Name"
@@ -98,6 +97,9 @@ msgstr "Remote Mount"
 
 msgid "SMB/CIFS"
 msgstr "SMB/CIFS"
+
+msgid "DAVFS"
+msgstr "DAVFS"
 
 msgid "Server"
 msgstr "Server"
@@ -125,3 +127,15 @@ msgstr "Username"
 
 msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
 msgstr "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
+
+msgid "Mounted"
+msgstr "Mounted"
+
+msgid "Mount"
+msgstr "Mount"
+
+msgid "Unmount"
+msgstr "Unmount"
+
+msgid "Shared"
+msgstr "Shared"

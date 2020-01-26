@@ -1,3 +1,11 @@
+openmediavault-remotemount (5.0.2) stable; urgency=low
+
+  * Added davfs shares to mount webdav drive
+  * Added usage check (before unmounting or deleting)
+  * Added mount/ unmount options for remote mounts
+  * Remote mount must be unmounted before editing or deleting
+  * Removed automatic mounting for davfs devices as davfs cannot handle it correctly. You have to manually mount or restart the system after adding davfs.
+
 openmediavault-remotemount (5.0.1) stable; urgency=low
 
   * Fix space replacement for cifs shares
