@@ -5,10 +5,14 @@ openmediavault-remotemount (5.0.2) stable; urgency=low
   * Added mount/ unmount options for remote mounts
   * Remote mount must be unmounted before editing or deleting
   * Removed automatic mounting for davfs devices as davfs cannot handle it correctly. You have to manually mount or restart the system after adding davfs.
+  * Update locales
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 29 Jan 2020 07:09:53 -0600
 
 openmediavault-remotemount (5.0.1) stable; urgency=low
 
   * Fix space replacement for cifs shares
+  * Update locales
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 19 Nov 2019 06:25:13 -0600
 
