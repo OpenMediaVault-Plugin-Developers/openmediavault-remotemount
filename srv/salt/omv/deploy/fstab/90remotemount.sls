@@ -7,6 +7,7 @@
   {'operator':'stringEquals', 'arg0':'uuid', 'arg1':mnt.mntentref}) %}
 {% set mntDir = remotemount[0].dir %}
 
+{% set mount = true %}
 {% set options = [] %}
 {% set options = mnt.options.split(',') %}
 {%- if mnt.mounttype == 'cifs' %}
@@ -26,6 +27,7 @@
 {%- endif %}
 {% set share = mnt.server | replace(' ', '\\040') %}
 {% set fstype = mnt.mounttype %}
+{% set mount = false %}
 {%- endif %}
 
 create_remotemount_mountpoint_{{ mnt.uuid }}:
@@ -34,7 +36,6 @@ create_remotemount_mountpoint_{{ mnt.uuid }}:
     - text: "{{ share }}\t\t{{ mntDir }}\t{{ fstype }}\t{{ options | join(',') }}\t0 0"
     - require_in:
       - file: append_fstab_entries
-{%- if mnt.mounttype == 'davfs' %}
 mount_filesystem_mountpoint_{{ mnt.uuid }}:
   mount.mounted:
     - name: {{ mntDir }}
@@ -43,16 +44,5 @@ mount_filesystem_mountpoint_{{ mnt.uuid }}:
     - opts: {{ options }}
     - mkmnt: True
     - persist: False
-    - mount: False
-{%- else %}
-mount_filesystem_mountpoint_{{ mnt.uuid }}:
-  mount.mounted:
-    - name: {{ mntDir }}
-    - device: {{ share }}
-    - fstype: {{ fstype }}
-    - opts: {{ options }}
-    - mkmnt: True
-    - persist: False
-    - mount: True
-{%- endif %}
+    - mount: {{ mount }}
 {% endfor %}

@@ -30,7 +30,7 @@
 					"mounttype": {
 						"description": "The type of remote mount",
 						"type": "string",
-						"enum": ["cifs","ftpfs","nfs","fuse.glusterfs", "9p", "davfs"]
+						"enum": ["cifs","nfs","davfs"]
 					},
 					"server": {
 						"description": "Server FQDN or IP address",
