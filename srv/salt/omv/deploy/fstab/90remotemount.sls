@@ -20,6 +20,12 @@
 {%- elif mnt.mounttype == 'nfs' %}
 {% set share = mnt.server + ':' + mnt.sharename %}
 {% set fstype = mnt.mounttype %}
+{%- elif mnt.mounttype == 'davfs' %}
+{%- if mnt.username | length <= 0 %}
+{% set _ = options.append('guest') %}
+{%- endif %}
+{% set share = mnt.server | replace(' ', '\\040') %}
+{% set fstype = mnt.mounttype %}
 {%- endif %}
 
 create_remotemount_mountpoint_{{ mnt.uuid }}:
@@ -28,7 +34,17 @@ create_remotemount_mountpoint_{{ mnt.uuid }}:
     - text: "{{ share }}\t\t{{ mntDir }}\t{{ fstype }}\t{{ options | join(',') }}\t0 0"
     - require_in:
       - file: append_fstab_entries
-
+{%- if mnt.mounttype == 'davfs' %}
+mount_filesystem_mountpoint_{{ mnt.uuid }}:
+  mount.mounted:
+    - name: {{ mntDir }}
+    - device: {{ share }}
+    - fstype: {{ fstype }}
+    - opts: {{ options }}
+    - mkmnt: True
+    - persist: False
+    - mount: False
+{%- else %}
 mount_filesystem_mountpoint_{{ mnt.uuid }}:
   mount.mounted:
     - name: {{ mntDir }}
@@ -38,4 +54,5 @@ mount_filesystem_mountpoint_{{ mnt.uuid }}:
     - mkmnt: True
     - persist: False
     - mount: True
+{%- endif %}
 {% endfor %}

@@ -181,14 +181,24 @@ abstract class RemoteAbstract extends BackendAbstract
      */
     private static function fetchMountPointFromFstabByFsnameAndType($fsname, $type)
     {
-        $mountsFile = strpos($fsname, DIRECTORY_SEPARATOR) === 0 ? '/etc/fstab' : '/proc/mounts';
+        //$mountsFile = strpos($fsname, DIRECTORY_SEPARATOR) === 0 ? '/etc/fstab' : '/proc/mounts';
+        if ($type == 'nfs') {
+            $mountsFile = '/proc/mounts';
+        } else {
+            $mountsFile = '/etc/fstab';
+        }
 
         foreach (new SplFileObject($mountsFile) as $content) {
             $splitContent = preg_split('/\s+/', $content);
 
-	    if ($splitContent[2] == 'nfs4') {
-		$fs = 'nfs';
-	    }
+	        if ($splitContent[2] == 'nfs4') {
+		        $fs = 'nfs';
+	        }
+            
+            if ($splitContent[2] == 'davfs' && $type == 'fuse') {
+                $type = 'davfs';
+            }
+
             if ($type === $splitContent[2] || $type === $fs) {
                 if ($fsname === $splitContent[0] || $fsname === $splitContent[1]) {
                     return $splitContent[1];

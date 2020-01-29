@@ -19,7 +19,7 @@
 // require("js/omv/workspace/grid/Panel.js")
 // require("js/omv/data/Store.js")
 // require("js/omv/data/Model.js")
-// require("js/omv/data/proxy/Rpc.js")
+// require("js/omv/data/proxy/RpcBg.js")
 // require("js/omv/module/admin/storage/remotemount/Mount.js")
 
 Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
@@ -27,12 +27,14 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
     requires: [
         'OMV.data.Store',
         'OMV.data.Model',
-        'OMV.data.proxy.Rpc',
+        'OMV.data.proxy.RpcBg',
         'OMV.module.admin.storage.remotemount.Mount'
     ],
 
     hidePagingToolbar: false,
     reloadOnActivate: true,
+    rememberSelected: true,
+    //autoReload: true,
 
     columns: [{
         xtype: "textcolumn",
@@ -53,6 +55,9 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
                     break;
                 case 'nfs':
                     content = _("NFS");
+                    break;
+                case 'davfs':
+                    content = _("DAVFS");
                     break;
             }
             return content;
@@ -75,6 +80,18 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
         flex: 1,
         sortable: true,
         dataIndex: 'sharename'
+    },{
+        xtype: "enabledcolumn",
+        header: _('Mounted'),
+        flex: 1,
+        sortable: true,
+        dataIndex: 'mounted'
+    },{
+        xtype: "enabledcolumn",
+        header: _('Shared'),
+        flex: 1,
+        sortable: true,
+        dataIndex: 'shared'
     }],
 
     store: Ext.create('OMV.data.Store', {
@@ -96,13 +113,19 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
             },{
                 name: 'sharename',
                 type: 'string'
+            },{ 
+                name: 'mounted', 
+                type: 'boolean' 
+            },{
+                name: 'shared', 
+                type: 'boolean' 
             }]
         }),
         proxy: {
-            type: 'rpc',
+            type: 'rpcbg',
             rpcData: {
                 'service': 'RemoteMount',
-                'method': 'getList'
+                'method': 'getListBg'
             }
         },
         remoteSort: true,
@@ -111,6 +134,57 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
             property: 'name'
         }]
     }),
+        
+    getTopToolbarItems: function() {
+		var me = this;
+		var items = me.callParent(arguments);
+		Ext.Array.insert(items, 3, [{
+			id: me.getId() + "-mount",
+			xtype: "button",
+			text: _("Mount"),
+			iconCls: "x-fa fa-play",
+			handler: Ext.Function.bind(me.onMountButton, me, [ me ]),
+			scope: me,
+			disabled: true
+		},{
+			id: me.getId() + "-unmount",
+			xtype: "button",
+			text: _("Unmount"),
+			iconCls: "x-fa fa-eject",
+			handler: Ext.Function.bind(me.onUnmountButton, me, [ me ]),
+			scope: me,
+			disabled: true
+		}]);
+		return items;
+	},
+    
+    onSelectionChange: function(model, records) {
+		var me = this;
+		me.callParent(arguments);
+		// Process additional buttons.
+		var tbarBtnDisabled = {
+			"mount": true,
+			"unmount": true,
+            "delete": true,
+            "edit": true
+		};
+        if(records.length == 1) {
+			var record = records[0];
+		    if (true === record.get("mounted")) {
+                if (false === record.get("shared")) {
+			        tbarBtnDisabled["unmount"] = false;
+                }
+		    } else {
+			    tbarBtnDisabled["mount"] = false;
+                tbarBtnDisabled["delete"] = false;
+                tbarBtnDisabled["edit"] = false;
+		    }
+        }
+		// Update the button controls.
+		Ext.Object.each(tbarBtnDisabled, function(key, value) {
+			this.setToolbarButtonDisabled(key, value);
+		}, me);
+	},
 
     onAddButton: function() {
         Ext.create('OMV.module.admin.storage.remotemount.Mount', {
@@ -153,7 +227,47 @@ Ext.define('OMV.module.admin.storage.remotemount.Mounts', {
                 }
             }
         });
-    }
+    },
+    
+    onMountButton: function() {
+		var me = this;
+		var record = me.getSelected();
+		// Execute RPC.
+		OMV.Rpc.request({
+			scope: me,
+			callback: function(id, success, response) {
+				this.doReload();
+			},
+			relayErrors: false,
+			rpcData: {
+				service: "RemoteMount",
+				method: "mount",
+				params: {
+					uuid: record.get('uuid')
+				}
+			}
+		});
+	},
+
+	onUnmountButton: function() {
+		var me = this;
+		var record = me.getSelected();
+		// Execute RPC.
+		OMV.Rpc.request({
+			scope: me,
+			callback: function(id, success, response) {
+				this.doReload();
+			},
+			relayErrors: false,
+			rpcData: {
+				service: "RemoteMount",
+				method: "unmount",
+				params: {
+					uuid: record.get('uuid')
+				}
+			}
+		});
+	}
 });
 
 OMV.WorkspaceManager.registerPanel({
