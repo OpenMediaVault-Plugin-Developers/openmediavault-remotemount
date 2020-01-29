@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Toshihiro Kan <kansuke4649@gmail.com>, 2016
+# Toshihiro Kan <kansuke4649@gmail.com>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-12 12:34-0500\n"
+"POT-Creation-Date: 2020-01-29 07:05-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2016\n"
+"Last-Translator: Toshihiro Kan <kansuke4649@gmail.com>, 2019\n"
 "Language-Team: Japanese (Japan) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/ja_JP/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,35 +21,17 @@ msgstr ""
 "Language: ja_JP\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "9PFS"
-msgstr ""
-
 msgid "Add mount"
 msgstr "マウントの追加"
+
+msgid "DAVFS"
+msgstr ""
 
 msgid "Edit mount"
 msgstr "マウントの編集"
 
-msgid "FTPFS"
-msgstr "FTPFS"
-
-msgid "For 9PFS options, see man page for "
-msgstr ""
-
-msgid "For 9PFS, use mount tag"
-msgstr ""
-
-msgid "For FTPFS options, see man page for "
-msgstr "FTPFSのためのオプション、manページは以下から参照"
-
-msgid "For GLUSTERFS options, see man page for "
-msgstr ""
-
 msgid "For GLUSTERFS, use any node server name or IP address."
-msgstr ""
-
-msgid "For GLUSTERFS, use volume name only."
-msgstr ""
+msgstr "GLUSTERFS向け。任意のノードのサーバー名またはIPアドレスを使用してください。"
 
 msgid "For NFS options, see man page for "
 msgstr "NFSのためのオプション、manページは"
@@ -63,14 +45,20 @@ msgstr "SMB/CIFSのためのオプション、manページは"
 msgid "For SMB/CIFS, use the share name only."
 msgstr "SMB/CIFS向け、共有名でのみ使用します。"
 
-msgid "GLUSTERFS"
+msgid "For WebDAV options, see man page for "
 msgstr ""
 
 msgid "Leave blank to authenticate as guest."
 msgstr "空白にするとゲストとして認証します。"
 
+msgid "Mount"
+msgstr ""
+
 msgid "Mount Type"
 msgstr "マウントタイプ"
+
+msgid "Mounted"
+msgstr ""
 
 msgid "Mounts"
 msgstr "マウント"
@@ -79,7 +67,7 @@ msgid "NFS"
 msgstr "NFS"
 
 msgid "NFS v4"
-msgstr ""
+msgstr "NFS v4"
 
 msgid ""
 "NOTE: The changes won't take effect until you've restarted the system or "
@@ -107,11 +95,17 @@ msgstr "サーバー"
 msgid "Share"
 msgstr "共有"
 
+msgid "Shared"
+msgstr ""
+
 msgid "Type"
 msgstr "タイプ"
 
 msgid "UUID"
 msgstr "UUID"
+
+msgid "Unmount"
+msgstr ""
 
 msgid "Use FQDN, hostname, or IP address."
 msgstr "FQDN、ホスト名、またはIPアドレスを使用。"

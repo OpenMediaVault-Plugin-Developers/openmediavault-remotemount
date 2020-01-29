@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-12 12:34-0500\n"
+"POT-Creation-Date: 2020-01-29 07:05-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Paolo Velati <paolo.velati@gmail.com>, 2017\n"
 "Language-Team: Italian (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/it/)\n"
@@ -21,34 +21,16 @@ msgstr ""
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "9PFS"
-msgstr ""
-
 msgid "Add mount"
 msgstr "Aggiungi mount"
+
+msgid "DAVFS"
+msgstr ""
 
 msgid "Edit mount"
 msgstr "Modifica mount"
 
-msgid "FTPFS"
-msgstr "FTPFS"
-
-msgid "For 9PFS options, see man page for "
-msgstr ""
-
-msgid "For 9PFS, use mount tag"
-msgstr ""
-
-msgid "For FTPFS options, see man page for "
-msgstr "Per le opzioni FTPFS, vedere la pagina del manuale per"
-
-msgid "For GLUSTERFS options, see man page for "
-msgstr ""
-
 msgid "For GLUSTERFS, use any node server name or IP address."
-msgstr ""
-
-msgid "For GLUSTERFS, use volume name only."
 msgstr ""
 
 msgid "For NFS options, see man page for "
@@ -64,14 +46,20 @@ msgstr "Per le opzioni SMB/CIFS, vedere la pagina del manuale per"
 msgid "For SMB/CIFS, use the share name only."
 msgstr "Per SMB/CIFS, usare solo il nome della condivisone."
 
-msgid "GLUSTERFS"
+msgid "For WebDAV options, see man page for "
 msgstr ""
 
 msgid "Leave blank to authenticate as guest."
 msgstr "Lasciare vuoto per l'autenticazione come ospite."
 
+msgid "Mount"
+msgstr ""
+
 msgid "Mount Type"
 msgstr "Tipo di mount"
+
+msgid "Mounted"
+msgstr ""
 
 msgid "Mounts"
 msgstr "Mount"
@@ -110,11 +98,17 @@ msgstr "Server"
 msgid "Share"
 msgstr "Condivisione"
 
+msgid "Shared"
+msgstr ""
+
 msgid "Type"
 msgstr "Tipo"
 
 msgid "UUID"
 msgstr "UUID"
+
+msgid "Unmount"
+msgstr ""
 
 msgid "Use FQDN, hostname, or IP address."
 msgstr "Usa FQDN, hostname, o indirizzo IP."

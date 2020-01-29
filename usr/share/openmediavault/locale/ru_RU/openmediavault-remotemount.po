@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Артур Мудрых <arturmon82@gmail.com>, 2016
+# Дмитрий <bardimnik@rambler.ru>, 2019
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-12 12:34-0500\n"
+"POT-Creation-Date: 2020-01-29 07:05-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Артур Мудрых <arturmon82@gmail.com>, 2016\n"
+"Last-Translator: Дмитрий <bardimnik@rambler.ru>, 2019\n"
 "Language-Team: Russian (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,65 +22,53 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-msgid "9PFS"
-msgstr ""
-
 msgid "Add mount"
+msgstr "Добавить путь монтирования"
+
+msgid "DAVFS"
 msgstr ""
 
 msgid "Edit mount"
-msgstr ""
-
-msgid "FTPFS"
-msgstr ""
-
-msgid "For 9PFS options, see man page for "
-msgstr ""
-
-msgid "For 9PFS, use mount tag"
-msgstr ""
-
-msgid "For FTPFS options, see man page for "
-msgstr ""
-
-msgid "For GLUSTERFS options, see man page for "
-msgstr ""
+msgstr "Редактировать путь монтирования"
 
 msgid "For GLUSTERFS, use any node server name or IP address."
-msgstr ""
-
-msgid "For GLUSTERFS, use volume name only."
-msgstr ""
+msgstr "Для GLUSTERFS, используйте любое имя сервера узла или IP-адрес."
 
 msgid "For NFS options, see man page for "
 msgstr "Для настройки NFS см справочную страницу для"
 
 msgid "For NFS, use the export path (ie /export/nfs_share_name)."
-msgstr ""
+msgstr "Для NFS, используйте путь экспорта (т.е. /export/nfs_share_name)."
 
 msgid "For SMB/CIFS options, see man page for "
-msgstr ""
+msgstr "Для настройки SMB/CIFS, смотри справочную страницу для"
 
 msgid "For SMB/CIFS, use the share name only."
 msgstr "Для SMB / CIFS, используйте только имя."
 
-msgid "GLUSTERFS"
+msgid "For WebDAV options, see man page for "
 msgstr ""
 
 msgid "Leave blank to authenticate as guest."
+msgstr "Оставьте пустым, чтобы авторизоваться как гость."
+
+msgid "Mount"
 msgstr ""
 
 msgid "Mount Type"
+msgstr "Тип монтирования"
+
+msgid "Mounted"
 msgstr ""
 
 msgid "Mounts"
-msgstr ""
+msgstr "Точки монтирования"
 
 msgid "NFS"
 msgstr "NFS"
 
 msgid "NFS v4"
-msgstr ""
+msgstr "NFS v4"
 
 msgid ""
 "NOTE: The changes won't take effect until you've restarted the system or "
@@ -98,15 +87,18 @@ msgid "Password"
 msgstr "Пароль"
 
 msgid "Remote Mount"
-msgstr ""
+msgstr "Удалённое монтирование"
 
 msgid "SMB/CIFS"
 msgstr "SMB/CIFS"
 
 msgid "Server"
-msgstr ""
+msgstr "Сервер"
 
 msgid "Share"
+msgstr "Общий ресурс"
+
+msgid "Shared"
 msgstr ""
 
 msgid "Type"
@@ -114,6 +106,9 @@ msgstr "Тип"
 
 msgid "UUID"
 msgstr "UUID"
+
+msgid "Unmount"
+msgstr ""
 
 msgid "Use FQDN, hostname, or IP address."
 msgstr "Используйте полное доменное имя, имя хоста или IP-адрес."
