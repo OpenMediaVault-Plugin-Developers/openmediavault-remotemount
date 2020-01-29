@@ -7,7 +7,7 @@
   {'operator':'stringEquals', 'arg0':'uuid', 'arg1':mnt.mntentref}) %}
 {% set mntDir = remotemount[0].dir %}
 
-{% set mount = true %}
+{% set mount = True %}
 {% set options = [] %}
 {% set options = mnt.options.split(',') %}
 {%- if mnt.mounttype == 'cifs' %}
@@ -27,7 +27,7 @@
 {%- endif %}
 {% set share = mnt.server | replace(' ', '\\040') %}
 {% set fstype = mnt.mounttype %}
-{% set mount = false %}
+{% set mount = False %}
 {%- endif %}
 
 create_remotemount_mountpoint_{{ mnt.uuid }}:
