@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2014-2019 OpenMediaVault Plugin Developers.
+ * Copyright (C) 2014-2020 OpenMediaVault Plugin Developers.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -182,7 +182,7 @@ abstract class RemoteAbstract extends BackendAbstract
     private static function fetchMountPointFromFstabByFsnameAndType($fsname, $type)
     {
         //$mountsFile = strpos($fsname, DIRECTORY_SEPARATOR) === 0 ? '/etc/fstab' : '/proc/mounts';
-        if ($type == 'nfs') {
+        if ($type == 'nfs' || $type == 'nfs4') {
             $mountsFile = '/proc/mounts';
         } else {
             $mountsFile = '/etc/fstab';
@@ -191,9 +191,9 @@ abstract class RemoteAbstract extends BackendAbstract
         foreach (new SplFileObject($mountsFile) as $content) {
             $splitContent = preg_split('/\s+/', $content);
 
-	        if ($splitContent[2] == 'nfs4') {
-		        $fs = 'nfs';
-	        }
+            if ($splitContent[2] == 'nfs4') {
+                $fs = 'nfs';
+            }
             
             if ($splitContent[2] == 'davfs' && $type == 'fuse') {
                 $type = 'davfs';
