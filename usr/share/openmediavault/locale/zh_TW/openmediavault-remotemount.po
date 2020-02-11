@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# kochin <kochinc@outlook.com>, 2019
+# kochin <kochinc@outlook.com>, 2020
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-01-29 07:05-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: kochin <kochinc@outlook.com>, 2019\n"
+"Last-Translator: kochin <kochinc@outlook.com>, 2020\n"
 "Language-Team: Chinese (Taiwan) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +25,7 @@ msgid "Add mount"
 msgstr "新增掛載"
 
 msgid "DAVFS"
-msgstr ""
+msgstr "DAVFS"
 
 msgid "Edit mount"
 msgstr "編輯掛載"
@@ -46,19 +46,19 @@ msgid "For SMB/CIFS, use the share name only."
 msgstr "用於 SMB/CIFS，只使用共享名稱。"
 
 msgid "For WebDAV options, see man page for "
-msgstr ""
+msgstr "關於 WebDAV 之選項，請參見手冊頁的 "
 
 msgid "Leave blank to authenticate as guest."
 msgstr "留空白表示認證為訪客。"
 
 msgid "Mount"
-msgstr ""
+msgstr "掛載"
 
 msgid "Mount Type"
 msgstr "掛載型式"
 
 msgid "Mounted"
-msgstr ""
+msgstr "已掛載"
 
 msgid "Mounts"
 msgstr "掛載"
@@ -96,7 +96,7 @@ msgid "Share"
 msgstr "共享"
 
 msgid "Shared"
-msgstr ""
+msgstr "已共享"
 
 msgid "Type"
 msgstr "型式"
@@ -105,7 +105,7 @@ msgid "UUID"
 msgstr "UUID"
 
 msgid "Unmount"
-msgstr ""
+msgstr "卸載"
 
 msgid "Use FQDN, hostname, or IP address."
 msgstr "使用 FQDN、主機名稱或 IP 地址。"
