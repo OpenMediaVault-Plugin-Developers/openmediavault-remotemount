@@ -16,16 +16,19 @@
 {%- else %}
 {% set _ = options.append('guest') %}
 {%- endif %}
-{% set share = '//' + mnt.server + '/' + mnt.sharename | replace(' ', '\\040') %}
+{% set share = '//' + mnt.server + '/' + mnt.sharename | replace(' ', '\\\\040') | replace('\'', '') %}
+{% set sharedir = '//' + mnt.server + '/' + mnt.sharename %}
 {% set fstype = mnt.mounttype %}
 {%- elif mnt.mounttype == 'nfs' %}
 {% set share = mnt.server + ':' + mnt.sharename %}
+{% set sharedir = mnt.server + ':' + mnt.sharename %}
 {% set fstype = mnt.mounttype %}
 {%- elif mnt.mounttype == 'davfs' %}
 {%- if mnt.username | length <= 0 %}
 {% set _ = options.append('guest') %}
 {%- endif %}
-{% set share = mnt.server | replace(' ', '\\040') %}
+{% set share = mnt.server | replace(' ', '\\\\040') | replace('\'', '') %}
+{% set sharedir = mnt.server %}
 {% set fstype = mnt.mounttype %}
 {% set mount = False %}
 {%- endif %}
@@ -39,7 +42,7 @@ create_remotemount_mountpoint_{{ mnt.uuid }}:
 mount_filesystem_mountpoint_{{ mnt.uuid }}:
   mount.mounted:
     - name: {{ mntDir }}
-    - device: {{ share }}
+    - device: {{ sharedir }}
     - fstype: {{ fstype }}
     - opts: {{ options }}
     - mkmnt: True
