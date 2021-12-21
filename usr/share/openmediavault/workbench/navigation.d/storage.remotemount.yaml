@@ -1,0 +1,7 @@
+version: "1.0"
+type: navigation-item
+data:
+  path: "storage.remotemount"
+  text: _("Remote Mount")
+  icon: "mdi:server-network"
+  url: "/storage/remotemount"

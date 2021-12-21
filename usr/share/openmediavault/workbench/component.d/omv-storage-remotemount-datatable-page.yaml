@@ -1,0 +1,97 @@
+version: "1.0"
+type: component
+data:
+  name: omv-storage-remotemount-datatable-page
+  type: datatablePage
+  config:
+    autoReload: false
+    hasSearchField: true
+    stateId: 2af992ea-5372-11ec-ab69-e35c37fe07e5
+    sorters:
+      - dir: asc
+        prop: name
+    store:
+      proxy:
+        service: RemoteMount
+        get:
+          method: getList
+    columns:
+      - name: _("Type")
+        prop: mounttype
+        sortable: true
+        flexGrow: 1
+      - name: _("Name")
+        prop: name
+        sortable: true
+        flexGrow: 1
+      - name: _("Server")
+        prop: server
+        sortable: true
+        flexGrow: 1
+      - name: _("Share")
+        prop: sharename
+        sortable: true
+        flexGrow: 2
+      - name: _("Mounted")
+        prop: mounted
+        sortable: true
+        flexGrow: 1
+        cellTemplateName: checkIcon
+      - name: _("Shared")
+        prop: shared
+        sortable: true
+        flexGrow: 1
+        cellTemplateName: checkIcon
+    actions:
+      - template: create
+        execute:
+          type: url
+          url: "/storage/remotemount/create"
+      - template: edit
+        execute:
+          type: url
+          url: "/storage/remotemount/edit/{{ _selected[0].uuid }}"
+      - template: delete
+        execute:
+          type: request
+          request:
+            service: RemoteMount
+            method: delete
+            params:
+              uuid: "{{ _selected[0].uuid }}"
+      - type: iconButton
+        tooltip: _("Mount")
+        icon: mdi:play-outline
+        execute:
+          type: request
+          request:
+            service: RemoteMount
+            method: mount
+            params:
+              uuid: "{{ _selected[0].uuid }}"
+            task: false
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+          constraint:
+            - operator: falsy
+              arg0:
+                prop: mounted
+      - type: iconButton
+        tooltip: _("Unmount")
+        icon: mdi:eject-outline
+        execute:
+          type: request
+          request:
+            service: RemoteMount
+            method: unmount
+            params:
+              uuid: "{{ _selected[0].uuid }}"
+            task: false
+        enabledConstraints:
+          minSelected: 1
+          maxSelected: 1
+          constraint:
+            - operator: truthy
+              arg0:
+                prop: mounted

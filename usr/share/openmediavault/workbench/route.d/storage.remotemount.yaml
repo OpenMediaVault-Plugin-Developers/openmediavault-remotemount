@@ -1,0 +1,6 @@
+version: "1.0"
+type: route
+data:
+  url: "/storage/remotemount"
+  title: _("Remote Mounts")
+  component: omv-storage-remotemount-datatable-page

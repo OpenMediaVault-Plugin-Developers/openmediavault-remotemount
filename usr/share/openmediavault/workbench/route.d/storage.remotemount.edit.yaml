@@ -1,0 +1,8 @@
+version: "1.0"
+type: route
+data:
+  url: "/storage/remotemount/edit/:uuid"
+  title: _("Edit")
+  editing: true
+  notificationTitle: _("Edit mount.")
+  component: omv-storage-remotemount-form-page

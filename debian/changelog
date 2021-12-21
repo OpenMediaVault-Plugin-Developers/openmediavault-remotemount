@@ -1,3 +1,9 @@
+openmediavault-remotemount (6.0) UNRELEASED; urgency=medium
+
+  * Update for OMV 6.x
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Thu, 02 Dec 2021 07:35:44 -0600
+
 openmediavault-remotemount (5.0.3) stable; urgency=low
 
   * Fix NFS issue

@@ -1,0 +1,7 @@
+version: "1.0"
+type: route
+data:
+  url: "/storage/remotemount/create"
+  title: _("Create")
+  notificationTitle: _("Created mount.")
+  component: omv-storage-remotemount-form-page

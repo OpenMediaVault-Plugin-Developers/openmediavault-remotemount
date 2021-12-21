@@ -1,5 +1,3 @@
-etc/* etc
 usr/share/openmediavault/* usr/share/openmediavault
 usr/share/php/* usr/share/php
 srv/* srv
-var/www/openmediavault/* var/www/openmediavault

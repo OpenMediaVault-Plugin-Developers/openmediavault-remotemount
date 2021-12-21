@@ -1,7 +1,7 @@
-<?php
+php
 
 /**
- * Copyright (C) 2014-2019 OpenMediaVault Plugin Developers.
+ * Copyright (C) 2014-2021 OpenMediaVault Plugin Developers.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -129,6 +129,11 @@ class Remote implements FilesystemInterface, SharedFolderCandidateInterface
      * @return string
      */
     public function getDeviceFile()
+    {
+        return $this->mountPoint;
+    }
+
+    public function getDeviceName()
     {
         return $this->mountPoint;
     }
@@ -449,7 +454,7 @@ class Remote implements FilesystemInterface, SharedFolderCandidateInterface
      *
      * @throws ExecException
      */
-    public function umount($force = false, $lazy = false)
+    public function umount($force = false, $lazy = false, $directory = false)
     {
         $cmdArgs = [];
         $cmdArgs[] = "-v";
