@@ -1,4 +1,4 @@
-php
+<?php
 
 /**
  * Copyright (C) 2014-2021 OpenMediaVault Plugin Developers.
