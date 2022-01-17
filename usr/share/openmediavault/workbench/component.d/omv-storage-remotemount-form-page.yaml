@@ -102,6 +102,10 @@ data:
               arg0:
                 prop: mounttype
               arg1: "nfs"
+      - type: checkbox
+        name: fstab
+        label: _("fstab")
+        value: false
     buttons:
       - template: submit
         execute:

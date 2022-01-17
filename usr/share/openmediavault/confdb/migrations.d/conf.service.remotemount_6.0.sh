@@ -23,11 +23,14 @@ set -e
 
 . /usr/share/openmediavault/scripts/helper-functions
 
-SERVICE_XPATH_NAME="remotemount"
-SERVICE_XPATH="/config/services/${SERVICE_XPATH_NAME}"
+xpath="/config/services/remotemount/mount"
 
-if ! omv_config_exists "${SERVICE_XPATH}"; then
-    omv_config_add_node "/config/services" "${SERVICE_XPATH_NAME}"
-fi
+xmlstarlet sel -t -m "${xpath}" -v "uuid" -n ${OMV_CONFIG_FILE} |
+    xmlstarlet unesc |
+    while read uuid; do
+        if ! omv_config_exists "${xpath}[uuid='${uuid}']/fstab"; then
+            omv_config_add_key "${xpath}[uuid='${uuid}']" "fstab" "0"
+        fi
+    done;
 
 exit 0

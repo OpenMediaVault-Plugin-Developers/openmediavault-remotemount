@@ -1,0 +1,13 @@
+{%- set rmount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', mount.mntentref) %}
+{%- set mntDir = rmount.dir %}
+[Unit]
+Description = RemoteMount automount for {{ mount.name }}
+Requires=network-online.target
+After=network-online.target
+
+[Mount]
+Where={{ mntDir }}
+TimeoutIdleSec=10
+
+[Install]
+WantedBy=multi-user.target

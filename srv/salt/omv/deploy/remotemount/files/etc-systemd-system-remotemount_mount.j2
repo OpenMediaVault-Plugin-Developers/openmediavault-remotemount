@@ -1,0 +1,34 @@
+{%- set cifsCreds = '/root/.cifscredentials-' %}
+{%- set rmount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', mount.mntentref) %}
+{%- set mntDir = rmount.dir %}
+{%- set fstype = mount.mounttype %}
+{%- set options = [] %}
+{%- set options = mnt.options.split(',') %}
+{%- if mount.mounttype == 'cifs' %}
+{%- if mount.username | length > 0 %}
+{%- set _ = options.append('credentials=' + cifsCreds + mount.mntentref) %}
+{%- else %}
+{%- set _ = options.append('guest') %}
+{%- endif %}
+{%- set share = '//' + mount.server + '/' + mount.sharename | replace(' ', '\\\\040') | replace('\'', '') %}
+{%- elif mount.mounttype == 'nfs' %}
+{%- set share = mount.server + ':' + mount.sharename %}
+{%- elif mount.mounttype == 'davfs' %}
+{%- if mount.username | length <= 0 %}
+{%- set _ = options.append('guest') %}
+{%- endif %}
+{%- set share = mount.server | replace(' ', '\\\\040') | replace('\'', '') %}
+{%- endif %}
+[Unit]
+Description=RemoteMount mount for {{ mount.name }}
+Requires=network-online.target
+After=network-online.target
+
+[Mount]
+What={{ share }}
+Where={{ mntDir }}
+Type={{ fstype }}
+Options={{ options | join(',') }}
+
+[Install]
+WantedBy=multi-user.target

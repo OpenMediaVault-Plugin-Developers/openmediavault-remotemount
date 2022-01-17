@@ -40,6 +40,9 @@
 			},
 			"options": {
 				"type": "string"
+			},
+			"fstab": {
+				"type": "boolean"
 			}
 		}
 	}
