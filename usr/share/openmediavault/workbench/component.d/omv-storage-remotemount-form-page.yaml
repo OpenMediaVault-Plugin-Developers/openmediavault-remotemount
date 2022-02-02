@@ -92,11 +92,25 @@ data:
       - type: textInput
         name: options
         label: _("Options")
-        value: "_netdev,iocharset=utf8,vers=3.0,nofail"
+        value: "iocharset=utf8,vers=3.0,nofail"
         hint: _('For SMB/CIFS options, see man page for <a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a><br />For NFS options, see man page for <a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a><br />For WebDAV options, see man page for <a href="https://linux.die.net/man/8/mount.davfs" target="_blank">mount.davfs</a>')
-        modifier:
+        modifiers:
           - type: value
-            typeConfig: 'testing'
+            typeConfig: "iocharset=utf8,vers=3.0,nofail"
+            constraint:
+              operator: eq
+              arg0:
+                prop: mounttype
+              arg1: "cifs"
+          - type: value
+            typeConfig: "defaults,nofail,file_mode=777,dir_mode=777"
+            constraint:
+              operator: eq
+              arg0:
+                prop: mounttype
+              arg1: "davfs"
+          - type: value
+            typeConfig: "rsize=8192,wsize=8192,timeo=14,intr,nofail"
             constraint:
               operator: eq
               arg0:
