@@ -33,7 +33,7 @@ remove_remotemount_mount_files:
       - iname: "{{ remotediresc }}-*.mount"
       - delete: "f"
 
-{% for mnt in config.mount | selectattr('enable') | rejectattr('fstab') %}
+{% for mnt in config.mount | rejectattr('fstab') %}
 {% if mnt.mntentref | length == 36 %}
 
 {% set rmount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', pool.mntentref) -%}
