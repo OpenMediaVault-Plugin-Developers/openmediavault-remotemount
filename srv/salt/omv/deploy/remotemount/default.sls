@@ -36,7 +36,7 @@ remove_remotemount_mount_files:
 {% for mnt in config.mount | rejectattr('fstab') %}
 {% if mnt.mntentref | length == 36 %}
 
-{% set rmount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', pool.mntentref) -%}
+{% set rmount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', mnt.mntentref) -%}
 {% set rdir = rmount.dir %}
 {% set rname = mnt.name %}
 
@@ -49,7 +49,7 @@ configure_remotemount_{{ rname }}:
     - source:
       - salt://{{ tpldir }}/files/etc-systemd-system-remotemount_mount.j2
     - context:
-        mount: {{ mount | json }}
+        mount: {{ mnt | json }}
     - template: jinja
     - user: root
     - group: root
@@ -64,7 +64,7 @@ configure_remoteautomount_{{ rname }}:
     - source:
       - salt://{{ tpldir }}/files/etc-systemd-system-remotemount_automount.j2
     - context:
-        mount: {{ mount | json }}
+        mount: {{ mnt | json }}
     - template: jinja
     - user: root
     - group: root
