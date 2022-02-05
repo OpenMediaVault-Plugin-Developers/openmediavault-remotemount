@@ -81,7 +81,7 @@ enable_{{ rname }}_remotemount:
 
 restart_{{ rname }}_remotemount:
   cmd.run:
-    - name: systemctl restart {{ unitname }}
+    - name: systemctl restart '{{ unitname }}'
 
 enable_{{ rname }}_remotemountauto:
   service.enabled:
