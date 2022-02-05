@@ -51,6 +51,10 @@
 		"options": {
 			"description": "Additional mount options",
 			"type": "string"
-		}
+		},
+        "fstab": {
+            "description": "use fstab instead of systemd",
+            "type": "boolean"
+        }
 	}
 }
