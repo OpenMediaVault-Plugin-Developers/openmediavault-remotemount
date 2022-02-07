@@ -30,7 +30,18 @@ remove_remotemount_mount_files:
   module.run:
     - file.find:
       - path: "{{ mountsdir }}"
-      - iname: "{{ remotediresc }}-*.mount"
+      - iname: "*.mount"
+      - grep: "Description(| )=(| )RemoteMount mount for"
+      - maxdepth: 1
+      - delete: "f"
+
+remove_remotemount_automount_files:
+  module.run:
+    - file.find:
+      - path: "{{ mountsdir }}"
+      - iname: "*.automount"
+      - grep: "Description(| )=(| )RemoteMount automount for"
+      - maxdepth: 1
       - delete: "f"
 
 {% for mnt in config.mount | rejectattr('fstab') %}

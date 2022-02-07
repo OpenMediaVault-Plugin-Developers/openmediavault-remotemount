@@ -194,8 +194,10 @@ class RemoteMount extends ServiceAbstract
         if (!is_null($fs) && $fs->exists()) {
             if (TRUE === $this->IsSharedFolder($object)) {
 				throw new Exception(
-					"The filesystem '%s' is used. Please remove all shares before deleting.",
-					$fs->getPredictableDeviceFile());
+                    sprintf(
+					"The filesystem '%s' is in use. Please remove all shares before deleting.",
+					$fs->getPredictableDeviceFile()
+                ));
 			}
             if (TRUE === $fs->isMounted()) {
 				$fs->umount(TRUE);
