@@ -2,7 +2,7 @@
 {% set cifsCreds = '/root/.cifscredentials-' %}
 {% for mnt in config.mount | selectattr('fstab') %}
 {% set remotemount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', mnt.mntentref) %}
-{% set mntDir = remotemount[0].dir %}
+{% set mntDir = remotemount.dir %}
 {% set mount = True %}
 {% set options = [] %}
 {% set options = mnt.options.split(',') %}
