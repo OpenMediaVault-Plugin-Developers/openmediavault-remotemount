@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Axel Cantenys, 2017
+# kevin LECLERCQ <nuklearstriker@gmail.com>, 2020
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 07:05-0600\n"
+"POT-Creation-Date: 2022-02-08 16:31-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Axel Cantenys, 2017\n"
+"Last-Translator: kevin LECLERCQ <nuklearstriker@gmail.com>, 2020\n"
 "Language-Team: French (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,62 +22,29 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "Add mount"
-msgstr "Ajouter un montage"
-
-msgid "DAVFS"
+msgid "Create"
 msgstr ""
 
-msgid "Edit mount"
-msgstr "Éditer un montage"
-
-msgid "For GLUSTERFS, use any node server name or IP address."
+msgid "Created mount."
 msgstr ""
 
-msgid "For NFS options, see man page for "
-msgstr "Pour les options de NFS, voir la page du manuel :"
-
-msgid "For NFS, use the export path (ie /export/nfs_share_name)."
-msgstr ""
-"Pour NFS, utilisez le chemin d'exportation. (Exemple : "
-"/export/nfs_share_name)"
-
-msgid "For SMB/CIFS options, see man page for "
-msgstr "Pour les options de SMB/CIFS, voir la page du manuel :"
-
-msgid "For SMB/CIFS, use the share name only."
-msgstr "Pour SMB/CIFS, utiliser le nom de partage uniquement."
-
-msgid "For WebDAV options, see man page for "
+msgid "Edit"
 msgstr ""
 
-msgid "Leave blank to authenticate as guest."
-msgstr "Laissez vide pour s'authentifier en tant qu'invité."
+msgid "Edit mount."
+msgstr ""
 
 msgid "Mount"
-msgstr ""
+msgstr "Montage"
 
-msgid "Mount Type"
-msgstr "Type de montage"
+msgid "Mount type"
+msgstr ""
 
 msgid "Mounted"
-msgstr ""
-
-msgid "Mounts"
-msgstr "Montages"
-
-msgid "NFS"
-msgstr "NFS"
+msgstr "Monté"
 
 msgid "NFS v4"
-msgstr ""
-
-msgid ""
-"NOTE: The changes won't take effect until you've restarted the system or "
-"manually remounted the mount."
-msgstr ""
-"NOTE : Les modifications ne prendront effet qu'après le redémarrage du "
-"système ou le remontage manuel."
+msgstr "NFS v4"
 
 msgid "Name"
 msgstr "Nom"
@@ -90,8 +58,8 @@ msgstr "Mot de passe"
 msgid "Remote Mount"
 msgstr "Montage distant"
 
-msgid "SMB/CIFS"
-msgstr "SMB/CIFS"
+msgid "Remote Mounts"
+msgstr ""
 
 msgid "Server"
 msgstr "Serveur"
@@ -100,29 +68,16 @@ msgid "Share"
 msgstr "Partage"
 
 msgid "Shared"
-msgstr ""
+msgstr "Partagé"
 
 msgid "Type"
 msgstr "Type"
 
-msgid "UUID"
-msgstr "UUID"
-
 msgid "Unmount"
-msgstr ""
-
-msgid "Use FQDN, hostname, or IP address."
-msgstr "Utilisez le nom de domaine (FQDN), le nom d’hôte, ou l'adresse IP."
-
-msgid "Use NFS v4"
-msgstr "Utiliser NFS v4"
-
-msgid "Used for display in OpenMediaVault web interface only."
-msgstr ""
-"Utilisé uniquement pour l'affichage dans l'interface Web d'OpenMediaVault."
+msgstr "Démontage"
 
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
-msgstr "Utilisera NFS v2/v3 si non cochée, ou NFS v4 si cochée."
+msgid "fstab"
+msgstr ""

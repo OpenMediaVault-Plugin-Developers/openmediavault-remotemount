@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 07:05-0600\n"
+"POT-Creation-Date: 2022-02-08 16:31-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: zubr139, 2016\n"
 "Language-Team: Ukrainian (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/uk/)\n"
@@ -21,57 +21,28 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-msgid "Add mount"
+msgid "Create"
 msgstr ""
 
-msgid "DAVFS"
+msgid "Created mount."
 msgstr ""
 
-msgid "Edit mount"
+msgid "Edit"
 msgstr ""
 
-msgid "For GLUSTERFS, use any node server name or IP address."
-msgstr ""
-
-msgid "For NFS options, see man page for "
-msgstr ""
-
-msgid "For NFS, use the export path (ie /export/nfs_share_name)."
-msgstr ""
-
-msgid "For SMB/CIFS options, see man page for "
-msgstr ""
-
-msgid "For SMB/CIFS, use the share name only."
-msgstr ""
-
-msgid "For WebDAV options, see man page for "
-msgstr ""
-
-msgid "Leave blank to authenticate as guest."
+msgid "Edit mount."
 msgstr ""
 
 msgid "Mount"
 msgstr ""
 
-msgid "Mount Type"
+msgid "Mount type"
 msgstr ""
 
 msgid "Mounted"
 msgstr ""
 
-msgid "Mounts"
-msgstr ""
-
-msgid "NFS"
-msgstr "NFS"
-
 msgid "NFS v4"
-msgstr ""
-
-msgid ""
-"NOTE: The changes won't take effect until you've restarted the system or "
-"manually remounted the mount."
 msgstr ""
 
 msgid "Name"
@@ -86,7 +57,7 @@ msgstr "Пароль"
 msgid "Remote Mount"
 msgstr ""
 
-msgid "SMB/CIFS"
+msgid "Remote Mounts"
 msgstr ""
 
 msgid "Server"
@@ -101,23 +72,11 @@ msgstr ""
 msgid "Type"
 msgstr "Тип"
 
-msgid "UUID"
-msgstr "UUID"
-
 msgid "Unmount"
-msgstr ""
-
-msgid "Use FQDN, hostname, or IP address."
-msgstr ""
-
-msgid "Use NFS v4"
-msgstr ""
-
-msgid "Used for display in OpenMediaVault web interface only."
 msgstr ""
 
 msgid "Username"
 msgstr "Ім’я користувача"
 
-msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
+msgid "fstab"
 msgstr ""

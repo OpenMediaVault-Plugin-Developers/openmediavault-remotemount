@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 07:05-0600\n"
+"POT-Creation-Date: 2022-02-08 16:31-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Артур Мудрых <arturmon82@gmail.com>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/ru/)\n"
@@ -22,60 +22,29 @@ msgstr ""
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-msgid "Add mount"
-msgstr "Добавить путь монтирования"
+msgid "Create"
+msgstr ""
 
-msgid "DAVFS"
-msgstr "DAVFS"
+msgid "Created mount."
+msgstr ""
 
-msgid "Edit mount"
-msgstr "Редактировать путь монтирования"
+msgid "Edit"
+msgstr ""
 
-msgid "For GLUSTERFS, use any node server name or IP address."
-msgstr "Для GLUSTERFS, используйте любое имя сервера узла или IP-адрес."
-
-msgid "For NFS options, see man page for "
-msgstr "Для настройки NFS см справочную страницу для"
-
-msgid "For NFS, use the export path (ie /export/nfs_share_name)."
-msgstr "Для NFS, используйте путь экспорта (т.е. /export/nfs_share_name)."
-
-msgid "For SMB/CIFS options, see man page for "
-msgstr "Для настройки SMB/CIFS, смотри справочную страницу для"
-
-msgid "For SMB/CIFS, use the share name only."
-msgstr "Для SMB / CIFS, используйте только имя."
-
-msgid "For WebDAV options, see man page for "
-msgstr "Для вариантов WebDAV см. Справка"
-
-msgid "Leave blank to authenticate as guest."
-msgstr "Оставьте пустым, чтобы авторизоваться как гость."
+msgid "Edit mount."
+msgstr ""
 
 msgid "Mount"
 msgstr "Монтировать"
 
-msgid "Mount Type"
-msgstr "Тип монтирования"
+msgid "Mount type"
+msgstr ""
 
 msgid "Mounted"
 msgstr "Смонтированный"
 
-msgid "Mounts"
-msgstr "Точки монтирования"
-
-msgid "NFS"
-msgstr "NFS"
-
 msgid "NFS v4"
 msgstr "NFS v4"
-
-msgid ""
-"NOTE: The changes won't take effect until you've restarted the system or "
-"manually remounted the mount."
-msgstr ""
-"Примечание: Изменения не вступят в силу до тех пор, пока вы не перезагрузите"
-" систему или вручную не перемонтируете."
 
 msgid "Name"
 msgstr "Имя"
@@ -89,8 +58,8 @@ msgstr "Пароль"
 msgid "Remote Mount"
 msgstr "Удалённое монтирование"
 
-msgid "SMB/CIFS"
-msgstr "SMB/CIFS"
+msgid "Remote Mounts"
+msgstr ""
 
 msgid "Server"
 msgstr "Сервер"
@@ -104,23 +73,11 @@ msgstr "Общедоступный"
 msgid "Type"
 msgstr "Тип"
 
-msgid "UUID"
-msgstr "UUID"
-
 msgid "Unmount"
 msgstr "Отмонтированный"
-
-msgid "Use FQDN, hostname, or IP address."
-msgstr "Используйте полное доменное имя, имя хоста или IP-адрес."
-
-msgid "Use NFS v4"
-msgstr "Использовать NFS v4"
-
-msgid "Used for display in OpenMediaVault web interface only."
-msgstr "Используется для отображения только в веб-интерфейсе OpenMediaVault."
 
 msgid "Username"
 msgstr "Имя пользователя"
 
-msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
-msgstr "Использовать NFS v4 или NFS v2/v3 если выключено."
+msgid "fstab"
+msgstr ""

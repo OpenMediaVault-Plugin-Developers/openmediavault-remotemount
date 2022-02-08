@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 07:05-0600\n"
+"POT-Creation-Date: 2022-02-08 16:31-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Stefan Thrane Overby <stoverby@gmail.com>, 2016\n"
 "Language-Team: Danish (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/da/)\n"
@@ -21,60 +21,29 @@ msgstr ""
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Add mount"
-msgstr "Tilføj montering"
-
-msgid "DAVFS"
+msgid "Create"
 msgstr ""
 
-msgid "Edit mount"
-msgstr "Rediger montering"
-
-msgid "For GLUSTERFS, use any node server name or IP address."
+msgid "Created mount."
 msgstr ""
 
-msgid "For NFS options, see man page for "
-msgstr "For NFS valgmuligheder, se man siden for dette"
-
-msgid "For NFS, use the export path (ie /export/nfs_share_name)."
-msgstr "Til NFS, brug eksport stien (fx /export/nfs_share_name)."
-
-msgid "For SMB/CIFS options, see man page for "
-msgstr "For SMB/CIFS valgmuligheder, se man siden for dette"
-
-msgid "For SMB/CIFS, use the share name only."
-msgstr "Til SMB/CIFS, brug kun delings navn."
-
-msgid "For WebDAV options, see man page for "
+msgid "Edit"
 msgstr ""
 
-msgid "Leave blank to authenticate as guest."
-msgstr "Efterlad tom for godkendelse som gæst."
+msgid "Edit mount."
+msgstr ""
 
 msgid "Mount"
 msgstr ""
 
-msgid "Mount Type"
-msgstr "Monterings Type"
+msgid "Mount type"
+msgstr ""
 
 msgid "Mounted"
 msgstr ""
 
-msgid "Mounts"
-msgstr "Monteringer"
-
-msgid "NFS"
-msgstr "NFS"
-
 msgid "NFS v4"
 msgstr ""
-
-msgid ""
-"NOTE: The changes won't take effect until you've restarted the system or "
-"manually remounted the mount."
-msgstr ""
-"INFO: Ændringerne vil først træde i kraft, når du enten har genstartet "
-"systemet, eller manuelt genmonteret monteringen."
 
 msgid "Name"
 msgstr "Navn"
@@ -88,8 +57,8 @@ msgstr "Adgangskode"
 msgid "Remote Mount"
 msgstr "Ekstern Montering"
 
-msgid "SMB/CIFS"
-msgstr "SMB/CIFS"
+msgid "Remote Mounts"
+msgstr ""
 
 msgid "Server"
 msgstr "Server"
@@ -103,23 +72,11 @@ msgstr ""
 msgid "Type"
 msgstr "Type"
 
-msgid "UUID"
-msgstr "UUID"
-
 msgid "Unmount"
 msgstr ""
-
-msgid "Use FQDN, hostname, or IP address."
-msgstr "Brug FQDN, værtsnavn eller IP adresse."
-
-msgid "Use NFS v4"
-msgstr "Brug NFS v4"
-
-msgid "Used for display in OpenMediaVault web interface only."
-msgstr "Kun brugt til visning i OpenMediaVault web interface."
 
 msgid "Username"
 msgstr "Brugernavn"
 
-msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
-msgstr "Vil bruge NFS v2/v3 uden flueben og NFS v4 med flueben."
+msgid "fstab"
+msgstr ""

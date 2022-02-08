@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# songming <by@songming.me>, 2019
+# songming <by@songming.me>, 2021
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-29 07:05-0600\n"
+"POT-Creation-Date: 2022-02-08 16:31-0600\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: songming <by@songming.me>, 2019\n"
+"Last-Translator: songming <by@songming.me>, 2021\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/openmediavault-plugin-developers/teams/1854/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,58 +21,29 @@ msgstr ""
 "Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "Add mount"
-msgstr "添加挂载"
+msgid "Create"
+msgstr "创建"
 
-msgid "DAVFS"
-msgstr ""
+msgid "Created mount."
+msgstr "创建挂载。"
 
-msgid "Edit mount"
+msgid "Edit"
+msgstr "编辑"
+
+msgid "Edit mount."
 msgstr "编辑挂载"
 
-msgid "For GLUSTERFS, use any node server name or IP address."
-msgstr ""
-
-msgid "For NFS options, see man page for "
-msgstr "查看 NFS 选项主页"
-
-msgid "For NFS, use the export path (ie /export/nfs_share_name)."
-msgstr "NFS 输出路径：(例如 /export/nfs_share_name)。"
-
-msgid "For SMB/CIFS options, see man page for "
-msgstr "查看 SMB/CIFS 选项主页"
-
-msgid "For SMB/CIFS, use the share name only."
-msgstr "只能使用 SMB/CIFS 共享名。"
-
-msgid "For WebDAV options, see man page for "
-msgstr ""
-
-msgid "Leave blank to authenticate as guest."
-msgstr ""
-
 msgid "Mount"
-msgstr ""
-
-msgid "Mount Type"
-msgstr "挂载模式"
-
-msgid "Mounted"
-msgstr ""
-
-msgid "Mounts"
 msgstr "挂载"
 
-msgid "NFS"
-msgstr "NFS"
+msgid "Mount type"
+msgstr "挂载类型"
+
+msgid "Mounted"
+msgstr "已挂载"
 
 msgid "NFS v4"
 msgstr "NFS v4"
-
-msgid ""
-"NOTE: The changes won't take effect until you've restarted the system or "
-"manually remounted the mount."
-msgstr "注意：这些变更不会立即生效，除非你重启系统或手动挂载。"
 
 msgid "Name"
 msgstr "名称"
@@ -86,8 +57,8 @@ msgstr "密码"
 msgid "Remote Mount"
 msgstr "远程挂载"
 
-msgid "SMB/CIFS"
-msgstr "SMB/CIFS"
+msgid "Remote Mounts"
+msgstr "远程挂载"
 
 msgid "Server"
 msgstr "服务器"
@@ -96,28 +67,16 @@ msgid "Share"
 msgstr "共享"
 
 msgid "Shared"
-msgstr ""
+msgstr "已共享"
 
 msgid "Type"
 msgstr "类型"
 
-msgid "UUID"
-msgstr "UUID"
-
 msgid "Unmount"
-msgstr ""
-
-msgid "Use FQDN, hostname, or IP address."
-msgstr "使用 FQDN、主机名、IP地址。"
-
-msgid "Use NFS v4"
-msgstr "使用 NFS v4"
-
-msgid "Used for display in OpenMediaVault web interface only."
-msgstr "仅显示在 OpenMediaVault 标签页。"
+msgstr "卸载"
 
 msgid "Username"
 msgstr "用户名"
 
-msgid "Will use NFS v2/v3 if unchecked and NFS v4 if checked."
-msgstr "如果没有勾选 NFS v4 选项，则使用 NFS v2/v3。"
+msgid "fstab"
+msgstr ""
