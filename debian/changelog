@@ -1,3 +1,9 @@
+openmediavault-remotemount (6.0.1) stable; urgency=low
+
+  * Fix automount
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 30 May 2022 11:03:38 -0500
+
 openmediavault-remotemount (6.0) stable; urgency=low
 
   * Update for OMV 6.x
