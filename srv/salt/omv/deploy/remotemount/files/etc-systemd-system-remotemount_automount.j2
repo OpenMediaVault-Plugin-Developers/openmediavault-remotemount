@@ -2,10 +2,8 @@
 {%- set mntDir = rmount.dir %}
 [Unit]
 Description=RemoteMount automount for {{ mount.name }}
-Requires=network-online.target
-After=network-online.target
 
-[Mount]
+[Automount]
 Where={{ mntDir }}
 TimeoutIdleSec=10
 
