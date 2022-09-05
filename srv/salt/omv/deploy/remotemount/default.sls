@@ -44,6 +44,10 @@ remove_remotemount_automount_files:
       - maxdepth: 1
       - delete: "f"
 
+systemd_delete_dead_symlinks:
+  cmd.run:
+    - name: find /etc/systemd/system/multi-user.target.wants -xtype l -print -delete
+
 {% for mnt in config.mount | rejectattr('fstab') %}
 {% if mnt.mntentref | length == 36 %}
 
