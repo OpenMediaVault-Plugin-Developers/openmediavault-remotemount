@@ -1,3 +1,9 @@
+openmediavault-remotemount (6.0.2) stable; urgency=low
+
+  * Remove dead symlinks from systemd multi-user.target
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 05 Sep 2022 19:14:52 -0500
+
 openmediavault-remotemount (6.0.1) stable; urgency=low
 
   * Fix automount
