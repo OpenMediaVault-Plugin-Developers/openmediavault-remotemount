@@ -157,11 +157,29 @@ abstract class RemoteAbstract extends BackendAbstract
      */
     public static function extractUuidFromMountPoint($mountPoint)
     {
-        $uuid = end(explode(DIRECTORY_SEPARATOR, $mountPoint));
+        $regex = '/[a-f0-9]{8}\-[a-f0-9]{4}\-4[a-f0-9]{3}\-(8|9|a|b)[a-f0-9]{3}\-[a-f0-9]{12}/';
+        $mountsFile = strpos($fsname, DIRECTORY_SEPARATOR) === 0 ? '/etc/fstab' : '/proc/mounts';
 
+        foreach (new SplFileObject($mountsFile) as $content) {
+            $splitContent = preg_split('/\s+/', $content);
+            if (in_array($mountPoint, $splitContent)) {
+                preg_match($regex, $content, $match);
+                if ($match) {
+                    $uuid = $match[0];
+                    break;
+                }
+            }
+        }
+        if (!is_uuid($uuid)) {
+            $units = '/etc/systemd/system/srv-remotemount-*';
+            $args = sprintf('grep -B6 -h "%s" %s | awk -F":" \'/Description/ { print $2 }\'', $mountPoint, $units);
+            $cmd = new Process($args);
+            $cmd->execute($output);
+            $uuid = $output[0];
+        }
         if (!is_uuid($uuid)) {
             throw new Exception(sprintf(
-                'Couldn\'t extract a UUID from the provided path \'%s\'.',
+                'Couldn\'t extract an UUID from the provided path \'%s\'.',
                 $mountPoint
             ));
         }

@@ -26,6 +26,7 @@ data:
             - ['nfs', _('NFS')]
             - ['cifs', _('SMB/CIFS')]
             - ['davfs', _('DAVFS')]
+            - ['s3fs', _('S3Fs')]
       - type: textInput
         name: name
         label: _("Name")
@@ -41,12 +42,12 @@ data:
         name: server
         label: _("Server")
         value: ""
-        hint: _('Use FQDN, hostname, or IP address.')
+        hint: _('Use FQDN, hostname, IP address, or url (s3fs only).')
       - type: textInput
         name: sharename
         label: _("Share")
         value: ""
-        hint: _('For SMB/CIFS, use the share name only.<br />For NFS, use the export path (ie /export/nfs_share_name).')
+        hint: _('For SMB/CIFS, use the share name only.<br />For NFS, use the export path (ie /export/nfs_share_name).<br />For S3Fs, use the bucket name.')
         modifiers:
           - type: hidden
             constraint:
@@ -70,7 +71,7 @@ data:
         name: username
         label: _("Username")
         value: ""
-        hint: _('Leave blank to authenticate as guest.')
+        hint: _('Leave blank to authenticate as guest.i<br />For S3Fs, this is the access key ID.')
         modifiers:
           - type: hidden
             constraint:
@@ -82,6 +83,7 @@ data:
         name: password
         label: _("Password")
         value: ""
+        hint: "For S3Fs, this is secret access key."
         modifiers:
           - type: hidden
             constraint:
@@ -93,7 +95,7 @@ data:
         name: options
         label: _("Options")
         value: "iocharset=utf8,vers=3.0,nofail"
-        hint: _('For SMB/CIFS options, see man page for <a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a><br />For NFS options, see man page for <a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a><br />For WebDAV options, see man page for <a href="https://linux.die.net/man/8/mount.davfs" target="_blank">mount.davfs</a>')
+        hint: _('For SMB/CIFS options, see man page for <a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a><br />For NFS options, see man page for <a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a><br />For WebDAV options, see man page for <a href="https://linux.die.net/man/8/mount.davfs" target="_blank">mount.davfs</a><br />For S3Fs options, see man page for <a href="https://linux.die.net/man/1/s3fs" target="_blank">mount.s3fs</a>')
         modifiers:
           - type: value
             typeConfig: "iocharset=utf8,vers=3.0,nofail"
@@ -110,16 +112,19 @@ data:
                 prop: mounttype
               arg1: "davfs"
           - type: value
-            typeConfig: "rsize=8192,wsize=8192,timeo=14,intr,nofail"
+            typeConfig: "rsize=8192,wsize=8192,timeo=14,nofail"
             constraint:
               operator: eq
               arg0:
                 prop: mounttype
               arg1: "nfs"
-      - type: checkbox
-        name: fstab
-        label: _("fstab")
-        value: false
+          - type: value
+            typeConfig: "allow_other,use_path_request_style"
+            constraint:
+              operator: eq
+              arg0:
+                prop: mounttype
+              arg1: "s3fs"
     buttons:
       - template: submit
         execute:

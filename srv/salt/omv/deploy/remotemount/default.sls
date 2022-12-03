@@ -44,11 +44,28 @@ remove_remotemount_automount_files:
       - maxdepth: 1
       - delete: "f"
 
+remove_remotemount_cifs_cred_files:
+  module.run:
+    - file.find:
+      - path: "/root/"
+      - iname: ".cifscredentials-*"
+      - grep: "username"
+      - maxdepth: 1
+      - delete: "f"
+
+remove_remotemount_s3fs_cred_files:
+  module.run:
+    - file.find:
+      - path: "/root/"
+      - iname: ".s3fscredentials-*"
+      - maxdepth: 1
+      - delete: "f"
+
 systemd_delete_dead_symlinks:
   cmd.run:
     - name: find /etc/systemd/system/multi-user.target.wants -xtype l -print -delete
 
-{% for mnt in config.mount | rejectattr('fstab') %}
+{% for mnt in config.mount %}
 {% if mnt.mntentref | length == 36 %}
 
 {% set rmount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', mnt.mntentref) -%}
@@ -57,6 +74,38 @@ systemd_delete_dead_symlinks:
 
 {% set unitname = salt['cmd.run']('systemd-escape --path --suffix=mount ' ~ rdir) %}
 {% set mountunit =  mountsdir ~ "/" ~ unitname %}
+
+{%- set credsPrefix = '/root/.' ~ mnt.mounttype ~ 'credentials-' %}
+{%- set creds = credsPrefix ~ mnt.mntentref %}
+
+{% if mnt.mounttype == 'cifs' %}
+configure_remotemount_cifs_creds_{{ mnt.mntentref }}:
+  file.managed:
+    - name: "{{ creds }}"
+    - user: root
+    - group: root
+    - mode: 600
+    - contents: |
+        {{ pillar['headers']['auto_generated'] }}
+        {{ pillar['headers']['warning'] }}
+        username={{ mnt.username }}
+        password={{ mnt.password }}
+
+
+{% elif mnt.mounttype == 's3fs' %}
+configure_remotemount_s3fs_creds_{{ mnt.mntentref }}:
+  file.managed:
+    - name: "{{ creds }}"
+    - user: root
+    - group: root
+    - mode: 600
+    - contents: |
+        {{ pillar['headers']['auto_generated'] }}
+        {{ pillar['headers']['warning'] }}
+        {{ mnt.username }}:{{ mnt.password }}
+
+
+{% endif %}
 
 configure_remotemount_{{ rname }}:
   file.managed:

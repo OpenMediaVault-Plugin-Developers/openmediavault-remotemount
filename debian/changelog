@@ -1,3 +1,9 @@
+openmediavault-remotemount (6.1) UNRELEASED; urgency=medium
+
+  * Add S3Fs backend
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 03 Dec 2022 14:38:30 -0600
+
 openmediavault-remotemount (6.0.2) stable; urgency=low
 
   * Remove dead symlinks from systemd multi-user.target

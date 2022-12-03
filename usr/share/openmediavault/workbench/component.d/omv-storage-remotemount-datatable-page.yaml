@@ -27,7 +27,7 @@ data:
       - name: _("Server")
         prop: server
         sortable: true
-        flexGrow: 1
+        flexGrow: 2
       - name: _("Share")
         prop: sharename
         sortable: true
@@ -69,6 +69,7 @@ data:
             method: mount
             params:
               uuid: "{{ _selected[0].uuid }}"
+              action: "start"
             task: false
         enabledConstraints:
           minSelected: 1
@@ -84,9 +85,10 @@ data:
           type: request
           request:
             service: RemoteMount
-            method: unmount
+            method: mount
             params:
               uuid: "{{ _selected[0].uuid }}"
+              action: "stop"
             task: false
         enabledConstraints:
           minSelected: 1

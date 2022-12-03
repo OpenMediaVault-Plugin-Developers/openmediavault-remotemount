@@ -20,7 +20,7 @@
 			},
 			"mounttype": {
 				"type": "string",
-				"enum": ["cifs","ftpfs","nfs","fuse.glusterfs","9p", "davfs"],
+				"enum": ["cifs","nfs","davfs","s3fs"],
 				"required": true
 			},
 			"server": {
@@ -40,9 +40,6 @@
 			},
 			"options": {
 				"type": "string"
-			},
-			"fstab": {
-				"type": "boolean"
 			}
 		}
 	}
