@@ -1,8 +1,9 @@
-openmediavault-remotemount (6.1) UNRELEASED; urgency=medium
+openmediavault-remotemount (6.1) stable; urgency=low
 
-  * Add S3Fs backend
+  * Add S3Fs backend - option disabled until client fixed
+  * Remove fstab option - systemd mount will always be used
 
- -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 03 Dec 2022 14:38:30 -0600
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 28 Dec 2022 09:42:55 -0600
 
 openmediavault-remotemount (6.0.2) stable; urgency=low
 
