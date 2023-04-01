@@ -47,7 +47,7 @@ data:
         name: sharename
         label: _("Share")
         value: ""
-        hint: _('For SMB/CIFS, use the share name only.<br />For NFS, use the export path (ie /export/nfs_share_name).<br />For S3Fs, use the bucket name.')
+        hint: _('For SMB/CIFS or NFS v4, use the share name only.<br />For NFS v3, use the export path (ie /export/nfs_share_name).<br />For S3Fs, use the bucket name.')
         modifiers:
           - type: hidden
             constraint:
@@ -59,7 +59,7 @@ data:
         name: nfs4
         label: _("NFS v4")
         value: false
-        hint: _('Will use NFS v2/v3 if unchecked and NFS v4 if checked.')
+        hint: _('Will use NFS v3 if unchecked and NFS v4 if checked.')
         modifiers:
           - type: hidden
             constraint:
