@@ -1,3 +1,9 @@
+openmediavault-remotemount (6.1.1) stable; urgency=low
+
+  * Fix backend bug
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Tue, 11 Apr 2023 06:49:24 -0500
+
 openmediavault-remotemount (6.1) stable; urgency=low
 
   * Add S3Fs backend - option disabled until client fixed
