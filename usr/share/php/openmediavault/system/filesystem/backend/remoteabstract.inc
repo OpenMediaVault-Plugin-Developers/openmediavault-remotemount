@@ -172,9 +172,8 @@ abstract class RemoteAbstract extends BackendAbstract
         }
         if (!is_uuid($uuid)) {
             $units = '/etc/systemd/system/srv-remotemount-*';
-            $args = sprintf('grep -B6 -h "%s" %s | awk -F":" \'/Description/ { print $2 }\'', $mountPoint, $units);
-            $cmd = new Process($args);
-            $cmd->execute($output);
+            $cmd = sprintf('grep -B6 -h "%s" %s | awk -F":" \'/Description/ { print $2 }\' | sed "/^$/d"', $mountPoint, $units);
+            exec($cmd, $output);
             $uuid = $output[0];
         }
         if (!is_uuid($uuid)) {
