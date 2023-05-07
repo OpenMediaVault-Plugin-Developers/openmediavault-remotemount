@@ -1,3 +1,9 @@
+openmediavault-remotemount (6.1.2) stable; urgency=low
+
+  * Fix fetchMountPoint for nfs
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 07 May 2023 10:04:00 -0500
+
 openmediavault-remotemount (6.1.1) stable; urgency=low
 
   * Fix backend bug
