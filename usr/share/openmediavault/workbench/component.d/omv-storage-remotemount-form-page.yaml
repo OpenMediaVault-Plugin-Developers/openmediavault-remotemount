@@ -38,6 +38,9 @@ data:
             arg0:
               prop: mntentref
             arg1: "{{ newconfobjuuid }}"
+        validators:
+          required: true
+          patternType: wordChars
       - type: textInput
         name: server
         label: _("Server")
@@ -55,6 +58,9 @@ data:
               arg0:
                 prop: mounttype
               arg1: "davfs"
+        validators:
+          required: true
+          patternType: wordChars
       - type: checkbox
         name: nfs4
         label: _("NFS v4")
