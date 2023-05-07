@@ -136,7 +136,7 @@ abstract class RemoteAbstract extends BackendAbstract
         $uuid = $args;
 
         if (!is_uuid($args)) {
-            $mountPoint = $this->fetchMountPointFromFstabByFsnameAndType($args, $this->type);
+            $mountPoint = $this->fetchMountPointByFsnameAndType($args, $this->type);
             $uuid = $this->extractUuidFromMountPoint($mountPoint);
         }
 
@@ -171,7 +171,7 @@ abstract class RemoteAbstract extends BackendAbstract
             }
         }
         if (!is_uuid($uuid)) {
-            $units = '/etc/systemd/system/srv-remotemount-*';
+            $units = '/etc/systemd/system/srv-remotemount-*.mount';
             $cmd = sprintf('grep -B6 -h "%s" %s | awk -F":" \'/Description/ { print $2 }\' | sed "/^$/d"', $mountPoint, $units);
             exec($cmd, $output);
             $uuid = $output[0];
@@ -187,7 +187,7 @@ abstract class RemoteAbstract extends BackendAbstract
     }
 
     /**
-     * Fetch the mount point from either '/etc/fstab' or /proc/mounts'.
+     * Fetch the mount point from /proc/mounts or systemd mount units.
      *
      * @param string $fsname
      * @param string $type
@@ -196,30 +196,38 @@ abstract class RemoteAbstract extends BackendAbstract
      *
      * @throws Exception
      */
-    private static function fetchMountPointFromFstabByFsnameAndType($fsname, $type)
+    private static function fetchMountPointByFsnameAndType($fsname, $type)
     {
-        $mountsFiles = ['/proc/mounts', '/etc/fstab'];
-
-        foreach ($mountsFiles as $mountsFile) {
-            foreach (new SplFileObject($mountsFile) as $content) {
-                $splitContent = preg_split('/\s+/', $content);
-                if ($splitContent[2] == 'nfs4') {
-                    $fs = 'nfs';
-                }
-                if ($splitContent[2] == 'davfs' && $type == 'fuse') {
-                    $type = 'davfs';
-                }
-                if ($type === $splitContent[2] || $type === $fs) {
-                    if ($fsname === $splitContent[0] || $fsname === $splitContent[1]) {
-                        return $splitContent[1];
-                    }
+        $mounts = file('/proc/mounts');
+        $types = ['nfs','nfs4','autofs'];
+        $mp = '';
+        foreach ($mounts as $mount) {
+            $splitContent = preg_split('/\s+/', $mount);
+            if (in_array($splitContent[2], $types)) {
+                $fs = 'nfs';
+            }
+            if ($splitContent[2] == 'davfs' && $type == 'fuse') {
+                $type = 'davfs';
+            }
+            if ($type === $splitContent[2] || $type === $fs) {
+                if ($fsname === $splitContent[0] || $fsname === $splitContent[1]) {
+                    $mp = $splitContent[1];
+                    break;
                 }
             }
         }
-
-        throw new Exception(sprintf(
-            'Could not fetch a matching mount point from the provided fsname: \'%s\'.',
-            $fsname
-        ));
+        if ($mp == '') {
+            $units = '/etc/systemd/system/srv-remotemount-*.mount';
+            $cmd = sprintf('grep -A14 -B14 -h "%s" %s | awk -F"=" \'$1 == "Where" { print $2 }\'', $fsname, $units);
+            exec($cmd, $output);
+            $mp = $output[0];
+        }
+        if ($mp == '') {
+            throw new Exception(sprintf(
+                'Could not fetch a matching mount point from the provided fsname: \'%s\'.',
+                $fsname
+            ));
+        }
+        return ($mp);
     }
 }
