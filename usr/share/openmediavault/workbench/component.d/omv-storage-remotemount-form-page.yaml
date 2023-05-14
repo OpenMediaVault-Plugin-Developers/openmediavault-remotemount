@@ -58,9 +58,6 @@ data:
               arg0:
                 prop: mounttype
               arg1: "davfs"
-        validators:
-          required: true
-          patternType: wordChars
       - type: checkbox
         name: nfs4
         label: _("NFS v4")
