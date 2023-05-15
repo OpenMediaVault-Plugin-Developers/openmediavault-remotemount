@@ -122,17 +122,17 @@ configure_remotemount_{{ rname }}:
 {% set unitnameauto = salt['cmd.run']('systemd-escape --path --suffix=automount ' ~ rdir) %}
 {% set mountunitauto =  mountsdir ~ "/" ~ unitnameauto %}
 
-configure_remoteautomount_{{ rname }}:
-  file.managed:
-    - name: {{ mountunitauto }}
-    - source:
-      - salt://{{ tpldir }}/files/etc-systemd-system-remotemount_automount.j2
-    - context:
-        mount: {{ mnt | json }}
-    - template: jinja
-    - user: root
-    - group: root
-    - mode: "0644"
+#configure_remoteautomount_{{ rname }}:
+#  file.managed:
+#    - name: {{ mountunitauto }}
+#    - source:
+#      - salt://{{ tpldir }}/files/etc-systemd-system-remotemount_automount.j2
+#    - context:
+#        mount: {{ mnt | json }}
+#    - template: jinja
+#    - user: root
+#    - group: root
+#    - mode: "0644"
 
 systemd-reload_{{ rname }}:
   cmd.run:
