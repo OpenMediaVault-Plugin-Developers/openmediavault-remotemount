@@ -20,6 +20,7 @@
 {% set mountdir = salt['pillar.get']('default:OMV_MOUNT_DIR', '/srv') %}
 {% set remotedir = mountdir ~ '/remotemount' %}
 {% set remotediresc = salt['cmd.run']('systemd-escape --path ' ~ remotedir) %}
+{% set secrets = '/etc/davfs2/secrets' %}
 
 configure_remote_dir:
   file.directory:
@@ -60,6 +61,20 @@ remove_remotemount_s3fs_cred_files:
       - iname: ".s3fscredentials-*"
       - maxdepth: 1
       - delete: "f"
+
+remove_remotemount_davfs_cred_file:
+  file.absent:
+    - name: "{{ secrets }}"
+
+configure_remotemount_davfs_cred_file:
+  file.managed:
+    - name: "{{ secrets }}"
+    - user: root
+    - group: root
+    - mode: "0600"
+    - contents: |
+        {{ pillar['headers']['auto_generated'] }}
+        {{ pillar['headers']['warning'] }}
 
 systemd_delete_dead_symlinks:
   cmd.run:
@@ -103,6 +118,14 @@ configure_remotemount_s3fs_creds_{{ mnt.mntentref }}:
         {{ pillar['headers']['auto_generated'] }}
         {{ pillar['headers']['warning'] }}
         {{ mnt.username }}:{{ mnt.password }}
+
+
+{% elif mnt.mounttype == 'davfs' %}
+configure_remotemount_davfs_creds_{{ mnt.mntentref }}:
+  file.append:
+    - name: "{{ secrets }}"
+    - text:
+      - {{ mnt.server }} {{ mnt.username }} {{ mnt.password }}
 
 
 {% endif %}
