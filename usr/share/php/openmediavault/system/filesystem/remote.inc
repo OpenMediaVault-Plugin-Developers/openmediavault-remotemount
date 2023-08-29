@@ -257,6 +257,7 @@ class Remote implements FilesystemInterface, SharedFolderCandidateInterface
     {
         $cmd = new Process('df', '-PT', escapeshellarg($this->mountPoint));
         $cmd->setRedirect2to1();
+        $cmd->setQuiet(true);
         $cmd->execute($output);
 
         $result = false;
