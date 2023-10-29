@@ -2,7 +2,7 @@ Source: openmediavault-remotemount
 Section: net
 Priority: optional
 Maintainer: OpenMediaVault Plugin Developers <plugins@omv-extras.org>
-Build-Depends: debhelper (>= 12)
+Build-Depends: debhelper (>= 13)
 Standards-Version: 4.3.0
 XB-Plugin-Section: filesystems
 
@@ -10,7 +10,7 @@ Package: openmediavault-remotemount
 Architecture: all
 Depends: cifs-utils,
          davfs2,
-         openmediavault (>= 6.3.8),
+         openmediavault (>= 7),
          s3fs,
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.
