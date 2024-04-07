@@ -1,0 +1,10 @@
+{%- for mountpoint in mountpoints %}
+{%- set check_id = salt['cmd.run']('systemd-escape --path ' ~ mountpoint.dir) %}
+# Try to auto-mount a filesystem if it is missing. Alert if the filesystem
+# is still missing after a given time period.
+check program mountpoint{{ check_id }} with path "/usr/bin/findmnt '{{ mountpoint.dir }}'"
+    if status != 0
+        then alert
+    if status != 0 for 2 cycles
+        then exec "/usr/bin/systemctl restart {{ check_id }}.mount"
+{% endfor %}
