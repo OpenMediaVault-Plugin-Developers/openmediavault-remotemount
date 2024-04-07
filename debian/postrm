@@ -42,9 +42,6 @@ case "$1" in
 
         omv_config_delete ${XPATH}
 
-        # Regenerate fstab
-        omv-salt deploy run fstab
-
         # remove credential files
         rm -f /root/.cifscredentials-*
         
