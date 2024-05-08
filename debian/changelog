@@ -1,3 +1,9 @@
+openmediavault-remotemount (7.0.2) stable; urgency=low
+
+  * Update for OMV 7.1
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 08 May 2024 13:36:27 -0500
+
 openmediavault-remotemount (7.0.1) stable; urgency=low
 
   * Add monit monitoring for mounts and try to remount if not mounted
