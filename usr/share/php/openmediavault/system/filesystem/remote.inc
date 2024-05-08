@@ -105,6 +105,11 @@ class Remote implements FilesystemInterface, SharedFolderCandidateInterface
         return $this->getDeviceFile();
     }
 
+    public function getDetails()
+    {
+        return '';
+    }
+
     /**
      * Get the description of the file system.
      *
