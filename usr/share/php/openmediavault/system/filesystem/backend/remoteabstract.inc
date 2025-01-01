@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Copyright (C) 2014-2024 OpenMediaVault Plugin Developers.
+ * Copyright (C) 2014-2025 openmediavault plugin developers.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -158,7 +158,7 @@ abstract class RemoteAbstract extends BackendAbstract
     public static function extractUuidFromMountPoint($mountPoint)
     {
         $regex = '/[a-f0-9]{8}\-[a-f0-9]{4}\-4[a-f0-9]{3}\-(8|9|a|b)[a-f0-9]{3}\-[a-f0-9]{12}/';
-        $mountsFile = strpos($fsname, DIRECTORY_SEPARATOR) === 0 ? '/etc/fstab' : '/proc/mounts';
+        $mountsFile = '/proc/mounts';
 
         foreach (new SplFileObject($mountsFile) as $content) {
             $splitContent = preg_split('/\s+/', $content);
