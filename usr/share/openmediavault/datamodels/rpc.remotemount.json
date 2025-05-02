@@ -1,46 +1,54 @@
-[{
-	"type": "rpc",
-	"id": "rpc.remotemount.set",
-	"params": {
-		"type": "object",
-		"properties": {
-			"uuid": {
-				"type": "string",
-				"format": "uuidv4",
-				"required": true
-			},
-			"name": {
-				"type": "string",
-				"required": true
-			},
-			"mntentref": {
-				"type": "string",
-				"format": "uuidv4",
-				"required": true
-			},
-			"mounttype": {
-				"type": "string",
-				"enum": ["cifs","nfs","davfs","s3fs"],
-				"required": true
-			},
-			"server": {
-				"type": "string"
-			},
-			"sharename": {
-				"type": "string"
-			},
-			"nfs4": {
-				"type": "boolean"
-			},
-			"username": {
-				"type": "string"
-			},
-			"password": {
-				"type": "string"
-			},
-			"options": {
-				"type": "string"
-			}
-		}
-	}
-}]
+[
+  {
+    "type": "rpc",
+    "id": "rpc.remotemount.set",
+    "params": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string",
+          "format": "uuidv4",
+          "required": true
+        },
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "mntentref": {
+          "type": "string",
+          "format": "uuidv4",
+          "required": true
+        },
+        "mounttype": {
+          "type": "string",
+          "enum": [
+            "cifs",
+            "nfs",
+            "davfs",
+            "s3fs"
+          ],
+          "required": true
+        },
+        "server": {
+          "type": "string"
+        },
+        "sharename": {
+          "type": "string"
+        },
+        "nfs4": {
+          "type": "boolean"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string",
+          "format": "no-multi-line"
+        },
+        "options": {
+          "type": "string"
+        }
+      }
+    }
+  }
+]
