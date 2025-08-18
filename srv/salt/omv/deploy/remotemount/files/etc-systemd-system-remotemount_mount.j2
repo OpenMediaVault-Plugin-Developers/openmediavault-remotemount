@@ -11,16 +11,16 @@
 {%- else %}
 {%- set _ = options.append('guest') %}
 {%- endif %}
-{%- set share = '//' ~ mount.server ~ '/' ~ mount.sharename | replace(' ', '\\\\040') | replace('\'', '') %}
+{%- set share = '//' ~ mount.server ~ '/' ~ mount.sharename | replace(' ', '\\040') | replace('\'', '') %}
 {%- elif mount.mounttype == 'nfs' %}
 {%- set share = mount.server ~ ':' ~ mount.sharename %}
 {%- elif mount.mounttype == 'davfs' %}
 {%- if mount.username | length <= 0 %}
 {%- set _ = options.append('guest') %}
 {%- endif %}
-{%- set share = mount.server | replace(' ', '\\\\040') | replace('\'', '') %}
+{%- set share = mount.server | replace(' ', '\\040') | replace('\'', '') %}
 {%- elif mount.mounttype == 's3fs' %}
-{%- set share = mount.sharename | replace(' ', '\\\\040') | replace('\'', '') %}
+{%- set share = mount.sharename | replace(' ', '\\040') | replace('\'', '') %}
 {%- set _ = options.append('url=' ~ mount.server) %}
 {%- set _ = options.append('passwd_file=' ~ creds) %}
 {%- set fstype = 'fuse.' ~ mount.mounttype %}
