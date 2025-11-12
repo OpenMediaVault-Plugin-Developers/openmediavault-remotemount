@@ -2,11 +2,11 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 # Translators:
 # Ettore Atalan <atalanttore@googlemail.com>, 2021
 # Dampflok_HD, 2023
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -75,10 +75,6 @@ msgstr "Typ"
 
 msgid "Unmount"
 msgstr "Aushängen"
-
-msgid "Username"
-msgstr "Benutzername"
-hängen"
 
 msgid "Username"
 msgstr "Benutzername"
