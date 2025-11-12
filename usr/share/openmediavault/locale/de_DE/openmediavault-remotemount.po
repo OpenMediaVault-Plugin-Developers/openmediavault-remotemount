@@ -4,22 +4,22 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# 49656bee90bb57799c7c1e93ceb9b4ef_2da742e, 2017
-# Ettore Atalan <atalanttore@googlemail.com>, 2022
+# Ettore Atalan <atalanttore@googlemail.com>, 2021
+# Dampflok_HD, 2023
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 12:46-0500\n"
+"POT-Creation-Date: 2025-11-12 22:34+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>, 2022\n"
-"Language-Team: German (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/de/)\n"
+"Last-Translator: Dampflok_HD, 2023\n"
+"Language-Team: German (Germany) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/de_DE/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
+"Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Create"
@@ -50,7 +50,7 @@ msgid "Name"
 msgstr "Name"
 
 msgid "Options"
-msgstr "Einstellungen"
+msgstr "Optionen"
 
 msgid "Password"
 msgstr "Passwort"
@@ -78,6 +78,7 @@ msgstr "Aushängen"
 
 msgid "Username"
 msgstr "Benutzername"
+hängen"
 
-msgid "fstab"
-msgstr ""
+msgid "Username"
+msgstr "Benutzername"

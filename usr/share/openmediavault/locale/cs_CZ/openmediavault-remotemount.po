@@ -5,15 +5,16 @@
 # 
 # Translators:
 # Pavel Borecki <pavel.borecki@gmail.com>, 2021
+# Marek Pavelka, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-07 12:46-0500\n"
+"POT-Creation-Date: 2025-11-12 22:34+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Pavel Borecki <pavel.borecki@gmail.com>, 2021\n"
+"Last-Translator: Marek Pavelka, 2025\n"
 "Language-Team: Czech (Czech Republic) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/cs_CZ/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,22 +23,22 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
 
 msgid "Create"
-msgstr ""
+msgstr "Vytvořit"
 
 msgid "Created mount."
-msgstr ""
+msgstr "Vytvořené připojení."
 
 msgid "Edit"
-msgstr ""
+msgstr "Upravit"
 
 msgid "Edit mount."
-msgstr ""
+msgstr "Upravit připojení."
 
 msgid "Mount"
 msgstr "Připojit"
 
 msgid "Mount type"
-msgstr ""
+msgstr "Typ připojení"
 
 msgid "Mounted"
 msgstr "Připojeno"
@@ -58,7 +59,7 @@ msgid "Remote Mount"
 msgstr "Využití jiného síťového úložiště"
 
 msgid "Remote Mounts"
-msgstr ""
+msgstr "Vzdálená připojení"
 
 msgid "Server"
 msgstr "Server"
@@ -77,6 +78,3 @@ msgstr "Odpojit"
 
 msgid "Username"
 msgstr "Uživatelské jméno"
-
-msgid "fstab"
-msgstr ""
