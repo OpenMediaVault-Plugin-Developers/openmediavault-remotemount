@@ -26,7 +26,7 @@ data:
             - ['nfs', _('NFS')]
             - ['cifs', _('SMB/CIFS')]
             - ['davfs', _('DAVFS')]
-            - ['s3fs', _('S3Fs')]
+#            - ['s3fs', _('S3Fs')]
       - type: textInput
         name: name
         label: _("Name")
