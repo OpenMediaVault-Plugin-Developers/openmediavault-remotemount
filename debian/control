@@ -10,6 +10,7 @@ Package: openmediavault-remotemount
 Architecture: all
 Depends: cifs-utils,
          davfs2,
+         nfs-common,
          openmediavault (>= 8),
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.
