@@ -91,6 +91,25 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
         $db = \OMV\Config\Database::getInstance();
+        // Obscure password for rclone protocols that require it (sftp, ftp, webdav).
+        $rclonetype = isset($params['rclonetype']) ? $params['rclonetype'] : 's3';
+        if (isset($params['mounttype']) && $params['mounttype'] === 'rclone' &&
+                in_array($rclonetype, ['sftp', 'ftp', 'webdav']) &&
+                !empty($params['password'])) {
+            $shouldObscure = true;
+            try {
+                $existingObj = $db->get("conf.service.remotemount.mount", $params['uuid']);
+                $shouldObscure = ($params['password'] !== $existingObj->get('password'));
+            } catch (\Exception $e) {
+                // New object — always obscure.
+            }
+            if ($shouldObscure) {
+                $proc = new \OMV\System\Process('rclone', ['obscure', $params['password']]);
+                $output = [];
+                $proc->execute($output);
+                $params['password'] = trim($output[0]);
+            }
+        }
         // Prepare the configuration object.
         $object = new \OMV\Config\ConfigObject("conf.service.remotemount.mount");
         $object->setAssoc($params);
@@ -150,10 +169,11 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
         $rmntobj = $db->get("conf.service.remotemount.mount", $params['uuid']);
         $mntobj = $db->get("conf.system.filesystem.mountpoint", $rmntobj->get('mntentref'));
         $action = $params['action'];
-        // get escaped systemd mount
+        // get escaped systemd unit (service for rclone, mount for all others)
+        $suffix = ($rmntobj->get('mounttype') === 'rclone') ? 'service' : 'mount';
         $cmdArgs = [];
         $cmdArgs[] = '--path';
-        $cmdArgs[] = '--suffix=mount';
+        $cmdArgs[] = '--suffix=' . $suffix;
         $cmdArgs[] = $mntobj->get('dir');
         $output = [];
         $cmd = new \OMV\System\Process('systemd-escape', $cmdArgs);

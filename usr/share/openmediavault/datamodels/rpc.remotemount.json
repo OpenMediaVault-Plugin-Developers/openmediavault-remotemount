@@ -25,7 +25,8 @@
             "cifs",
             "nfs",
             "davfs",
-            "s3fs"
+            "s3fs",
+            "rclone"
           ],
           "required": true
         },
@@ -46,6 +47,9 @@
           "format": "no-multi-line"
         },
         "options": {
+          "type": "string"
+        },
+        "rclonetype": {
           "type": "string"
         }
       }

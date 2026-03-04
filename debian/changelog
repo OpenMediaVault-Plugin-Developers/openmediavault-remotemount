@@ -1,3 +1,10 @@
+openmediavault-remotemount (8.1) UNRELEASED; urgency=medium
+
+  * add rclone backend to support s3, webdav, google drive, onedrive,
+    sftp, ftp
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 04 Mar 2026 00:15:25 +0000
+
 openmediavault-remotemount (8.0) stable; urgency=low
 
   * Update for omv 8

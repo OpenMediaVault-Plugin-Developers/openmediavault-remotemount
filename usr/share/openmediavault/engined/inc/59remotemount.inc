@@ -24,6 +24,7 @@ use OMV\System\Filesystem\Backend\Nfs;
 use OMV\System\Filesystem\Backend\Nfs4;
 use OMV\System\Filesystem\Backend\Davfs;
 use OMV\System\Filesystem\Backend\S3fs;
+use OMV\System\Filesystem\Backend\Rclone;
 use OMV\System\Filesystem\Backend\Fuse;
 
 $database = Database::getInstance();
@@ -33,4 +34,5 @@ $filesystemBackendManager->registerBackend(new Nfs($database));
 $filesystemBackendManager->registerBackend(new Nfs4($database));
 $filesystemBackendManager->registerBackend(new Davfs($database));
 $filesystemBackendManager->registerBackend(new S3fs($database));
+$filesystemBackendManager->registerBackend(new Rclone($database));
 $filesystemBackendManager->registerBackend(new Fuse($database));

@@ -1,0 +1,26 @@
+{%- set rmount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', mount.mntentref) %}
+{%- set mntDir = rmount.dir %}
+{%- set creds = '/root/.rclonecredentials-' ~ mount.mntentref %}
+{%- set rclonetype = mount.rclonetype if mount.rclonetype is defined and mount.rclonetype | length > 0 else 's3' %}
+{%- set sharename_esc = mount.sharename | replace(' ', '\\ ') %}
+{%- set ns = namespace(rclone_src='') %}
+{%- if rclonetype in ['drive', 'onedrive'] %}
+{%- set ns.rclone_src = mount.server ~ ':' ~ sharename_esc %}
+{%- else %}
+{%- set ns.rclone_src = '--config ' ~ creds ~ ' remote:' ~ sharename_esc %}
+{%- endif %}
+[Unit]
+Description=RemoteMount rclone for {{ mount.name }}:{{ mount.uuid }}
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+ExecStartPre=/bin/mkdir -p {{ mntDir }}
+ExecStart=/usr/bin/rclone mount {{ ns.rclone_src }} {{ mntDir }} --allow-other {{ mount.options }}
+ExecStop=/usr/bin/fusermount -uz {{ mntDir }}
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

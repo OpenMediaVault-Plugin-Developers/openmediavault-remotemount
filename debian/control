@@ -11,6 +11,7 @@ Architecture: all
 Depends: cifs-utils,
          davfs2,
          nfs-common,
+         rclone,
          openmediavault (>= 8),
          ${misc:Depends}
 Description: Remote mount plugin for OpenMediaVault.

@@ -30,7 +30,8 @@
         "cifs",
         "nfs",
         "davfs",
-        "s3fs"
+        "s3fs",
+        "rclone"
       ]
     },
     "server": {
@@ -55,6 +56,10 @@
     },
     "options": {
       "description": "Additional mount options",
+      "type": "string"
+    },
+    "rclonetype": {
+      "description": "The rclone backend protocol type",
       "type": "string"
     }
   }

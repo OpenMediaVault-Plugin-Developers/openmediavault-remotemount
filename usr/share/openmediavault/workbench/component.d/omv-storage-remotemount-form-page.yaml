@@ -26,7 +26,26 @@ data:
             - ['nfs', _('NFS')]
             - ['cifs', _('SMB/CIFS')]
             - ['davfs', _('DAVFS')]
-#            - ['s3fs', _('S3Fs')]
+            - ['rclone', _('rclone')]
+      - type: select
+        name: rclonetype
+        label: _("Protocol")
+        value: "s3"
+        store:
+          data:
+            - ['s3', _('S3')]
+            - ['sftp', _('SFTP')]
+            - ['ftp', _('FTP')]
+            - ['webdav', _('WebDAV')]
+            - ['drive', _('Google Drive')]
+            - ['onedrive', _('OneDrive')]
+        modifiers:
+          - type: hidden
+            constraint:
+              operator: ne
+              arg0:
+                prop: mounttype
+              arg1: "rclone"
       - type: textInput
         name: name
         label: _("Name")
@@ -45,12 +64,12 @@ data:
         name: server
         label: _("Server")
         value: ""
-        hint: _('Use FQDN, hostname, IP address, or url (s3fs only).')
+        hint: _('SMB/CIFS/NFS/SFTP/FTP hostname or hostname:port. For S3 use endpoint URL (blank for AWS). For WebDAV use full URL. For Google Drive/OneDrive use rclone remote name.')
       - type: textInput
         name: sharename
         label: _("Share")
         value: ""
-        hint: _('For SMB/CIFS or NFS v4, use the share name only.<br />For NFS v3, use the export path (ie /export/nfs_share_name).<br />For S3Fs, use the bucket name.')
+        hint: _('SMB/CIFS or NFS v4 share name. NFS v3 export path. S3 bucket name. SFTP/FTP remote path. WebDAV subdirectory (optional). Google Drive/OneDrive folder path (optional).')
         modifiers:
           - type: hidden
             constraint:
@@ -74,7 +93,7 @@ data:
         name: username
         label: _("Username")
         value: ""
-        hint: _('Leave blank to authenticate as guest.<br />For S3Fs, this is the access key ID.')
+        hint: _('Leave blank for guest access. For S3 use access key ID. For SFTP/FTP/WebDAV use username. Not used for Google Drive/OneDrive.')
         modifiers:
           - type: hidden
             constraint:
@@ -82,11 +101,23 @@ data:
               arg0:
                 prop: mounttype
               arg1: "nfs"
+          - type: hidden
+            constraint:
+              operator: eq
+              arg0:
+                prop: rclonetype
+              arg1: "drive"
+          - type: hidden
+            constraint:
+              operator: eq
+              arg0:
+                prop: rclonetype
+              arg1: "onedrive"
       - type: passwordInput
         name: password
         label: _("Password")
         value: ""
-        hint: "For S3Fs, this is secret access key."
+        hint: _('For S3 use secret access key. For SFTP/FTP/WebDAV use password (auto-obscured on save). Not used for Google Drive/OneDrive (configure with rclone config instead).')
         modifiers:
           - type: hidden
             constraint:
@@ -94,11 +125,23 @@ data:
               arg0:
                 prop: mounttype
               arg1: "nfs"
+          - type: hidden
+            constraint:
+              operator: eq
+              arg0:
+                prop: rclonetype
+              arg1: "drive"
+          - type: hidden
+            constraint:
+              operator: eq
+              arg0:
+                prop: rclonetype
+              arg1: "onedrive"
       - type: textInput
         name: options
         label: _("Options")
         value: "iocharset=utf8,vers=3.0,nofail"
-        hint: _('For SMB/CIFS options, see man page for <a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a><br />For NFS options, see man page for <a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a><br />For WebDAV options, see man page for <a href="https://linux.die.net/man/8/mount.davfs" target="_blank">mount.davfs</a><br />For S3Fs options, see man page for <a href="https://linux.die.net/man/1/s3fs" target="_blank">mount.s3fs</a>')
+        hint: _('SMB/CIFS see <a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a>. NFS see <a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>. WebDAV (davfs) see <a href="https://linux.die.net/man/8/mount.davfs" target="_blank">mount.davfs</a>. rclone extra mount flags (e.g. --vfs-cache-mode=writes).')
         modifiers:
           - type: value
             typeConfig: "iocharset=utf8,vers=3.0,nofail"
@@ -128,6 +171,13 @@ data:
               arg0:
                 prop: mounttype
               arg1: "s3fs"
+          - type: value
+            typeConfig: "--vfs-cache-mode=off"
+            constraint:
+              operator: eq
+              arg0:
+                prop: mounttype
+              arg1: "rclone"
     buttons:
       - template: submit
         execute:

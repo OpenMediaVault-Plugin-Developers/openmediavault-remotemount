@@ -62,6 +62,23 @@ remove_remotemount_s3fs_cred_files:
       - maxdepth: 1
       - delete: "f"
 
+remove_remotemount_rclone_cred_files:
+  module.run:
+    - file.find:
+      - path: "/root/"
+      - iname: ".rclonecredentials-*"
+      - maxdepth: 1
+      - delete: "f"
+
+remove_remotemount_rclone_service_files:
+  module.run:
+    - file.find:
+      - path: "{{ mountsdir }}"
+      - iname: "*.service"
+      - grep: "Description(| )=(| )RemoteMount rclone for"
+      - maxdepth: 1
+      - delete: "f"
+
 remove_remotemount_davfs_cred_file:
   file.absent:
     - name: "{{ secrets }}"
@@ -87,8 +104,9 @@ systemd_delete_dead_symlinks:
 {% set rdir = rmount.dir %}
 {% set rname = mnt.name %}
 
-{% set unitname = salt['cmd.run']('systemd-escape --path --suffix=mount ' ~ rdir) %}
-{% set mountunit =  mountsdir ~ "/" ~ unitname %}
+{%- set unitsuffix = 'service' if mnt.mounttype == 'rclone' else 'mount' %}
+{% set unitname = salt['cmd.run']('systemd-escape --path --suffix=' ~ unitsuffix ~ ' ' ~ rdir) %}
+{% set mountunit = mountsdir ~ "/" ~ unitname %}
 
 {%- set credsPrefix = '/root/.' ~ mnt.mounttype ~ 'credentials-' %}
 {%- set creds = credsPrefix ~ mnt.mntentref %}
@@ -120,6 +138,20 @@ configure_remotemount_s3fs_creds_{{ mnt.mntentref }}:
         {{ mnt.username }}:{{ mnt.password }}
 
 
+{% elif mnt.mounttype == 'rclone' %}
+configure_remotemount_rclone_creds_{{ mnt.mntentref }}:
+  file.managed:
+    - name: "{{ creds }}"
+    - source:
+      - salt://{{ tpldir }}/files/etc-root-rclonecredentials.j2
+    - context:
+        mount: {{ mnt | json }}
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 600
+
+
 {% elif mnt.mounttype == 'davfs' %}
 configure_remotemount_davfs_creds_{{ mnt.mntentref }}:
   file.append:
@@ -129,6 +161,22 @@ configure_remotemount_davfs_creds_{{ mnt.mntentref }}:
 
 
 {% endif %}
+
+{% if mnt.mounttype == 'rclone' %}
+
+configure_remotemount_{{ rname }}:
+  file.managed:
+    - name: {{ mountunit }}
+    - source:
+      - salt://{{ tpldir }}/files/etc-systemd-system-remotemount_rclone.j2
+    - context:
+        mount: {{ mnt | json }}
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: "0644"
+
+{% else %}
 
 configure_remotemount_{{ rname }}:
   file.managed:
@@ -156,6 +204,8 @@ configure_remotemount_{{ rname }}:
 #    - user: root
 #    - group: root
 #    - mode: "0644"
+
+{% endif %}
 
 systemd-reload_{{ rname }}:
   cmd.run:
