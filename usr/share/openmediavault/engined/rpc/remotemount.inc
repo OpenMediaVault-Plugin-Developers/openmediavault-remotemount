@@ -63,7 +63,11 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
             }
             $objectv->add("inuse", "boolean", $inuse);
             $objectv->add("mounted", "boolean", $fs->isMounted());
-            $objectsAssoc[] = $objectv->getAssoc();
+            $assoc = $objectv->getAssoc();
+            if ($assoc['mounttype'] === 'rclone' && !empty($assoc['rclonetype'])) {
+                $assoc['mounttype'] = sprintf('rclone (%s)', $assoc['rclonetype']);
+            }
+            $objectsAssoc[] = $assoc;
         }
         // Filter the result.
         return $this->applyFilter($objectsAssoc, $params['start'], $params['limit'],
