@@ -23,22 +23,22 @@ data:
         value: "cifs"
         store:
           data:
-            - ['nfs', _('NFS')]
-            - ['cifs', _('SMB/CIFS')]
-            - ['davfs', _('DAVFS')]
-            - ['rclone', _('rclone')]
+            - ['nfs', _("NFS")]
+            - ['cifs', _("SMB/CIFS")]
+            - ['davfs', _("WebDAV (davfs)")]
+            - ['rclone', _("rclone")]
       - type: select
         name: rclonetype
         label: _("Protocol")
         value: "s3"
         store:
           data:
-            - ['s3', _('S3')]
-            - ['sftp', _('SFTP')]
-            - ['ftp', _('FTP')]
-            - ['webdav', _('WebDAV')]
-            - ['drive', _('Google Drive')]
-            - ['onedrive', _('OneDrive')]
+            - ['s3', _("Amazon S3 / S3-Compatible")]
+            - ['sftp', _("SFTP")]
+            - ['ftp', _("FTP")]
+            - ['webdav', _("WebDAV")]
+            - ['drive', _("Google Drive (pre-configured rclone remote)")]
+            - ['onedrive', _("OneDrive (pre-configured rclone remote)")]
         modifiers:
           - type: hidden
             constraint:
@@ -46,6 +46,8 @@ data:
               arg0:
                 prop: mounttype
               arg1: "rclone"
+      - type: divider
+        title: _("Connection")
       - type: textInput
         name: name
         label: _("Name")
@@ -64,12 +66,12 @@ data:
         name: server
         label: _("Server")
         value: ""
-        hint: _('SMB/CIFS/NFS/SFTP/FTP hostname or hostname:port. For S3 use endpoint URL (blank for AWS). For WebDAV use full URL. For Google Drive/OneDrive use rclone remote name.')
+        hint: _("SMB/CIFS or NFS — hostname or IP.<br/>WebDAV (davfs) — full URL (e.g. https://example.com/dav).<br/>S3 — endpoint URL (blank for AWS).<br/>SFTP/FTP — hostname[:port].<br/>Google Drive/OneDrive — name of a pre-configured rclone remote (run rclone config first).")
       - type: textInput
         name: sharename
-        label: _("Share")
+        label: _("Share / Path")
         value: ""
-        hint: _('SMB/CIFS or NFS v4 share name. NFS v3 export path. S3 bucket name. SFTP/FTP remote path. WebDAV subdirectory (optional). Google Drive/OneDrive folder path (optional).')
+        hint: _("SMB/CIFS — share name<br/>NFS — export path<br/>S3 — bucket name<br/>SFTP/FTP — remote directory path<br/>WebDAV — subdirectory (optional)<br/>Drive/OneDrive — folder path (optional)")
         modifiers:
           - type: hidden
             constraint:
@@ -81,7 +83,7 @@ data:
         name: nfs4
         label: _("NFS v4")
         value: false
-        hint: _('Will use NFS v3 if unchecked and NFS v4 if checked.')
+        hint: _("Enable to use NFSv4, disable for NFSv3.")
         modifiers:
           - type: hidden
             constraint:
@@ -89,11 +91,13 @@ data:
               arg0:
                 prop: mounttype
               arg1: "nfs"
+      - type: divider
+        title: _("Credentials")
       - type: textInput
         name: username
         label: _("Username")
         value: ""
-        hint: _('Leave blank for guest access. For S3 use access key ID. For SFTP/FTP/WebDAV use username. Not used for Google Drive/OneDrive.')
+        hint: _("SMB/CIFS or WebDAV — username (leave blank for guest)<br/>S3 — access key ID<br/>SFTP/FTP — username.")
         modifiers:
           - type: hidden
             constraint:
@@ -117,7 +121,7 @@ data:
         name: password
         label: _("Password")
         value: ""
-        hint: _('For S3 use secret access key. For SFTP/FTP/WebDAV use password (auto-obscured on save). Not used for Google Drive/OneDrive (configure with rclone config instead).')
+        hint: _("SMB/CIFS or WebDAV — password (leave blank for guest)<br>S3 — secret access key<br/>SFTP/FTP — password (auto-obscured on save).")
         modifiers:
           - type: hidden
             constraint:
@@ -137,11 +141,13 @@ data:
               arg0:
                 prop: rclonetype
               arg1: "onedrive"
+      - type: divider
+        title: _("Advanced")
       - type: textInput
         name: options
         label: _("Options")
         value: "iocharset=utf8,vers=3.0,nofail"
-        hint: _('SMB/CIFS see <a href="https://linux.die.net/man/8/mount.cifs" target="_blank">mount.cifs</a>. NFS see <a href="https://linux.die.net/man/8/mount.nfs" target="_blank">mount.nfs</a>. WebDAV (davfs) see <a href="https://linux.die.net/man/8/mount.davfs" target="_blank">mount.davfs</a>. rclone extra mount flags (e.g. --vfs-cache-mode=writes).')
+        hint: _("SMB/CIFS see <a href='https://linux.die.net/man/8/mount.cifs' target='_blank'>mount.cifs</a><br/>NFS see <a href='https://linux.die.net/man/8/mount.nfs' target='_blank'>mount.nfs</a><br/>WebDAV see <a href='https://linux.die.net/man/8/mount.davfs' target='_blank'>mount.davfs</a><br/>rclone — extra mount flags (e.g. --vfs-cache-mode=writes).")
         modifiers:
           - type: value
             typeConfig: "iocharset=utf8,vers=3.0,nofail"

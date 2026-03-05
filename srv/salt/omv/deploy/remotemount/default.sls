@@ -220,10 +220,12 @@ restart_{{ rname }}_remotemount:
   cmd.run:
     - name: systemctl restart '{{ unitname }}'
 
-#enable_{{ rname }}_remotemountauto:
-#  service.enabled:
-#    - name: {{ unitnameauto }}
-#    - enable: True
+{#
+enable_{{ rname }}_remotemountauto:
+  service.enabled:
+    - name: {{ unitnameauto }}
+    - enable: True
+#}
 
 {% endif %}
 {% endfor %}

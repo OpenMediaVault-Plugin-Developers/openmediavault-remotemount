@@ -20,6 +20,11 @@ namespace OMV\System\Filesystem\Backend;
 
 use OMV\Config\Database;
 
+/**
+ * Backend registered as 'rclone' to match the mounttype stored in the
+ * OMV config database (conf.system.filesystem.mountpoint.type).
+ * Used by enumerateSharedFolders and related DB-driven lookups.
+ */
 class Rclone extends RemoteAbstract
 {
     public function __construct(Database $database)
@@ -28,5 +33,21 @@ class Rclone extends RemoteAbstract
 
         $this->type = 'rclone';
         $this->properties = self::PROP_POSIX_ACL;
+    }
+}
+
+/**
+ * Backend registered as 'fuse.rclone' to match the kernel filesystem type
+ * that rclone reports in /proc/mounts. Used by getImplByMountPoint() which
+ * reads the kernel fstype and calls getBackendByType('fuse.rclone').
+ * This is what allows rclone mounts to appear in the shared folder dropdown.
+ */
+class FuseRclone extends Rclone
+{
+    public function __construct(Database $database)
+    {
+        parent::__construct($database);
+
+        $this->type = 'fuse.rclone';
     }
 }

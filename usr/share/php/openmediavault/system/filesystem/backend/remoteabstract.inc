@@ -177,6 +177,12 @@ abstract class RemoteAbstract extends BackendAbstract
             $uuid = $output[0];
         }
         if (!is_uuid($uuid)) {
+            $units = '/etc/systemd/system/srv-remotemount-*.service';
+            $cmd = sprintf('grep -rlF "%s" %s 2>/dev/null | xargs -r grep -h "^Description=" | awk -F":" \'/Description/ { print $NF }\' | tr -d " \n"', $mountPoint, $units);
+            exec($cmd, $output);
+            $uuid = $output[0];
+        }
+        if (!is_uuid($uuid)) {
             throw new Exception(sprintf(
                 'Couldn\'t extract an UUID from the provided path \'%s\'.',
                 $mountPoint
@@ -201,10 +207,14 @@ abstract class RemoteAbstract extends BackendAbstract
         $mounts = file('/proc/mounts');
         $types = ['nfs','nfs4','autofs'];
         $mp = '';
+        $fs = '';
         foreach ($mounts as $mount) {
             $splitContent = preg_split('/\s+/', $mount);
             if (in_array($splitContent[2], $types)) {
                 $fs = 'nfs';
+            }
+            if ($splitContent[2] === 'fuse.rclone') {
+                $fs = 'rclone';
             }
             if ($splitContent[2] == 'davfs' && $type == 'fuse') {
                 $type = 'davfs';
@@ -221,6 +231,14 @@ abstract class RemoteAbstract extends BackendAbstract
             $cmd = sprintf('grep -A14 -B14 -h "%s" %s | awk -F"=" \'$1 == "Where" { print $2 }\'', $fsname, $units);
             exec($cmd, $output);
             $mp = $output[0];
+        }
+        if ($mp == '' && $type === 'fuse.rclone') {
+            $units = '/etc/systemd/system/srv-remotemount-*.service';
+            $cmd = sprintf('grep -rlF "%s" %s 2>/dev/null | head -1', $fsname, $units);
+            exec($cmd, $output);
+            if (!empty($output[0])) {
+                $mp = $fsname;
+            }
         }
         if ($mp == '') {
             throw new Exception(sprintf(
