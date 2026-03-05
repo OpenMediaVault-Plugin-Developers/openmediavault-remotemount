@@ -54,14 +54,6 @@ remove_remotemount_cifs_cred_files:
       - maxdepth: 1
       - delete: "f"
 
-remove_remotemount_s3fs_cred_files:
-  module.run:
-    - file.find:
-      - path: "/root/"
-      - iname: ".s3fscredentials-*"
-      - maxdepth: 1
-      - delete: "f"
-
 remove_remotemount_rclone_cred_files:
   module.run:
     - file.find:
@@ -123,19 +115,6 @@ configure_remotemount_cifs_creds_{{ mnt.mntentref }}:
         {{ pillar['headers']['warning'] }}
         username={{ mnt.username }}
         password={{ mnt.password }}
-
-
-{% elif mnt.mounttype == 's3fs' %}
-configure_remotemount_s3fs_creds_{{ mnt.mntentref }}:
-  file.managed:
-    - name: "{{ creds }}"
-    - user: root
-    - group: root
-    - mode: 600
-    - contents: |
-        {{ pillar['headers']['auto_generated'] }}
-        {{ pillar['headers']['warning'] }}
-        {{ mnt.username }}:{{ mnt.password }}
 
 
 {% elif mnt.mounttype == 'rclone' %}

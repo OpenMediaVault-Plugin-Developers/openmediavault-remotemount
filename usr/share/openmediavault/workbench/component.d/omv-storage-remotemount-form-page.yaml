@@ -171,13 +171,6 @@ data:
                 prop: mounttype
               arg1: "nfs"
           - type: value
-            typeConfig: "allow_other,use_path_request_style"
-            constraint:
-              operator: eq
-              arg0:
-                prop: mounttype
-              arg1: "s3fs"
-          - type: value
             typeConfig: "--vfs-cache-mode=off"
             constraint:
               operator: eq

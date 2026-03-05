@@ -19,11 +19,6 @@
 {%- set _ = options.append('guest') %}
 {%- endif %}
 {%- set share = mount.server | replace(' ', '\\040') | replace('\'', '') %}
-{%- elif mount.mounttype == 's3fs' %}
-{%- set share = mount.sharename | replace(' ', '\\040') | replace('\'', '') %}
-{%- set _ = options.append('url=' ~ mount.server) %}
-{%- set _ = options.append('passwd_file=' ~ creds) %}
-{%- set fstype = 'fuse.' ~ mount.mounttype %}
 {%- endif %}
 [Unit]
 Description=RemoteMount mount for {{ mount.name }}:{{ mount.uuid }}

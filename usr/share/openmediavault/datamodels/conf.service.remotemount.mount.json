@@ -30,7 +30,6 @@
         "cifs",
         "nfs",
         "davfs",
-        "s3fs",
         "rclone"
       ]
     },
