@@ -3,10 +3,6 @@
 # This file is distributed under the same license as the openmediavault-remotemount package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# Grawens <szabolcs.szanyi@gmail.com>, 2021
-# Gyuris Gellért <jobel@ujevangelizacio.hu>, 2023
-# 
 #, fuzzy
 msgid ""
 msgstr ""
@@ -14,13 +10,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-05 01:48+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2023\n"
-"Language-Team: Hungarian (Hungary) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/hu_HU/)\n"
+"Language-Team: Lao (Laos) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/lo_LA/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu_HU\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: lo_LA\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Advanced"
 msgstr ""
@@ -32,19 +27,19 @@ msgid "Connection"
 msgstr ""
 
 msgid "Create"
-msgstr "Létrehozás"
+msgstr ""
 
 msgid "Created mount."
-msgstr "Csatolás létrehozva."
+msgstr ""
 
 msgid "Credentials"
 msgstr ""
 
 msgid "Edit"
-msgstr "Szerkesztés"
+msgstr ""
 
 msgid "Edit mount."
-msgstr "Csatolás szerkesztése."
+msgstr ""
 
 msgid "Enable to use NFSv4, disable for NFSv3."
 msgstr ""
@@ -56,40 +51,40 @@ msgid "Google Drive (pre-configured rclone remote)"
 msgstr ""
 
 msgid "Mount"
-msgstr "Csatol"
+msgstr ""
 
 msgid "Mount type"
-msgstr "Csatolás típusa"
+msgstr ""
 
 msgid "Mounted"
-msgstr "Csatolva"
+msgstr ""
 
 msgid "NFS"
 msgstr ""
 
 msgid "NFS v4"
-msgstr "NFS v4"
+msgstr ""
 
 msgid "Name"
-msgstr "Név"
+msgstr ""
 
 msgid "OneDrive (pre-configured rclone remote)"
 msgstr ""
 
 msgid "Options"
-msgstr "Beállítások"
+msgstr ""
 
 msgid "Password"
-msgstr "Jelszó"
+msgstr ""
 
 msgid "Protocol"
 msgstr ""
 
 msgid "Remote Mount"
-msgstr "Távoli csatolás"
+msgstr ""
 
 msgid "Remote Mounts"
-msgstr "Távoli csatolások"
+msgstr ""
 
 msgid "SFTP"
 msgstr ""
@@ -131,25 +126,25 @@ msgid ""
 msgstr ""
 
 msgid "Server"
-msgstr "Kiszolgáló"
+msgstr ""
 
 msgid "Share"
-msgstr "Megosztás"
+msgstr ""
 
 msgid "Share / Path"
 msgstr ""
 
 msgid "Shared"
-msgstr "Megosztva"
+msgstr ""
 
 msgid "Type"
-msgstr "Típus"
+msgstr ""
 
 msgid "Unmount"
-msgstr "Leválaszt"
+msgstr ""
 
 msgid "Username"
-msgstr "Felhasználói név"
+msgstr ""
 
 msgid "WebDAV"
 msgstr ""

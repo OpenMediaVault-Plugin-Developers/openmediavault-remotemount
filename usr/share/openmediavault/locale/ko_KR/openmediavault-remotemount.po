@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-12 22:34+0000\n"
+"POT-Creation-Date: 2026-03-05 01:48+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Language-Team: Korean (Korea) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/ko_KR/)\n"
 "MIME-Version: 1.0\n"
@@ -17,16 +17,37 @@ msgstr ""
 "Language: ko_KR\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+msgid "Advanced"
+msgstr ""
+
+msgid "Amazon S3 / S3-Compatible"
+msgstr ""
+
+msgid "Connection"
+msgstr ""
+
 msgid "Create"
 msgstr ""
 
 msgid "Created mount."
 msgstr ""
 
+msgid "Credentials"
+msgstr ""
+
 msgid "Edit"
 msgstr ""
 
 msgid "Edit mount."
+msgstr ""
+
+msgid "Enable to use NFSv4, disable for NFSv3."
+msgstr ""
+
+msgid "FTP"
+msgstr ""
+
+msgid "Google Drive (pre-configured rclone remote)"
 msgstr ""
 
 msgid "Mount"
@@ -38,10 +59,16 @@ msgstr ""
 msgid "Mounted"
 msgstr ""
 
+msgid "NFS"
+msgstr ""
+
 msgid "NFS v4"
 msgstr ""
 
 msgid "Name"
+msgstr ""
+
+msgid "OneDrive (pre-configured rclone remote)"
 msgstr ""
 
 msgid "Options"
@@ -50,16 +77,61 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
+msgid "Protocol"
+msgstr ""
+
 msgid "Remote Mount"
 msgstr ""
 
 msgid "Remote Mounts"
 msgstr ""
 
+msgid "SFTP"
+msgstr ""
+
+msgid "SMB/CIFS"
+msgstr ""
+
+msgid ""
+"SMB/CIFS or NFS — hostname or IP.<br/>WebDAV (davfs) — full URL (e.g. "
+"https://example.com/dav).<br/>S3 — endpoint URL (blank for "
+"AWS).<br/>SFTP/FTP — hostname[:port].<br/>Google Drive/OneDrive — name of a "
+"pre-configured rclone remote (run rclone config first)."
+msgstr ""
+
+msgid ""
+"SMB/CIFS or WebDAV — password (leave blank for guest)<br>S3 — secret access "
+"key<br/>SFTP/FTP — password (auto-obscured on save)."
+msgstr ""
+
+msgid ""
+"SMB/CIFS or WebDAV — username (leave blank for guest)<br/>S3 — access key "
+"ID<br/>SFTP/FTP — username."
+msgstr ""
+
+msgid ""
+"SMB/CIFS see <a href='https://linux.die.net/man/8/mount.cifs' "
+"target='_blank'>mount.cifs</a><br/>NFS see <a "
+"href='https://linux.die.net/man/8/mount.nfs' "
+"target='_blank'>mount.nfs</a><br/>WebDAV see <a "
+"href='https://linux.die.net/man/8/mount.davfs' "
+"target='_blank'>mount.davfs</a><br/>rclone — extra mount flags (e.g. --vfs-"
+"cache-mode=writes)."
+msgstr ""
+
+msgid ""
+"SMB/CIFS — share name<br/>NFS — export path<br/>S3 — bucket "
+"name<br/>SFTP/FTP — remote directory path<br/>WebDAV — subdirectory "
+"(optional)<br/>Drive/OneDrive — folder path (optional)"
+msgstr ""
+
 msgid "Server"
 msgstr ""
 
 msgid "Share"
+msgstr ""
+
+msgid "Share / Path"
 msgstr ""
 
 msgid "Shared"
@@ -72,4 +144,13 @@ msgid "Unmount"
 msgstr ""
 
 msgid "Username"
+msgstr ""
+
+msgid "WebDAV"
+msgstr ""
+
+msgid "WebDAV (davfs)"
+msgstr ""
+
+msgid "rclone"
 msgstr ""
