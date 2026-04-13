@@ -109,7 +109,7 @@ configure_remotemount_cifs_creds_{{ mnt.mntentref }}:
     - name: "{{ creds }}"
     - user: root
     - group: root
-    - mode: 600
+    - mode: "0600"
     - contents: |
         {{ pillar['headers']['auto_generated'] }}
         {{ pillar['headers']['warning'] }}
@@ -189,15 +189,21 @@ configure_remotemount_{{ rname }}:
 systemd-reload_{{ rname }}:
   cmd.run:
     - name: systemctl daemon-reload
+    - require:
+      - file: configure_remotemount_{{ rname }}
 
 enable_{{ rname }}_remotemount:
   service.enabled:
     - name: {{ unitname }}
     - enable: True
+    - require:
+      - cmd: systemd-reload_{{ rname }}
 
 restart_{{ rname }}_remotemount:
   cmd.run:
     - name: systemctl restart '{{ unitname }}'
+    - require:
+      - service: enable_{{ rname }}_remotemount
 
 {#
 enable_{{ rname }}_remotemountauto:
