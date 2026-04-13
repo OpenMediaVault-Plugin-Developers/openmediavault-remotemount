@@ -3,7 +3,6 @@
 {%- set creds = credsPrefix ~ mount.mntentref %}
 {%- set rmount = salt['omv_conf.get']('conf.system.filesystem.mountpoint', mount.mntentref) %}
 {%- set mntDir = rmount.dir %}
-{%- set options = [] %}
 {%- set options = mount.options.split(',') %}
 {%- if mount.mounttype == 'cifs' %}
 {%- if mount.username | length > 0 %}
@@ -20,6 +19,7 @@
 {%- endif %}
 {%- set share = mount.server | replace(' ', '\\040') | replace('\'', '') %}
 {%- endif %}
+{%- set _ = options.append('_netdev') %}
 [Unit]
 Description=RemoteMount mount for {{ mount.name }}:{{ mount.uuid }}
 Requires=network-online.target
@@ -30,6 +30,7 @@ What={{ share }}
 Where={{ mntDir }}
 Type={{ fstype }}
 Options={{ options | join(',') }}
+TimeoutSec=30
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=remote-fs.target
