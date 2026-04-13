@@ -13,6 +13,8 @@
 Description=RemoteMount rclone for {{ mount.name }}:{{ mount.uuid }}
 Requires=network-online.target
 After=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=3
 
 [Service]
 Type=notify
@@ -21,6 +23,9 @@ ExecStart=/usr/bin/rclone mount {{ ns.rclone_src }} {{ mntDir }} --allow-other {
 ExecStop=/usr/bin/fusermount -uz {{ mntDir }}
 Restart=on-failure
 RestartSec=5s
+KillMode=process
+TimeoutStartSec=30
+TimeoutStopSec=30
 
 [Install]
 WantedBy=multi-user.target
