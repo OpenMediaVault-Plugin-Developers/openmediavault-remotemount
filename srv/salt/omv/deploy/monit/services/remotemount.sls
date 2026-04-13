@@ -6,7 +6,13 @@
 
 {% set mountpoints = salt['omv_conf.get_by_filter'](
   'conf.system.filesystem.mountpoint',
-  {"operator": "or", "arg0": { "operator": "or", "arg0": { "operator": "stringEquals", "arg0": "type", "arg1": "nfs" }, "arg1": { "operator": "stringEquals", "arg0": "type", "arg1": "cifs" }}, "arg1": { "operator": "stringEquals", "arg0": "type", "arg1": "davfs"}}) %}
+  {"operator": "or",
+   "arg0": {"operator": "or",
+     "arg0": {"operator": "or",
+       "arg0": {"operator": "stringEquals", "arg0": "type", "arg1": "nfs"},
+       "arg1": {"operator": "stringEquals", "arg0": "type", "arg1": "cifs"}},
+     "arg1": {"operator": "stringEquals", "arg0": "type", "arg1": "davfs"}},
+   "arg1": {"operator": "stringEquals", "arg0": "type", "arg1": "rclone"}}) %}
 
 configure_monit_remotemount_service:
   file.managed:
@@ -18,6 +24,6 @@ configure_monit_remotemount_service:
         mountpoints: {{ mountpoints | json }}
     - user: root
     - group: root
-    - mode: 644
+    - mode: "0644"
 
 {% endif %}
