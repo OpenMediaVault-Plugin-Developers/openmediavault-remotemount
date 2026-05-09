@@ -183,9 +183,11 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
         $cmd = new \OMV\System\Process('systemd-escape', $cmdArgs);
         $cmd->execute($output, $exitStatus);
         // perform action on systemd mount
+        // escapeshellarg prevents the shell (exec) from eating the literal backslash in e.g. \x2d.
+        $unitName = escapeshellarg($output[0]);
         $cmdArgs = [];
         $cmdArgs[] = $action;
-        $cmdArgs[] = $output[0];
+        $cmdArgs[] = $unitName;
         $output = [];
         $cmd = new \OMV\System\Process('systemctl', $cmdArgs);
         $cmd->execute($output, $exitStatus);
