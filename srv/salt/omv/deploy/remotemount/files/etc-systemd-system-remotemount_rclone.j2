@@ -7,7 +7,7 @@
 {%- if rclonetype in ['drive', 'onedrive'] %}
 {%- set ns.rclone_src = mount.server ~ ':' ~ sharename_esc %}
 {%- else %}
-{%- set ns.rclone_src = '--config ' ~ creds ~ ' remote:' ~ sharename_esc %}
+{%- set ns.rclone_src = '--config ' ~ creds ~ ' ' ~ mount.uuid ~ ':' ~ sharename_esc %}
 {%- endif %}
 [Unit]
 Description=RemoteMount rclone for {{ mount.name }}:{{ mount.uuid }}
