@@ -1,3 +1,12 @@
+openmediavault-remotemount (8.1.1) stable; urgency=low
+
+  * fix duplicate mount names in shared folder list when multiple rclone
+    mounts share the same server
+  * fix mount stop/start RPC failing for mounts with dashes in their name
+    (shell was stripping backslashes from systemd-escape output)
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 09 May 2026 23:59:38 +0000
+
 openmediavault-remotemount (8.1) stable; urgency=low
 
   * add rclone backend (beta) to support s3, webdav, google drive, onedrive,
