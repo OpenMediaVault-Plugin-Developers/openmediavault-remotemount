@@ -144,6 +144,10 @@ abstract class RemoteAbstract extends BackendAbstract
         $uuid = $args;
 
         if (!is_uuid($args)) {
+            $uuid = $this->findUuidByDir($args);
+        }
+
+        if (!is_uuid($uuid)) {
             $mountPoint = $this->fetchMountPointByFsnameAndType($args, $this->type);
             $uuid = $this->extractUuidFromMountPoint($mountPoint);
         }
@@ -152,6 +156,39 @@ abstract class RemoteAbstract extends BackendAbstract
         $mntObject = $this->database->get($this->mountPointDataModelPath, $remoteObject->get('mntentref'));
 
         return new Remote($remoteObject->get('uuid'), $mntObject->get('dir'), $remoteObject->get('name'), $this);
+    }
+
+    /**
+     * Resolve a mount directory path to a remotemount UUID via the config
+     * database. Works regardless of whether the mount is currently active.
+     *
+     * @param string $dir The mount directory path.
+     *
+     * @return string The UUID, or empty string if not found.
+     */
+    private function findUuidByDir($dir)
+    {
+        // FuseRclone backend has type 'fuse.rclone' but DB stores 'rclone'.
+        $dbType = ($this->type === 'fuse.rclone') ? 'rclone' : $this->type;
+
+        try {
+            foreach ($this->database->get($this->dataModelPath) as $object) {
+                if ($object->get('mounttype') !== $dbType) {
+                    continue;
+                }
+                $mntObject = $this->database->get(
+                    $this->mountPointDataModelPath,
+                    $object->get('mntentref')
+                );
+                if ($mntObject->get('dir') === $dir) {
+                    return $object->get('uuid');
+                }
+            }
+        } catch (\Exception $e) {
+            // Fall through to the existing grep-based fallback.
+        }
+
+        return '';
     }
 
     /**
