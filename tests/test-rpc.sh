@@ -549,6 +549,42 @@ else
 fi
 
 # ---------------------------------------------------------------------------
+# Regression — getCandidates must not throw when a bind mount sourced from a
+# sub-path of a remotemount is present (SFTP plugin bind mount scenario).
+# Exercises findUuidByDir's prefix-match path.
+# ---------------------------------------------------------------------------
+section "Regression — getCandidates with SFTP-style bind mount over rclone"
+
+SFTP_BIND_BASE="/sftp/rmtest-sftp-user"
+SFTP_BIND_MNT="${SFTP_BIND_BASE}/RM_rmtest-webdav1"
+SFTP_BIND_SRC="${MNT1}/bindtestdir"
+BIND_MOUNTED=false
+
+if mountpoint -q "$MNT1" 2>/dev/null; then
+    if mkdir -p "$SFTP_BIND_SRC" "$SFTP_BIND_MNT" 2>/dev/null; then
+        if mount --bind "$SFTP_BIND_SRC" "$SFTP_BIND_MNT" 2>/dev/null; then
+            BIND_FSTYPE=$(findmnt -no FSTYPE "$SFTP_BIND_MNT" 2>/dev/null || echo unknown)
+            _pass "bind mount created: $SFTP_BIND_MNT → $SFTP_BIND_SRC (fstype=$BIND_FSTYPE)"
+            BIND_MOUNTED=true
+        else
+            _fail "could not create bind mount — skipping SFTP bind mount regression"
+        fi
+    else
+        _fail "could not create source dirs — skipping SFTP bind mount regression"
+    fi
+else
+    _fail "rmtest-webdav1 not mounted — skipping SFTP bind mount regression"
+fi
+
+if $BIND_MOUNTED; then
+    assert_rpc "getCandidates — no exception with SFTP-style bind mount over rclone" \
+        "ShareMgmt" "getCandidates" '{}' >/dev/null
+
+    umount "$SFTP_BIND_MNT" 2>/dev/null || true
+    rmdir "$SFTP_BIND_MNT" "$SFTP_BIND_BASE" "$SFTP_BIND_SRC" 2>/dev/null || true
+fi
+
+# ---------------------------------------------------------------------------
 # Regression — FileSystemMgmt::getList must not throw when all rclone mounts
 # are inactive. Exercises the full fix:
 #   1. fetchMountPointByFsnameAndType now checks .service units for type=rclone
