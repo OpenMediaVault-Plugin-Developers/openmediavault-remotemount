@@ -549,6 +549,40 @@ else
 fi
 
 # ---------------------------------------------------------------------------
+# Regression — FileSystemMgmt::getList must not throw when all rclone mounts
+# are inactive. Exercises the full fix:
+#   1. fetchMountPointByFsnameAndType now checks .service units for type=rclone
+#   2. getImpl now resolves mount-dir → UUID via DB lookup (findUuidByDir)
+#      rather than relying on the fragile service-file grep in
+#      extractUuidFromMountPoint, which fails when $output accumulates across
+#      exec() calls.
+# ---------------------------------------------------------------------------
+section "Regression — FileSystemMgmt::getList with all rclone mounts inactive"
+
+info "Stopping both test rclone mounts ..."
+rpc "RemoteMount" "mount" "{\"uuid\":\"$MOUNT1_UUID\",\"action\":\"stop\"}" &>/dev/null || true
+rpc "RemoteMount" "mount" "{\"uuid\":\"$MOUNT2_UUID\",\"action\":\"stop\"}" &>/dev/null || true
+sleep 3
+
+ALL_STOPPED=true
+for mnt in "$MNT1" "$MNT2"; do
+    if ! mountpoint -q "$mnt" 2>/dev/null; then
+        _pass "confirmed unmounted: $mnt"
+    else
+        _fail "expected $mnt to be unmounted"
+        ALL_STOPPED=false
+    fi
+done
+
+if $ALL_STOPPED; then
+    assert_rpc "FileSystemMgmt getList — no exception with all rclone mounts inactive" \
+        "FileSystemMgmt" "getList" \
+        '{"start":0,"limit":25,"sortfield":null,"sortdir":null}' >/dev/null
+else
+    _fail "FileSystemMgmt getList — skipped (mounts did not stop cleanly)"
+fi
+
+# ---------------------------------------------------------------------------
 # Summary
 # ---------------------------------------------------------------------------
 section "Summary"
