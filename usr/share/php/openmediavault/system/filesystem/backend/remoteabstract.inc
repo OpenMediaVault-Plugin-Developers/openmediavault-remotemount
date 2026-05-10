@@ -27,6 +27,14 @@ use SplFileObject;
 
 abstract class RemoteAbstract extends BackendAbstract
 {
+    // Mount points already handed out in the current getCandidates() sweep.
+    // The PID check handles forking daemons (each request is a separate fork).
+    // The 60 s window is a fallback for non-forking daemons; getCandidates
+    // completes well within that window even with many slow filesystem entries.
+    private static array $handedOutMountPoints = [];
+    private static float $handedOutAt = 0.0;
+    private static int $handedOutPid = -1;
+
     /**
      * @var Database
      */
@@ -204,6 +212,14 @@ abstract class RemoteAbstract extends BackendAbstract
      */
     private static function fetchMountPointByFsnameAndType($fsname, $type)
     {
+        $now = microtime(true);
+        $pid = getmypid();
+        if ($pid !== self::$handedOutPid || ($now - self::$handedOutAt) > 60.0) {
+            self::$handedOutMountPoints = [];
+            self::$handedOutPid = $pid;
+        }
+        self::$handedOutAt = $now;
+
         $mounts = file('/proc/mounts');
         $types = ['nfs','nfs4','autofs'];
         $mp = '';
@@ -221,8 +237,12 @@ abstract class RemoteAbstract extends BackendAbstract
             }
             if ($type === $splitContent[2] || $type === $fs) {
                 if ($fsname === $splitContent[0] || $fsname === $splitContent[1]) {
-                    $mp = $splitContent[1];
-                    break;
+                    $candidate = $splitContent[1];
+                    if (!in_array($candidate, self::$handedOutMountPoints)) {
+                        $mp = $candidate;
+                        self::$handedOutMountPoints[] = $mp;
+                        break;
+                    }
                 }
             }
         }
@@ -230,7 +250,14 @@ abstract class RemoteAbstract extends BackendAbstract
             $units = '/etc/systemd/system/srv-remotemount-*.mount';
             $cmd = sprintf('grep -A14 -B14 -h "%s" %s | awk -F"=" \'$1 == "Where" { print $2 }\'', $fsname, $units);
             exec($cmd, $output);
-            $mp = $output[0];
+            foreach (($output ?? []) as $candidate) {
+                $candidate = trim($candidate);
+                if ($candidate !== '' && !in_array($candidate, self::$handedOutMountPoints)) {
+                    $mp = $candidate;
+                    self::$handedOutMountPoints[] = $mp;
+                    break;
+                }
+            }
         }
         if ($mp == '' && $type === 'fuse.rclone') {
             $units = '/etc/systemd/system/srv-remotemount-*.service';
@@ -238,6 +265,7 @@ abstract class RemoteAbstract extends BackendAbstract
             exec($cmd, $output);
             if (!empty($output[0])) {
                 $mp = $fsname;
+                self::$handedOutMountPoints[] = $mp;
             }
         }
         if ($mp == '') {
