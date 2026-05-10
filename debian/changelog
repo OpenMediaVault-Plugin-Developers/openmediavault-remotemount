@@ -1,3 +1,11 @@
+openmediavault-remotemount (8.1.2) stable; urgency=low
+
+  * fix error when listing filesystems with unmounted rclone mounts
+  * fix UUID resolution for inactive rclone mounts via database lookup instead
+    of fragile service file grep
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 10 May 2026 00:00:00 +0000
+
 openmediavault-remotemount (8.1.1) stable; urgency=low
 
   * fix duplicate mount names in shared folder list when multiple rclone
