@@ -490,6 +490,40 @@ for c in json.load(sys.stdin):
 fi
 
 # ---------------------------------------------------------------------------
+# Regression — every mounted remote mount appears exactly once in getCandidates
+# ---------------------------------------------------------------------------
+section "Regression — all mounts in ShareMgmt::getCandidates"
+
+ALL_LIST=$(rpc "RemoteMount" "getList" "$LIST_PARAMS" 2>/dev/null || echo '{"data":[]}')
+ALL_CANDIDATES=$(rpc "ShareMgmt" "getCandidates" "{}" 2>/dev/null || echo "[]")
+
+MOUNTED_NAMES=$(echo "$ALL_LIST" | python3 -c "
+import sys, json
+data = json.load(sys.stdin).get('data', [])
+for m in data:
+    if m.get('mounted'):
+        print(m.get('name', ''))
+" 2>/dev/null || echo "")
+
+if [ -z "$MOUNTED_NAMES" ]; then
+    info "No mounted remote mounts found — skipping"
+else
+    while IFS= read -r name; do
+        [ -z "$name" ] && continue
+        count=$(echo "$ALL_CANDIDATES" | python3 -c "
+import sys, json
+cands = json.load(sys.stdin)
+print(sum(1 for c in cands if c.get('description', '').split()[0] == '$name'))
+" 2>/dev/null || echo 0)
+        if [ "$count" = "1" ]; then
+            _pass "getCandidates — '$name' appears exactly once"
+        else
+            _fail "getCandidates — '$name' appears $count times (expected 1)"
+        fi
+    done <<< "$MOUNTED_NAMES"
+fi
+
+# ---------------------------------------------------------------------------
 # mount RPC — stop / start
 # ---------------------------------------------------------------------------
 section "mount RPC — stop and start"
