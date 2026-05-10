@@ -180,7 +180,17 @@ abstract class RemoteAbstract extends BackendAbstract
                     $this->mountPointDataModelPath,
                     $object->get('mntentref')
                 );
-                if ($mntObject->get('dir') === $dir) {
+                $mntDir = $mntObject->get('dir');
+                // Exact match: args is the remotemount directory itself.
+                if ($mntDir === $dir) {
+                    return $object->get('uuid');
+                }
+                // Prefix match: args is a sub-path within one of our mounts
+                // (e.g. a bind-mount source like /srv/remotemount/sftp1/subdir
+                // created by the SFTP plugin). The trailing slash prevents
+                // false matches between /srv/remotemount/sftp1 and
+                // /srv/remotemount/sftp10.
+                if (strpos($dir, rtrim($mntDir, '/') . '/') === 0) {
                     return $object->get('uuid');
                 }
             }
