@@ -259,7 +259,7 @@ abstract class RemoteAbstract extends BackendAbstract
                 }
             }
         }
-        if ($mp == '' && $type === 'fuse.rclone') {
+        if ($mp == '' && ($type === 'fuse.rclone' || $type === 'rclone')) {
             $units = '/etc/systemd/system/srv-remotemount-*.service';
             $cmd = sprintf('grep -rlF "%s" %s 2>/dev/null | head -1', $fsname, $units);
             exec($cmd, $output);
