@@ -1,3 +1,10 @@
+openmediavault-remotemount (8.1.3) stable; urgency=low
+
+  * fix error in getCandidates/getList when SFTP plugin bind mounts (sourced
+    from within a remotemount) are present; resolve sub-path to parent mount
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 10 May 2026 21:42:47 +0000
+
 openmediavault-remotemount (8.1.2) stable; urgency=low
 
   * fix error when listing filesystems with unmounted rclone mounts
