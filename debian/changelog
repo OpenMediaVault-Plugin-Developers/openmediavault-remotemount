@@ -4,6 +4,8 @@ openmediavault-remotemount (8.1.1) stable; urgency=low
     mounts share the same server
   * fix mount stop/start RPC failing for mounts with dashes in their name
     (shell was stripping backslashes from systemd-escape output)
+  * fix duplicate mount names in shared folder list when multiple mounts
+    of the same type point to the same server share (e.g. NFS)
 
  -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sat, 09 May 2026 23:59:38 +0000
 
