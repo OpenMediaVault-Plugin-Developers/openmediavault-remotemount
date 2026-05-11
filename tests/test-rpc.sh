@@ -619,6 +619,35 @@ else
 fi
 
 # ---------------------------------------------------------------------------
+# Regression — FileSystemMgmt::getList must not throw when a CIFS/NFS/davfs
+# mount is configured in the DB but has no unit file (not yet deployed).
+# Exercises findUuidByFsname which resolves //server/share → UUID from the DB
+# without needing the mount to be active or a unit file to exist.
+# ---------------------------------------------------------------------------
+section "Regression — FileSystemMgmt::getList with undeployed CIFS mount"
+
+CIFS_TMP_UUID=""
+CIFS_TMP_RESULT=$(rpc "RemoteMount" "set" "$(python3 -c "
+import json; print(json.dumps({
+    'uuid': '$OMV_NEW_UUID', 'mntentref': '$OMV_NEW_UUID',
+    'name': 'rmtest-cifs-nodeployment', 'mounttype': 'cifs',
+    'server': '192.168.99.254', 'sharename': 'testshare',
+    'username': '', 'password': '', 'options': '',
+}))")" 2>/dev/null || echo "{}")
+CIFS_TMP_UUID=$(echo "$CIFS_TMP_RESULT" | python3 -c \
+    "import sys,json; print(json.load(sys.stdin).get('uuid',''))" 2>/dev/null || echo "")
+
+if [ -n "$CIFS_TMP_UUID" ] && [ "$CIFS_TMP_UUID" != "$OMV_NEW_UUID" ]; then
+    _pass "created undeployed CIFS mount ($CIFS_TMP_UUID) — no unit file will exist"
+    assert_rpc "FileSystemMgmt getList — no exception with undeployed CIFS mount" \
+        "FileSystemMgmt" "getList" \
+        '{"start":0,"limit":25,"sortfield":null,"sortdir":null}' >/dev/null
+    rpc "RemoteMount" "delete" "{\"uuid\":\"$CIFS_TMP_UUID\"}" &>/dev/null || true
+else
+    _fail "FileSystemMgmt getList undeployed CIFS — could not create test mount"
+fi
+
+# ---------------------------------------------------------------------------
 # Summary
 # ---------------------------------------------------------------------------
 section "Summary"
