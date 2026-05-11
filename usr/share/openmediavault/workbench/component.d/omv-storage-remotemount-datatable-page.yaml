@@ -4,7 +4,7 @@ data:
   name: omv-storage-remotemount-datatable-page
   type: datatablePage
   config:
-    autoReload: false
+    autoReload: 10000
     hasSearchField: true
     stateId: 2af992ea-5372-11ec-ab69-e35c37fe07e5
     sorters:
