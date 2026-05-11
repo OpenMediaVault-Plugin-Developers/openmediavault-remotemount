@@ -1,3 +1,12 @@
+openmediavault-remotemount (8.1.5) stable; urgency=low
+
+  * fix "Could not fetch a matching mount point" error when multiple shared
+    folders exist on the same remote mount; cache fsname→mountpoint resolutions
+    so the duplicate-suppression logic does not block a second lookup of the
+    same filesystem
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 11 May 2026 14:26:22 +0000
+
 openmediavault-remotemount (8.1.4) stable; urgency=low
 
   * fix "Could not fetch a matching mount point" error for CIFS/NFS/davfs mounts

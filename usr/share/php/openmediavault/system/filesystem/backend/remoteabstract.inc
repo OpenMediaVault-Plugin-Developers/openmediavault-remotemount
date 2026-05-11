@@ -32,6 +32,11 @@ abstract class RemoteAbstract extends BackendAbstract
     // The 60 s window is a fallback for non-forking daemons; getCandidates
     // completes well within that window even with many slow filesystem entries.
     private static array $handedOutMountPoints = [];
+    // Cache of fsname → mount-point resolutions within the same sweep so that
+    // the same fsname (e.g. //HOST/SHARE looked up once per shared-folder that
+    // lives on it) always returns the same mount point without triggering the
+    // duplicate-suppression logic meant for distinct filesystems.
+    private static array $resolvedFsnames = [];
     private static float $handedOutAt = 0.0;
     private static int $handedOutPid = -1;
 
@@ -324,9 +329,17 @@ abstract class RemoteAbstract extends BackendAbstract
         $pid = getmypid();
         if ($pid !== self::$handedOutPid || ($now - self::$handedOutAt) > 60.0) {
             self::$handedOutMountPoints = [];
+            self::$resolvedFsnames = [];
             self::$handedOutPid = $pid;
         }
         self::$handedOutAt = $now;
+
+        // Same fsname already resolved in this sweep (e.g. two shared folders
+        // on the same remote mount): return the cached result directly so the
+        // duplicate-suppression logic doesn't block the second lookup.
+        if (isset(self::$resolvedFsnames[$fsname])) {
+            return self::$resolvedFsnames[$fsname];
+        }
 
         $mounts = file('/proc/mounts');
         $types = ['nfs','nfs4','autofs'];
@@ -349,6 +362,7 @@ abstract class RemoteAbstract extends BackendAbstract
                     if (!in_array($candidate, self::$handedOutMountPoints)) {
                         $mp = $candidate;
                         self::$handedOutMountPoints[] = $mp;
+                        self::$resolvedFsnames[$fsname] = $mp;
                         break;
                     }
                 }
@@ -363,6 +377,7 @@ abstract class RemoteAbstract extends BackendAbstract
                 if ($candidate !== '' && !in_array($candidate, self::$handedOutMountPoints)) {
                     $mp = $candidate;
                     self::$handedOutMountPoints[] = $mp;
+                    self::$resolvedFsnames[$fsname] = $mp;
                     break;
                 }
             }
@@ -374,6 +389,7 @@ abstract class RemoteAbstract extends BackendAbstract
             if (!empty($output[0])) {
                 $mp = $fsname;
                 self::$handedOutMountPoints[] = $mp;
+                self::$resolvedFsnames[$fsname] = $mp;
             }
         }
         if ($mp == '') {

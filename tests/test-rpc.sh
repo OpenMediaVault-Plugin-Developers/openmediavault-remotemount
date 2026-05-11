@@ -524,6 +524,68 @@ print(sum(1 for c in cands if c.get('description', '').split()[0] == '$name'))
 fi
 
 # ---------------------------------------------------------------------------
+# Regression — ShareMgmt::getList must not throw when two shared folders live
+# on the same remote mount. The second lookup of the same fsname used to fail
+# because fetchMountPointByFsnameAndType's duplicate-suppression claimed the
+# mount point on the first call and then rejected the identical second request.
+# Exercises $resolvedFsnames fsname→mountpoint cache.
+# ---------------------------------------------------------------------------
+section "Regression — ShareMgmt::getList with two shared folders on same remote mount"
+
+SF1_UUID=""
+SF2_UUID=""
+
+# Get the mntentref (OMV filesystem UUID) from the webdav1 remotemount entry.
+MNTENTREF=$(rpc "RemoteMount" "get" "{\"uuid\":\"$MOUNT1_UUID\"}" 2>/dev/null \
+    | python3 -c "import sys,json; print(json.load(sys.stdin).get('mntentref',''))" \
+    2>/dev/null || echo "")
+
+if [ -n "$MNTENTREF" ] && mountpoint -q "$MNT1" 2>/dev/null; then
+    # Pre-create subdirectories in the source so OMV doesn't need to mkdir
+    # through the rclone layer. Each shared folder needs a distinct reldirpath —
+    # OMV rejects two shared folders with the same mntentref+reldirpath.
+    mkdir -p "$SRC_DIR/sf1dir" "$SRC_DIR/sf2dir"
+
+    SF1_RESULT=$(rpc "ShareMgmt" "set" "$(python3 -c "
+import json; print(json.dumps({
+    'uuid': '$OMV_NEW_UUID', 'name': 'rmtest-sf1',
+    'mntentref': '$MNTENTREF', 'reldirpath': 'sf1dir',
+    'comment': 'regression test sf1', 'mode': '775',
+}))")" 2>/dev/null || echo "{}")
+    SF1_UUID=$(echo "$SF1_RESULT" | python3 -c \
+        "import sys,json; print(json.load(sys.stdin).get('uuid',''))" 2>/dev/null || echo "")
+
+    SF2_RESULT=$(rpc "ShareMgmt" "set" "$(python3 -c "
+import json; print(json.dumps({
+    'uuid': '$OMV_NEW_UUID', 'name': 'rmtest-sf2',
+    'mntentref': '$MNTENTREF', 'reldirpath': 'sf2dir',
+    'comment': 'regression test sf2', 'mode': '775',
+}))")" 2>/dev/null || echo "{}")
+    SF2_UUID=$(echo "$SF2_RESULT" | python3 -c \
+        "import sys,json; print(json.load(sys.stdin).get('uuid',''))" 2>/dev/null || echo "")
+
+    if [ -n "$SF1_UUID" ] && [ "$SF1_UUID" != "$OMV_NEW_UUID" ] \
+       && [ -n "$SF2_UUID" ] && [ "$SF2_UUID" != "$OMV_NEW_UUID" ]; then
+        _pass "created two shared folders ($SF1_UUID, $SF2_UUID) on same mount"
+        assert_rpc "ShareMgmt getList — no exception with two shared folders on same mount" \
+            "ShareMgmt" "getList" \
+            '{"start":0,"limit":25,"sortfield":null,"sortdir":null}' >/dev/null
+    else
+        _fail "two-shared-folder regression — could not create both shared folders (SF1=${SF1_UUID:-empty} SF2=${SF2_UUID:-empty})"
+    fi
+
+    # Cleanup
+    for sf_uuid in "$SF1_UUID" "$SF2_UUID"; do
+        [ -z "$sf_uuid" ] || [ "$sf_uuid" = "$OMV_NEW_UUID" ] && continue
+        rpc "ShareMgmt" "delete" \
+            "{\"uuid\":\"$sf_uuid\",\"recursive\":false}" &>/dev/null || true
+    done
+    rm -rf "$SRC_DIR/sf1dir" "$SRC_DIR/sf2dir" 2>/dev/null || true
+else
+    _fail "two-shared-folder regression — skipped (mount $MNT1 not active or mntentref missing)"
+fi
+
+# ---------------------------------------------------------------------------
 # mount RPC — stop / start
 # ---------------------------------------------------------------------------
 section "mount RPC — stop and start"
