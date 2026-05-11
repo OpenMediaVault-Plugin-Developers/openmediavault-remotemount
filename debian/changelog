@@ -1,3 +1,12 @@
+openmediavault-remotemount (8.1.4) stable; urgency=low
+
+  * fix "Could not fetch a matching mount point" error for CIFS/NFS/davfs mounts
+    that are configured but not yet deployed (no unit file, not mounted); resolve
+    fsname (e.g. //server/share) to UUID via database lookup without requiring
+    the mount to be active
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 11 May 2026 14:26:22 +0000
+
 openmediavault-remotemount (8.1.3) stable; urgency=low
 
   * fix error in getCandidates/getList when SFTP plugin bind mounts (sourced
