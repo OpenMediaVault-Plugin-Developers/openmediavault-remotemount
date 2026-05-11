@@ -148,6 +148,10 @@ abstract class RemoteAbstract extends BackendAbstract
         }
 
         if (!is_uuid($uuid)) {
+            $uuid = $this->findUuidByFsname($args);
+        }
+
+        if (!is_uuid($uuid)) {
             $mountPoint = $this->fetchMountPointByFsnameAndType($args, $this->type);
             $uuid = $this->extractUuidFromMountPoint($mountPoint);
         }
@@ -199,6 +203,63 @@ abstract class RemoteAbstract extends BackendAbstract
         }
 
         return '';
+    }
+
+    /**
+     * Resolve a remotemount UUID from its filesystem source path (fsname) via
+     * the config database. Works regardless of whether the mount is active or
+     * a unit file exists. Handles \040 octal encoding used in /proc/mounts.
+     *
+     * @param string $fsname
+     *
+     * @return string The UUID, or empty string if not found.
+     */
+    private function findUuidByFsname($fsname)
+    {
+        $dbType = ($this->type === 'fuse.rclone') ? 'rclone' : $this->type;
+        // Normalize \040 octal encoding (used in /proc/mounts) to literal spaces
+        // so it matches the unencoded values stored in the database.
+        $normalized = str_replace('\\040', ' ', $fsname);
+
+        try {
+            foreach ($this->database->get($this->dataModelPath) as $object) {
+                if ($object->get('mounttype') !== $dbType) {
+                    continue;
+                }
+                $computed = $this->computeFsnameForObject($object);
+                if ($computed !== '' &&
+                    ($computed === $fsname || $computed === $normalized)) {
+                    return $object->get('uuid');
+                }
+            }
+        } catch (\Exception $e) {
+            // Fall through to the existing /proc/mounts + unit-file fallback.
+        }
+
+        return '';
+    }
+
+    /**
+     * Reconstruct the expected filesystem source path (fsname) for a config
+     * object. Returns empty string for types where the fsname is not derivable
+     * from the database fields alone (e.g. rclone).
+     *
+     * @param \OMV\Config\ConfigObject $object
+     *
+     * @return string
+     */
+    private function computeFsnameForObject($object)
+    {
+        switch ($object->get('mounttype')) {
+            case 'cifs':
+                return '//' . $object->get('server') . '/' . $object->get('sharename');
+            case 'nfs':
+                return $object->get('server') . ':' . $object->get('sharename');
+            case 'davfs':
+                return $object->get('server');
+            default:
+                return '';
+        }
     }
 
     /**
