@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Andi Chandler <andi@gowling.com>, 2023
+# Andi Chandler <andi@gowling.com>, 2026
 # 
 #, fuzzy
 msgid ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-03-05 01:48+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Andi Chandler <andi@gowling.com>, 2023\n"
+"Last-Translator: Andi Chandler <andi@gowling.com>, 2026\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,13 +22,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Advanced"
-msgstr ""
+msgstr "Advanced"
 
 msgid "Amazon S3 / S3-Compatible"
-msgstr ""
+msgstr "Amazon S3 / S3-Compatible"
 
 msgid "Connection"
-msgstr ""
+msgstr "Connection"
 
 msgid "Create"
 msgstr "Create"
@@ -37,7 +37,7 @@ msgid "Created mount."
 msgstr "Created mount."
 
 msgid "Credentials"
-msgstr ""
+msgstr "Credentials"
 
 msgid "Edit"
 msgstr "Edit"
@@ -46,13 +46,13 @@ msgid "Edit mount."
 msgstr "Edit mount."
 
 msgid "Enable to use NFSv4, disable for NFSv3."
-msgstr ""
+msgstr "Enable to use NFSv4, disable for NFSv3."
 
 msgid "FTP"
-msgstr ""
+msgstr "FTP"
 
 msgid "Google Drive (pre-configured rclone remote)"
-msgstr ""
+msgstr "Google Drive (pre-configured rclone remote)"
 
 msgid "Mount"
 msgstr "Mount"
@@ -64,7 +64,7 @@ msgid "Mounted"
 msgstr "Mounted"
 
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 msgid "NFS v4"
 msgstr "NFS v4"
@@ -73,7 +73,7 @@ msgid "Name"
 msgstr "Name"
 
 msgid "OneDrive (pre-configured rclone remote)"
-msgstr ""
+msgstr "OneDrive (pre-configured rclone remote)"
 
 msgid "Options"
 msgstr "Options"
@@ -82,7 +82,7 @@ msgid "Password"
 msgstr "Password"
 
 msgid "Protocol"
-msgstr ""
+msgstr "Protocol"
 
 msgid "Remote Mount"
 msgstr "Remote Mount"
@@ -91,10 +91,10 @@ msgid "Remote Mounts"
 msgstr "Remote Mounts"
 
 msgid "SFTP"
-msgstr ""
+msgstr "SFTP"
 
 msgid "SMB/CIFS"
-msgstr ""
+msgstr "SMB/CIFS"
 
 msgid ""
 "SMB/CIFS or NFS — hostname or IP.<br/>WebDAV (davfs) — full URL (e.g. "
@@ -102,16 +102,24 @@ msgid ""
 "AWS).<br/>SFTP/FTP — hostname[:port].<br/>Google Drive/OneDrive — name of a "
 "pre-configured rclone remote (run rclone config first)."
 msgstr ""
+"SMB/CIFS or NFS — hostname or IP.<br/>WebDAV (davfs) — full URL (e.g. "
+"https://example.com/dav).<br/>S3 — endpoint URL (blank for "
+"AWS).<br/>SFTP/FTP — hostname[:port].<br/>Google Drive/OneDrive — name of a "
+"pre-configured rclone remote (run rclone config first)."
 
 msgid ""
 "SMB/CIFS or WebDAV — password (leave blank for guest)<br>S3 — secret access "
 "key<br/>SFTP/FTP — password (auto-obscured on save)."
 msgstr ""
+"SMB/CIFS or WebDAV — password (leave blank for guest)<br>S3 — secret access "
+"key<br/>SFTP/FTP — password (auto-obscured on save)."
 
 msgid ""
 "SMB/CIFS or WebDAV — username (leave blank for guest)<br/>S3 — access key "
 "ID<br/>SFTP/FTP — username."
 msgstr ""
+"SMB/CIFS or WebDAV — username (leave blank for guest)<br/>S3 — access key "
+"ID<br/>SFTP/FTP — username."
 
 msgid ""
 "SMB/CIFS see <a href='https://linux.die.net/man/8/mount.cifs' "
@@ -122,12 +130,22 @@ msgid ""
 "target='_blank'>mount.davfs</a><br/>rclone — extra mount flags (e.g. --vfs-"
 "cache-mode=writes)."
 msgstr ""
+"SMB/CIFS see <a href='https://linux.die.net/man/8/mount.cifs' "
+"target='_blank'>mount.cifs</a><br/>NFS see <a "
+"href='https://linux.die.net/man/8/mount.nfs' "
+"target='_blank'>mount.nfs</a><br/>WebDAV see <a "
+"href='https://linux.die.net/man/8/mount.davfs' "
+"target='_blank'>mount.davfs</a><br/>rclone — extra mount flags (e.g. --vfs-"
+"cache-mode=writes)."
 
 msgid ""
 "SMB/CIFS — share name<br/>NFS — export path<br/>S3 — bucket "
 "name<br/>SFTP/FTP — remote directory path<br/>WebDAV — subdirectory "
 "(optional)<br/>Drive/OneDrive — folder path (optional)"
 msgstr ""
+"SMB/CIFS — share name<br/>NFS — export path<br/>S3 — bucket "
+"name<br/>SFTP/FTP — remote directory path<br/>WebDAV — subdirectory "
+"(optional)<br/>Drive/OneDrive — folder path (optional)"
 
 msgid "Server"
 msgstr "Server"
@@ -136,7 +154,7 @@ msgid "Share"
 msgstr "Share"
 
 msgid "Share / Path"
-msgstr ""
+msgstr "Share / Path"
 
 msgid "Shared"
 msgstr "Shared"
@@ -151,10 +169,10 @@ msgid "Username"
 msgstr "Username"
 
 msgid "WebDAV"
-msgstr ""
+msgstr "WebDAV"
 
 msgid "WebDAV (davfs)"
-msgstr ""
+msgstr "WebDAV (davfs)"
 
 msgid "rclone"
-msgstr ""
+msgstr "rclone"
