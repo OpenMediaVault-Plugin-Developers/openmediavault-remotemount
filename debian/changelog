@@ -1,3 +1,13 @@
+openmediavault-remotemount (8.1.7) stable; urgency=low
+
+  * Add monitored flag: controlled via the create/edit form checkbox.
+    Unmounting temporarily tells monit to stop watching without changing the
+    preference; mounting re-enables monitoring only if the preference is on.
+    After a reboot monit reflects the stored preference. Datatable shows the
+    monitored state.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 25 May 2026 00:00:00 +0000
+
 openmediavault-remotemount (8.1.6) stable; urgency=low
 
   * Fixed name field disabled on edit
