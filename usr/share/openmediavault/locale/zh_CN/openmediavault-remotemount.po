@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# songming <by@songming.me>, 2021
+# songming <by@songming.me>, 2026
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-05 01:48+0000\n"
+"POT-Creation-Date: 2026-05-25 20:43+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: songming <by@songming.me>, 2021\n"
+"Last-Translator: songming <by@songming.me>, 2026\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,22 +22,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 msgid "Advanced"
-msgstr ""
+msgstr "高级"
 
 msgid "Amazon S3 / S3-Compatible"
-msgstr ""
+msgstr "亚马逊 S3 / 兼容 S3"
 
 msgid "Connection"
-msgstr ""
+msgstr "链接"
 
 msgid "Create"
 msgstr "创建"
 
 msgid "Created mount."
 msgstr "创建挂载。"
-
-msgid "Credentials"
-msgstr ""
 
 msgid "Edit"
 msgstr "编辑"
@@ -46,12 +43,15 @@ msgid "Edit mount."
 msgstr "编辑挂载"
 
 msgid "Enable to use NFSv4, disable for NFSv3."
-msgstr ""
+msgstr "启用 NFSv4，停用 NFSv3."
 
 msgid "FTP"
-msgstr ""
+msgstr "FTP"
 
 msgid "Google Drive (pre-configured rclone remote)"
+msgstr "Google Drive （预配置的 rclone 远程）"
+
+msgid "Monitored"
 msgstr ""
 
 msgid "Mount"
@@ -64,7 +64,7 @@ msgid "Mounted"
 msgstr "已挂载"
 
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 msgid "NFS v4"
 msgstr "NFS v4"
@@ -73,7 +73,7 @@ msgid "Name"
 msgstr "名称"
 
 msgid "OneDrive (pre-configured rclone remote)"
-msgstr ""
+msgstr "OneDrive（预配置的 rclone 远程）"
 
 msgid "Options"
 msgstr "选项"
@@ -82,7 +82,7 @@ msgid "Password"
 msgstr "密码"
 
 msgid "Protocol"
-msgstr ""
+msgstr "协议"
 
 msgid "Remote Mount"
 msgstr "远程挂载"
@@ -91,10 +91,10 @@ msgid "Remote Mounts"
 msgstr "远程挂载"
 
 msgid "SFTP"
-msgstr ""
+msgstr "SFTP"
 
 msgid "SMB/CIFS"
-msgstr ""
+msgstr "SMB/CIFS"
 
 msgid ""
 "SMB/CIFS or NFS — hostname or IP.<br/>WebDAV (davfs) — full URL (e.g. "
@@ -102,16 +102,20 @@ msgid ""
 "AWS).<br/>SFTP/FTP — hostname[:port].<br/>Google Drive/OneDrive — name of a "
 "pre-configured rclone remote (run rclone config first)."
 msgstr ""
+"SMB/CIFS 或 NFS — 主机名或 IP。<br/>WebDAV (davfs) — 完整 URL（例如 "
+"https://example.com/dav）。<br/>S3 — 端点 URL（AWS 留空）。<br/>SFTP/FTP — "
+"主机名[:端口]。<br/>Google Drive/OneDrive — 预配置 rclone 远程的名称（先运行 rclone config）。"
 
 msgid ""
 "SMB/CIFS or WebDAV — password (leave blank for guest)<br>S3 — secret access "
 "key<br/>SFTP/FTP — password (auto-obscured on save)."
 msgstr ""
+"SMB/CIFS 或 WebDAV — 密码（留空为访客）<br>S3 — 访问密码密钥<br/>SFTP/FTP — 密码（保存时自动隐藏）。"
 
 msgid ""
 "SMB/CIFS or WebDAV — username (leave blank for guest)<br/>S3 — access key "
 "ID<br/>SFTP/FTP — username."
-msgstr ""
+msgstr "SMB/CIFS 或 WebDAV — 用户名（留空表示访客）<br/>S3 — 访问密钥 ID <br/>SFTP/FTP — 用户名。"
 
 msgid ""
 "SMB/CIFS see <a href='https://linux.die.net/man/8/mount.cifs' "
@@ -122,12 +126,20 @@ msgid ""
 "target='_blank'>mount.davfs</a><br/>rclone — extra mount flags (e.g. --vfs-"
 "cache-mode=writes)."
 msgstr ""
+"SMB/CIFS 请参见<a href='https://linux.die.net/man/8/mount.cifs' "
+"target='_blank'> mount.cifs </a><br/>NFS 请参见 <a "
+"href='https://linux.die.net/man/8/mount.nfs' "
+"target='_blank'>mount.nfs</a><br/> WebDAV 请参见<a "
+"href='https://linux.die.net/man/8/mount.davfs' target='_blank'> "
+"mount.davfs</a><br/> rclone — 额外的挂载标志（例如 --vfs-cache-mode=writes）。"
 
 msgid ""
 "SMB/CIFS — share name<br/>NFS — export path<br/>S3 — bucket "
 "name<br/>SFTP/FTP — remote directory path<br/>WebDAV — subdirectory "
 "(optional)<br/>Drive/OneDrive — folder path (optional)"
 msgstr ""
+"SMB/CIFS — 共享名称<br/>NFS — 导出路径<br/>S3 — 存储桶名称<br/>SFTP/FTP — "
+"远程目录路径<br/>WebDAV — 子目录（可选）<br/>Drive/OneDrive — 文件夹路径（可选）"
 
 msgid "Server"
 msgstr "服务器"
@@ -136,7 +148,7 @@ msgid "Share"
 msgstr "共享"
 
 msgid "Share / Path"
-msgstr ""
+msgstr "共享 / 路径"
 
 msgid "Shared"
 msgstr "已共享"
@@ -151,10 +163,15 @@ msgid "Username"
 msgstr "用户名"
 
 msgid "WebDAV"
-msgstr ""
+msgstr "WebDAV"
 
 msgid "WebDAV (davfs)"
+msgstr "WebDAV (davfs)"
+
+msgid ""
+"When enabled, monit will automatically remount this filesystem if it goes "
+"offline. Uncheck to prevent auto-remounting after a deliberate unmount."
 msgstr ""
 
 msgid "rclone"
-msgstr ""
+msgstr "rclone"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-05 01:48+0000\n"
+"POT-Creation-Date: 2026-05-25 20:43+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Language-Team: Catalan (Spain) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/ca_ES/)\n"
 "MIME-Version: 1.0\n"
@@ -32,9 +32,6 @@ msgstr ""
 msgid "Created mount."
 msgstr ""
 
-msgid "Credentials"
-msgstr ""
-
 msgid "Edit"
 msgstr ""
 
@@ -48,6 +45,9 @@ msgid "FTP"
 msgstr ""
 
 msgid "Google Drive (pre-configured rclone remote)"
+msgstr ""
+
+msgid "Monitored"
 msgstr ""
 
 msgid "Mount"
@@ -150,6 +150,11 @@ msgid "WebDAV"
 msgstr ""
 
 msgid "WebDAV (davfs)"
+msgstr ""
+
+msgid ""
+"When enabled, monit will automatically remount this filesystem if it goes "
+"offline. Uncheck to prevent auto-remounting after a deliberate unmount."
 msgstr ""
 
 msgid "rclone"

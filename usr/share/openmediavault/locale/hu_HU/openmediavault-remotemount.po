@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-05 01:48+0000\n"
+"POT-Creation-Date: 2026-05-25 20:43+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2026\n"
 "Language-Team: Hungarian (Hungary) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/hu_HU/)\n"
@@ -37,9 +37,6 @@ msgstr "Létrehozás"
 msgid "Created mount."
 msgstr "Csatolás létrehozva."
 
-msgid "Credentials"
-msgstr "Hitelesítő adatok"
-
 msgid "Edit"
 msgstr "Szerkesztés"
 
@@ -54,6 +51,9 @@ msgstr "FTP"
 
 msgid "Google Drive (pre-configured rclone remote)"
 msgstr "Google Drive (előre beállított rclone távoli szerver)"
+
+msgid "Monitored"
+msgstr ""
 
 msgid "Mount"
 msgstr "Csatol"
@@ -175,6 +175,11 @@ msgstr "WebDAV"
 
 msgid "WebDAV (davfs)"
 msgstr "WebDAV (davfs)"
+
+msgid ""
+"When enabled, monit will automatically remount this filesystem if it goes "
+"offline. Uncheck to prevent auto-remounting after a deliberate unmount."
+msgstr ""
 
 msgid "rclone"
 msgstr "rclone"

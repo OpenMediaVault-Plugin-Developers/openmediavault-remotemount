@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-05 01:48+0000\n"
+"POT-Creation-Date: 2026-05-25 20:43+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/nl/)\n"
@@ -36,9 +36,6 @@ msgstr "Aanmaken"
 msgid "Created mount."
 msgstr "Aankoppeling aanmaken."
 
-msgid "Credentials"
-msgstr "Inloggegevens"
-
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -53,6 +50,9 @@ msgstr "FTP"
 
 msgid "Google Drive (pre-configured rclone remote)"
 msgstr "Google Drive (vooraf geconfigureerde rclone remote)"
+
+msgid "Monitored"
+msgstr ""
 
 msgid "Mount"
 msgstr "Aankoppelen"
@@ -173,6 +173,11 @@ msgstr "WebDAV"
 
 msgid "WebDAV (davfs)"
 msgstr "WebDAV (davfs)"
+
+msgid ""
+"When enabled, monit will automatically remount this filesystem if it goes "
+"offline. Uncheck to prevent auto-remounting after a deliberate unmount."
+msgstr ""
 
 msgid "rclone"
 msgstr "rclone"
