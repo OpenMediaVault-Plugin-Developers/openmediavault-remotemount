@@ -53,12 +53,12 @@ data:
         label: _("Name")
         value: ""
         modifiers:
-          type: disabled
-          constraint:
-            operator: ne
-            arg0:
-              prop: mntentref
-            arg1: "{{ newconfobjuuid }}"
+          - type: disabled
+            constraint:
+              operator: ne
+              arg0:
+                prop: mntentref
+              arg1: "{{ newconfobjuuid }}"
         validators:
           required: true
           patternType: wordChars
@@ -101,22 +101,24 @@ data:
         modifiers:
           - type: hidden
             constraint:
-              operator: eq
+              operator: or
               arg0:
-                prop: mounttype
-              arg1: "nfs"
-          - type: hidden
-            constraint:
-              operator: eq
-              arg0:
-                prop: rclonetype
-              arg1: "drive"
-          - type: hidden
-            constraint:
-              operator: eq
-              arg0:
-                prop: rclonetype
-              arg1: "onedrive"
+                operator: eq
+                arg0:
+                  prop: mounttype
+                arg1: "nfs"
+              arg1:
+                operator: or
+                arg0:
+                  operator: eq
+                  arg0:
+                    prop: rclonetype
+                  arg1: "drive"
+                arg1:
+                  operator: eq
+                  arg0:
+                    prop: rclonetype
+                  arg1: "onedrive"
       - type: passwordInput
         name: password
         label: _("Password")
@@ -125,22 +127,24 @@ data:
         modifiers:
           - type: hidden
             constraint:
-              operator: eq
+              operator: or
               arg0:
-                prop: mounttype
-              arg1: "nfs"
-          - type: hidden
-            constraint:
-              operator: eq
-              arg0:
-                prop: rclonetype
-              arg1: "drive"
-          - type: hidden
-            constraint:
-              operator: eq
-              arg0:
-                prop: rclonetype
-              arg1: "onedrive"
+                operator: eq
+                arg0:
+                  prop: mounttype
+                arg1: "nfs"
+              arg1:
+                operator: or
+                arg0:
+                  operator: eq
+                  arg0:
+                    prop: rclonetype
+                  arg1: "drive"
+                arg1:
+                  operator: eq
+                  arg0:
+                    prop: rclonetype
+                  arg1: "onedrive"
       - type: divider
         title: _("Advanced")
       - type: textInput
