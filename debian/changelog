@@ -1,3 +1,10 @@
+openmediavault-remotemount (8.1.6) stable; urgency=low
+
+  * Fixed name field disabled on edit
+  * Fixed credentials fields visible on NFS edit
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 25 May 2026 12:53:44 +0000
+
 openmediavault-remotemount (8.1.5) stable; urgency=low
 
   * fix "Could not fetch a matching mount point" error when multiple shared
