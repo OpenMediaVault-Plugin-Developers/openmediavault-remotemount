@@ -143,6 +143,11 @@ data:
                   arg0:
                     prop: rclonetype
                   arg1: "onedrive"
+      - type: checkbox
+        name: monitored
+        label: _("Monitored")
+        value: true
+        hint: _("When enabled, monit will automatically remount this filesystem if it goes offline. Uncheck to prevent auto-remounting after a deliberate unmount.")
       - type: divider
         title: _("Advanced")
       - type: textInput

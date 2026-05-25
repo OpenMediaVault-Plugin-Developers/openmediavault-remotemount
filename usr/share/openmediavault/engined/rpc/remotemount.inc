@@ -191,5 +191,19 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
         $output = [];
         $cmd = new \OMV\System\Process('systemctl', $cmdArgs);
         $cmd->execute($output, $exitStatus);
+        // Tell monit immediately so it does not auto-remount before the next
+        // config apply. On unmount always unmonitor temporarily; on mount only
+        // re-enable monitoring if the persistent preference says to.
+        $checkId = preg_replace('/\.(mount|service)$/', '', trim($unitName, "'"));
+        if ($action === 'stop' || $rmntobj->get('monitored')) {
+            $monitAction = ($action === 'stop') ? 'unmonitor' : 'monitor';
+            try {
+                $cmd = new \OMV\System\Process('monit', [$monitAction, 'mountpoint' . $checkId]);
+                $output = [];
+                $cmd->execute($output, $exitStatus);
+            } catch (\Exception $e) {
+                // monit may not be active or the check may not exist yet.
+            }
+        }
     }
 }

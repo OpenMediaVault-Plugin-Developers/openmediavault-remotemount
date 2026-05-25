@@ -37,6 +37,11 @@ data:
         sortable: true
         flexGrow: 1
         cellTemplateName: checkIcon
+      - name: _("Monitored")
+        prop: monitored
+        sortable: true
+        flexGrow: 1
+        cellTemplateName: checkIcon
       - name: _("Shared")
         prop: shared
         sortable: true

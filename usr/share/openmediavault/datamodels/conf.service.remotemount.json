@@ -64,6 +64,10 @@
           "rclonetype": {
             "description": "The rclone backend protocol type",
             "type": "string"
+          },
+          "monitored": {
+            "description": "Whether monit should auto-remount this filesystem if it goes offline",
+            "type": "boolean"
           }
         }
       }

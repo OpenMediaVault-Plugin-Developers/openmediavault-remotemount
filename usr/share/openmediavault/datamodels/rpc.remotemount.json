@@ -50,6 +50,9 @@
         },
         "rclonetype": {
           "type": "string"
+        },
+        "monitored": {
+          "type": "boolean"
         }
       }
     }
