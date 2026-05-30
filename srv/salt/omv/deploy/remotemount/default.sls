@@ -80,7 +80,7 @@ configure_remotemount_davfs_cred_file:
     - name: "{{ secrets }}"
     - user: root
     - group: root
-    - mode: "0600"
+    - mode: '0600'
     - contents: |
         {{ pillar['headers']['auto_generated'] }}
         {{ pillar['headers']['warning'] }}
@@ -109,7 +109,7 @@ configure_remotemount_cifs_creds_{{ mnt.mntentref }}:
     - name: "{{ creds }}"
     - user: root
     - group: root
-    - mode: "0600"
+    - mode: '0600'
     - contents: |
         {{ pillar['headers']['auto_generated'] }}
         {{ pillar['headers']['warning'] }}
@@ -128,7 +128,7 @@ configure_remotemount_rclone_creds_{{ mnt.mntentref }}:
     - template: jinja
     - user: root
     - group: root
-    - mode: 600
+    - mode: '0600'
 
 
 {% elif mnt.mounttype == 'davfs' %}
@@ -153,7 +153,7 @@ configure_remotemount_{{ rname }}:
     - template: jinja
     - user: root
     - group: root
-    - mode: "0644"
+    - mode: '0644'
 
 {% else %}
 
@@ -167,7 +167,7 @@ configure_remotemount_{{ rname }}:
     - template: jinja
     - user: root
     - group: root
-    - mode: "0644"
+    - mode: '0644'
 
 {% set unitnameauto = salt['cmd.run']('systemd-escape --path --suffix=automount ' ~ rdir) %}
 {% set mountunitauto =  mountsdir ~ "/" ~ unitnameauto %}
@@ -182,7 +182,7 @@ configure_remotemount_{{ rname }}:
 #    - template: jinja
 #    - user: root
 #    - group: root
-#    - mode: "0644"
+#    - mode: '0644'
 
 {% endif %}
 

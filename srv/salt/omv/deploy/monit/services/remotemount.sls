@@ -44,6 +44,6 @@ configure_monit_remotemount_service:
         unmonitored_refs: {{ unmonitored_refs | json }}
     - user: root
     - group: root
-    - mode: "0644"
+    - mode: '0644'
 
 {% endif %}
