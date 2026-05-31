@@ -4,7 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2021
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2022
+# Jorge Giménez, 2026
 # 
 #, fuzzy
 msgid ""
@@ -13,12 +14,12 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-05-25 20:43+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2021\n"
-"Language-Team: Spanish (Spain) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es_ES/)\n"
+"Last-Translator: Jorge Giménez, 2026\n"
+"Language-Team: Spanish (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es_ES\n"
+"Language: es\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Advanced"
@@ -28,7 +29,7 @@ msgid "Amazon S3 / S3-Compatible"
 msgstr ""
 
 msgid "Connection"
-msgstr ""
+msgstr "Conexión"
 
 msgid "Create"
 msgstr "Crear"
@@ -43,13 +44,13 @@ msgid "Edit mount."
 msgstr "Editar punto de montaje."
 
 msgid "Enable to use NFSv4, disable for NFSv3."
-msgstr ""
+msgstr "Marca para usar NFSv4, desmarca para NFSv3."
 
 msgid "FTP"
 msgstr ""
 
 msgid "Google Drive (pre-configured rclone remote)"
-msgstr ""
+msgstr "Google Drive (preconfigurado rclone remoto)"
 
 msgid "Monitored"
 msgstr ""
@@ -73,7 +74,7 @@ msgid "Name"
 msgstr "Nombre"
 
 msgid "OneDrive (pre-configured rclone remote)"
-msgstr ""
+msgstr "OneDrive (preconfigurado rclone remoto)"
 
 msgid "Options"
 msgstr "Opciones"
@@ -82,7 +83,7 @@ msgid "Password"
 msgstr "Contraseña"
 
 msgid "Protocol"
-msgstr ""
+msgstr "Protocolo"
 
 msgid "Remote Mount"
 msgstr "Punto de montaje remoto"
@@ -102,6 +103,11 @@ msgid ""
 "AWS).<br/>SFTP/FTP — hostname[:port].<br/>Google Drive/OneDrive — name of a "
 "pre-configured rclone remote (run rclone config first)."
 msgstr ""
+"SMB/CIFS o NFS — nombre de máquina o IP.<br/>WebDAV (davfs) — URL completa "
+"(ej. https://example.com/dav).<br/>S3 — endpoint URL (en blanco para "
+"AWS).<br/>SFTP/FTP — nombredemaquina[:puerto].<br/>Google Drive/OneDrive — "
+"nombre de un rclone remoto preconfigurado (ejecute la configuración de "
+"rclone primero)."
 
 msgid ""
 "SMB/CIFS or WebDAV — password (leave blank for guest)<br>S3 — secret access "
@@ -136,7 +142,7 @@ msgid "Share"
 msgstr "Compartido"
 
 msgid "Share / Path"
-msgstr ""
+msgstr "Recurso compartido / Ruta"
 
 msgid "Shared"
 msgstr "Compartido"
