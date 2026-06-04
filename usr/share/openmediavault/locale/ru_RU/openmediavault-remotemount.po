@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-25 20:43+0000\n"
+"POT-Creation-Date: 2026-06-04 22:55+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Asdfgr Wertyu, 2024\n"
 "Language-Team: Russian (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/ru/)\n"
@@ -38,6 +38,9 @@ msgstr "Создать"
 msgid "Created mount."
 msgstr "Созданное крепление."
 
+msgid "Docs"
+msgstr ""
+
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -58,6 +61,9 @@ msgstr ""
 
 msgid "Mount"
 msgstr "Монтировать"
+
+msgid "Mount logs"
+msgstr ""
 
 msgid "Mount type"
 msgstr "Тип крепления"
@@ -143,6 +149,9 @@ msgstr ""
 msgid "Shared"
 msgstr "Общедоступный"
 
+msgid "Show logs"
+msgstr ""
+
 msgid "Type"
 msgstr "Тип"
 
@@ -161,6 +170,9 @@ msgstr ""
 msgid ""
 "When enabled, monit will automatically remount this filesystem if it goes "
 "offline. Uncheck to prevent auto-remounting after a deliberate unmount."
+msgstr ""
+
+msgid "omv-extras wiki"
 msgstr ""
 
 msgid "rclone"

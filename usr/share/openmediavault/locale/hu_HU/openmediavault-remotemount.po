@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-25 20:43+0000\n"
+"POT-Creation-Date: 2026-06-04 22:55+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Gyuris Gellért <jobel@ujevangelizacio.hu>, 2026\n"
 "Language-Team: Hungarian (Hungary) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/hu_HU/)\n"
@@ -37,6 +37,9 @@ msgstr "Létrehozás"
 msgid "Created mount."
 msgstr "Csatolás létrehozva."
 
+msgid "Docs"
+msgstr ""
+
 msgid "Edit"
 msgstr "Szerkesztés"
 
@@ -57,6 +60,9 @@ msgstr ""
 
 msgid "Mount"
 msgstr "Csatol"
+
+msgid "Mount logs"
+msgstr ""
 
 msgid "Mount type"
 msgstr "Csatolás típusa"
@@ -161,6 +167,9 @@ msgstr "Megosztás / Útvonal"
 msgid "Shared"
 msgstr "Megosztva"
 
+msgid "Show logs"
+msgstr ""
+
 msgid "Type"
 msgstr "Típus"
 
@@ -179,6 +188,9 @@ msgstr "WebDAV (davfs)"
 msgid ""
 "When enabled, monit will automatically remount this filesystem if it goes "
 "offline. Uncheck to prevent auto-remounting after a deliberate unmount."
+msgstr ""
+
+msgid "omv-extras wiki"
 msgstr ""
 
 msgid "rclone"

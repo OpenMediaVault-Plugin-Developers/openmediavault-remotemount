@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-31 01:25+0000\n"
+"POT-Creation-Date: 2026-06-04 22:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,6 +32,9 @@ msgstr ""
 msgid "Created mount."
 msgstr ""
 
+msgid "Docs"
+msgstr ""
+
 msgid "Edit"
 msgstr ""
 
@@ -51,6 +54,9 @@ msgid "Monitored"
 msgstr ""
 
 msgid "Mount"
+msgstr ""
+
+msgid "Mount logs"
 msgstr ""
 
 msgid "Mount type"
@@ -119,6 +125,9 @@ msgstr ""
 msgid "Shared"
 msgstr ""
 
+msgid "Show logs"
+msgstr ""
+
 msgid "Type"
 msgstr ""
 
@@ -135,6 +144,9 @@ msgid "WebDAV (davfs)"
 msgstr ""
 
 msgid "When enabled, monit will automatically remount this filesystem if it goes offline. Uncheck to prevent auto-remounting after a deliberate unmount."
+msgstr ""
+
+msgid "omv-extras wiki"
 msgstr ""
 
 msgid "rclone"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-25 20:43+0000\n"
+"POT-Creation-Date: 2026-06-04 22:55+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: BoneNI, 2026\n"
 "Language-Team: Lao (Laos) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/lo_LA/)\n"
@@ -36,6 +36,9 @@ msgstr "ສ້າງ"
 msgid "Created mount."
 msgstr "ສ້າງຈຸດເຊື່ອມຕໍ່ແລ້ວ."
 
+msgid "Docs"
+msgstr ""
+
 msgid "Edit"
 msgstr "ແກ້ໄຂ"
 
@@ -56,6 +59,9 @@ msgstr ""
 
 msgid "Mount"
 msgstr "ເຊື່ອມຕໍ່"
+
+msgid "Mount logs"
+msgstr ""
 
 msgid "Mount type"
 msgstr "ປະເພດການເຊື່ອມຕໍ່"
@@ -159,6 +165,9 @@ msgstr "ແຊຣ໌ / ເສັ້ນທາງ"
 msgid "Shared"
 msgstr "ແບ່ງປັນແລ້ວ"
 
+msgid "Show logs"
+msgstr ""
+
 msgid "Type"
 msgstr "ປະເພດ"
 
@@ -177,6 +186,9 @@ msgstr "WebDAV (davfs)"
 msgid ""
 "When enabled, monit will automatically remount this filesystem if it goes "
 "offline. Uncheck to prevent auto-remounting after a deliberate unmount."
+msgstr ""
+
+msgid "omv-extras wiki"
 msgstr ""
 
 msgid "rclone"

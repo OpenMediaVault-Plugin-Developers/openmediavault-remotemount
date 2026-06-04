@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-31 01:25+0000\n"
+"POT-Creation-Date: 2026-06-04 22:55+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: kochin <kochinc@outlook.com>, 2026\n"
 "Language-Team: Chinese (Taiwan) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/zh_TW/)\n"
@@ -36,6 +36,9 @@ msgstr "新建"
 msgid "Created mount."
 msgstr "已建立掛載。"
 
+msgid "Docs"
+msgstr ""
+
 msgid "Edit"
 msgstr "編輯"
 
@@ -56,6 +59,9 @@ msgstr "被監控"
 
 msgid "Mount"
 msgstr "掛載"
+
+msgid "Mount logs"
+msgstr ""
 
 msgid "Mount type"
 msgstr "掛載型式"
@@ -157,6 +163,9 @@ msgstr "分享 / 路徑"
 msgid "Shared"
 msgstr "已共享"
 
+msgid "Show logs"
+msgstr ""
+
 msgid "Type"
 msgstr "型式"
 
@@ -176,6 +185,9 @@ msgid ""
 "When enabled, monit will automatically remount this filesystem if it goes "
 "offline. Uncheck to prevent auto-remounting after a deliberate unmount."
 msgstr "一旦啟用，若檔案系統離線，monit 將自動重新掛載該檔案系統。不勾選它，則在有意地卸載後，可避免自動重新掛載。"
+
+msgid "omv-extras wiki"
+msgstr ""
 
 msgid "rclone"
 msgstr "rclone"

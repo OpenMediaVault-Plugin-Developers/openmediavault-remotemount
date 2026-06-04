@@ -4,22 +4,21 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Raul Fernandez Garcia <raulfg3@gmail.com>, 2022
-# Jorge Giménez, 2026
+# Raul Fernandez Garcia <raulfg3@gmail.com>, 2021
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-25 20:43+0000\n"
+"POT-Creation-Date: 2026-06-04 22:55+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
-"Last-Translator: Jorge Giménez, 2026\n"
-"Language-Team: Spanish (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es/)\n"
+"Last-Translator: Raul Fernandez Garcia <raulfg3@gmail.com>, 2021\n"
+"Language-Team: Spanish (Spain) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/es_ES/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
+"Language: es_ES\n"
 "Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 msgid "Advanced"
@@ -29,13 +28,16 @@ msgid "Amazon S3 / S3-Compatible"
 msgstr ""
 
 msgid "Connection"
-msgstr "Conexión"
+msgstr ""
 
 msgid "Create"
 msgstr "Crear"
 
 msgid "Created mount."
 msgstr "Crear punto de montaje."
+
+msgid "Docs"
+msgstr ""
 
 msgid "Edit"
 msgstr "Editar"
@@ -44,19 +46,22 @@ msgid "Edit mount."
 msgstr "Editar punto de montaje."
 
 msgid "Enable to use NFSv4, disable for NFSv3."
-msgstr "Marca para usar NFSv4, desmarca para NFSv3."
+msgstr ""
 
 msgid "FTP"
 msgstr ""
 
 msgid "Google Drive (pre-configured rclone remote)"
-msgstr "Google Drive (preconfigurado rclone remoto)"
+msgstr ""
 
 msgid "Monitored"
 msgstr ""
 
 msgid "Mount"
 msgstr "Montar"
+
+msgid "Mount logs"
+msgstr ""
 
 msgid "Mount type"
 msgstr "Tipo de punto de montaje"
@@ -74,7 +79,7 @@ msgid "Name"
 msgstr "Nombre"
 
 msgid "OneDrive (pre-configured rclone remote)"
-msgstr "OneDrive (preconfigurado rclone remoto)"
+msgstr ""
 
 msgid "Options"
 msgstr "Opciones"
@@ -83,7 +88,7 @@ msgid "Password"
 msgstr "Contraseña"
 
 msgid "Protocol"
-msgstr "Protocolo"
+msgstr ""
 
 msgid "Remote Mount"
 msgstr "Punto de montaje remoto"
@@ -103,11 +108,6 @@ msgid ""
 "AWS).<br/>SFTP/FTP — hostname[:port].<br/>Google Drive/OneDrive — name of a "
 "pre-configured rclone remote (run rclone config first)."
 msgstr ""
-"SMB/CIFS o NFS — nombre de máquina o IP.<br/>WebDAV (davfs) — URL completa "
-"(ej. https://example.com/dav).<br/>S3 — endpoint URL (en blanco para "
-"AWS).<br/>SFTP/FTP — nombredemaquina[:puerto].<br/>Google Drive/OneDrive — "
-"nombre de un rclone remoto preconfigurado (ejecute la configuración de "
-"rclone primero)."
 
 msgid ""
 "SMB/CIFS or WebDAV — password (leave blank for guest)<br>S3 — secret access "
@@ -142,10 +142,13 @@ msgid "Share"
 msgstr "Compartido"
 
 msgid "Share / Path"
-msgstr "Recurso compartido / Ruta"
+msgstr ""
 
 msgid "Shared"
 msgstr "Compartido"
+
+msgid "Show logs"
+msgstr ""
 
 msgid "Type"
 msgstr "Tipo"
@@ -165,6 +168,9 @@ msgstr ""
 msgid ""
 "When enabled, monit will automatically remount this filesystem if it goes "
 "offline. Uncheck to prevent auto-remounting after a deliberate unmount."
+msgstr ""
+
+msgid "omv-extras wiki"
 msgstr ""
 
 msgid "rclone"

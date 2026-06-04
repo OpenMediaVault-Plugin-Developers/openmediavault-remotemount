@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-31 01:25+0000\n"
+"POT-Creation-Date: 2026-06-04 22:55+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Stephan Paternotte <stephan@paternottes.net>, 2026\n"
 "Language-Team: Dutch (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/nl/)\n"
@@ -36,6 +36,9 @@ msgstr "Aanmaken"
 msgid "Created mount."
 msgstr "Aankoppeling aanmaken."
 
+msgid "Docs"
+msgstr ""
+
 msgid "Edit"
 msgstr "Bewerken"
 
@@ -56,6 +59,9 @@ msgstr "Geobserveerd"
 
 msgid "Mount"
 msgstr "Aankoppelen"
+
+msgid "Mount logs"
+msgstr ""
 
 msgid "Mount type"
 msgstr "Type aankoppeling"
@@ -159,6 +165,9 @@ msgstr "Share / Pad"
 msgid "Shared"
 msgstr "Gedeeld"
 
+msgid "Show logs"
+msgstr ""
+
 msgid "Type"
 msgstr "Type"
 
@@ -181,6 +190,9 @@ msgstr ""
 "Indien ingeschakeld, zal monit dit bestandssysteem automatisch opnieuw "
 "aankoppelen als het offline gaat. Schakel deze functie uit om automatisch "
 "opnieuw aankoppelen te voorkomen na een opzettelijke ontkoppeling."
+
+msgid "omv-extras wiki"
+msgstr ""
 
 msgid "rclone"
 msgstr "rclone"
