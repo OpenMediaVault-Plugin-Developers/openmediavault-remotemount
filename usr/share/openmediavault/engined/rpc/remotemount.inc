@@ -36,6 +36,7 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod("set");
         $this->registerMethod("delete");
         $this->registerMethod("mount");
+        $this->registerMethod("getLogs");
     }
 
     public function getList($params, $context)
@@ -205,5 +206,43 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
                 // monit may not be active or the check may not exist yet.
             }
         }
+    }
+
+    public function getLogs($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ['role' => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, "rpc.common.objectuuid");
+        // Get the configuration object.
+        $db = \OMV\Config\Database::getInstance();
+        $rmntobj = $db->get("conf.service.remotemount.mount", $params['uuid']);
+        $mntobj = $db->get("conf.system.filesystem.mountpoint", $rmntobj->get('mntentref'));
+        // Derive the escaped systemd unit name the same way mount() does
+        // (service for rclone, mount for all others).
+        $suffix = ($rmntobj->get('mounttype') === 'rclone') ? 'service' : 'mount';
+        $cmdArgs = [];
+        $cmdArgs[] = '--path';
+        $cmdArgs[] = '--suffix=' . $suffix;
+        $cmdArgs[] = $mntobj->get('dir');
+        $output = [];
+        $cmd = new \OMV\System\Process('systemd-escape', $cmdArgs);
+        $cmd->execute($output, $exitStatus);
+        $unitName = trim($output[0]);
+        // Stream the journal for this unit to the task dialog.
+        // escapeshellarg keeps the literal backslashes (e.g. \x2d) intact so
+        // journalctl matches the real unit name.
+        return $this->execBgProc(function($bgStatusFilename, $bgOutputFilename)
+            use ($unitName) {
+                $cmdLine = sprintf(
+                    'journalctl --no-pager --no-hostname --lines=1000 --unit=%s',
+                    escapeshellarg($unitName)
+                );
+                if (0 !== $this->exec($cmdLine, $output, $bgOutputFilename)) {
+                    throw new \OMV\ExecException($cmdLine, $output);
+                }
+                return $output;
+            }
+        );
     }
 }
