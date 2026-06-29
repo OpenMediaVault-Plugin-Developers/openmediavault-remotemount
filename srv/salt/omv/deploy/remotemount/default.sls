@@ -136,7 +136,9 @@ configure_remotemount_davfs_creds_{{ mnt.mntentref }}:
   file.append:
     - name: "{{ secrets }}"
     - text:
-      - {{ mnt.server }} {{ mnt.username }} {{ mnt.password }}
+      {#- Collapse any legacy run of '%' to a single '%' so the secrets URL
+          matches what davfs2 mounts; consecutive '%' is never valid in a URL. #}
+      - {{ mnt.server | regex_replace('%+', '%') }} {{ mnt.username }} {{ mnt.password }}
 
 
 {% endif %}

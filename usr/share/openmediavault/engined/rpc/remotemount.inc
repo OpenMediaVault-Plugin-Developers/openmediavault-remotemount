@@ -96,6 +96,14 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
         // Validate the RPC caller context.
         $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
         $db = \OMV\Config\Database::getInstance();
+        // Normalize the server field: collapse any accidental doubled '%' (e.g.
+        // the old '%%40' WebDAV workaround) back to a single '%'. A valid URL
+        // only uses '%' as part of '%XX' percent-encoding, so '%%' is never
+        // legitimate; the systemd .mount template re-escapes '%' -> '%%' for
+        // systemd on its own.
+        if (isset($params['server'])) {
+            $params['server'] = preg_replace('/%{2,}/', '%', $params['server']);
+        }
         // Obscure password for rclone protocols that require it (sftp, ftp, webdav).
         $rclonetype = isset($params['rclonetype']) ? $params['rclonetype'] : 's3';
         if (isset($params['mounttype']) && $params['mounttype'] === 'rclone' &&
