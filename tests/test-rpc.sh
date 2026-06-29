@@ -311,6 +311,153 @@ assert_rpc_fails "delete — unknown UUID" "RemoteMount" "delete" \
     '{"uuid":"00000000-0000-0000-0000-000000000000"}'
 
 # ---------------------------------------------------------------------------
+# Regression — davfs URL containing '%' (e.g. WebDAV path with %40 for '@')
+# is escaped to '%%' in the systemd .mount unit's What= field (so systemd does
+# not treat it as a unit specifier), while /etc/davfs2/secrets keeps the
+# literal '%40' value. User enters a single '%' in the GUI.
+# ---------------------------------------------------------------------------
+section "Regression — davfs '%' escaping in systemd unit vs secrets"
+
+# 127.0.0.1:1 → connection refused, so the bogus mount fails fast on deploy.
+PCT_NAME="rmtest-davpct"
+PCT_SERVER="https://127.0.0.1:1/remote.php/dav/files/info%40myhost.me"
+PCT_RESULT=$(rpc "RemoteMount" "set" "$(python3 -c "
+import json; print(json.dumps({
+    'uuid': '$OMV_NEW_UUID', 'mntentref': '$OMV_NEW_UUID',
+    'name': '$PCT_NAME', 'mounttype': 'davfs',
+    'server': '$PCT_SERVER',
+    'username': 'info@myhost.me', 'password': 'secret', 'options': '',
+}))")" 2>/dev/null || echo "{}")
+PCT_UUID=$(echo "$PCT_RESULT" | python3 -c \
+    "import sys,json; print(json.load(sys.stdin).get('uuid',''))" 2>/dev/null || echo "")
+
+if [ -n "$PCT_UUID" ] && [ "$PCT_UUID" != "$OMV_NEW_UUID" ]; then
+    _pass "created davfs mount with '%40' in URL ($PCT_UUID)"
+
+    # Deploy to regenerate unit + secrets. The bogus mount won't start, so
+    # the restart step may fail — that's fine, the files are written first.
+    info "Running omv-salt deploy run remotemount (% escaping check)"
+    omv-salt deploy run remotemount &>/dev/null || true
+
+    PCT_UNIT="/etc/systemd/system/$(systemd-escape --path --suffix=mount \
+        "/srv/remotemount/${PCT_NAME}")"
+    PCT_SECRETS="/etc/davfs2/secrets"
+
+    # systemd unit: What= must contain the doubled '%%40'.
+    if [ -f "$PCT_UNIT" ] && grep '^What=' "$PCT_UNIT" | grep -qF 'info%%40myhost.me'; then
+        _pass "unit What= escapes '%' as '%%' (info%%40myhost.me)"
+    else
+        _fail "unit What= escapes '%' as '%%'" \
+            "$( [ -f "$PCT_UNIT" ] && grep '^What=' "$PCT_UNIT" || echo "unit $PCT_UNIT missing" )"
+    fi
+
+    # secrets: keeps the literal single '%40' (NOT doubled).
+    if grep -qF 'info%40myhost.me' "$PCT_SECRETS" \
+        && ! grep -qF 'info%%40myhost.me' "$PCT_SECRETS"; then
+        _pass "davfs2 secrets keeps literal '%40' (not doubled)"
+    else
+        _fail "davfs2 secrets keeps literal '%40' (not doubled)" \
+            "$(grep -F 'myhost.me' "$PCT_SECRETS" 2>/dev/null || echo "no matching secrets line")"
+    fi
+
+    rpc "RemoteMount" "delete" "{\"uuid\":\"$PCT_UUID\"}" &>/dev/null || true
+    omv-salt deploy run remotemount &>/dev/null || true
+else
+    _fail "Regression davfs '%' escaping — could not create test mount"
+fi
+
+# A doubled '%%' (old workaround / typo) must be normalized to a single '%'
+# by set() before it is stored, so the value is the real URL.
+DBL_RESULT=$(rpc "RemoteMount" "set" "$(python3 -c "
+import json; print(json.dumps({
+    'uuid': '$OMV_NEW_UUID', 'mntentref': '$OMV_NEW_UUID',
+    'name': 'rmtest-davdbl', 'mounttype': 'davfs',
+    'server': 'https://127.0.0.1:1/remote.php/dav/files/info%%40myhost.me',
+    'username': 'info@myhost.me', 'password': 'secret', 'options': '',
+}))")" 2>/dev/null || echo "{}")
+DBL_UUID=$(echo "$DBL_RESULT" | python3 -c \
+    "import sys,json; print(json.load(sys.stdin).get('uuid',''))" 2>/dev/null || echo "")
+DBL_SERVER=$(echo "$DBL_RESULT" | python3 -c \
+    "import sys,json; print(json.load(sys.stdin).get('server',''))" 2>/dev/null || echo "")
+
+if [ -n "$DBL_UUID" ] && [ "$DBL_UUID" != "$OMV_NEW_UUID" ]; then
+    if [ "$DBL_SERVER" = "https://127.0.0.1:1/remote.php/dav/files/info%40myhost.me" ]; then
+        _pass "set() normalizes doubled '%%40' to single '%40' before saving"
+    else
+        _fail "set() normalizes doubled '%%40' to single '%40'" "stored server: $DBL_SERVER"
+    fi
+    rpc "RemoteMount" "delete" "{\"uuid\":\"$DBL_UUID\"}" &>/dev/null || true
+else
+    _fail "set() normalizes doubled '%%40' — could not create test mount"
+fi
+
+# A legacy '%%' already stored in the config DB (written by an older plugin
+# version, so it bypassed the set() normalization) must be collapsed to a
+# single '%' by the salt templates at deploy time. We create a clean mount,
+# then patch config.xml directly to inject '%%' and deploy.
+OMV_CONFIG="/etc/openmediavault/config.xml"
+LEG_NAME="rmtest-davlegacy"
+LEG_RESULT=$(rpc "RemoteMount" "set" "$(python3 -c "
+import json; print(json.dumps({
+    'uuid': '$OMV_NEW_UUID', 'mntentref': '$OMV_NEW_UUID',
+    'name': '$LEG_NAME', 'mounttype': 'davfs',
+    'server': 'https://127.0.0.1:1/remote.php/dav/files/info%40legacy.me',
+    'username': 'info@legacy.me', 'password': 'secret', 'options': '',
+}))")" 2>/dev/null || echo "{}")
+LEG_UUID=$(echo "$LEG_RESULT" | python3 -c \
+    "import sys,json; print(json.load(sys.stdin).get('uuid',''))" 2>/dev/null || echo "")
+
+if [ -n "$LEG_UUID" ] && [ "$LEG_UUID" != "$OMV_NEW_UUID" ] && [ -f "$OMV_CONFIG" ]; then
+    # Inject the legacy doubled '%' straight into the stored config (bypasses set()).
+    python3 - "$OMV_CONFIG" <<'PY'
+import sys
+p = sys.argv[1]
+s = open(p).read()
+s = s.replace('info%40legacy.me', 'info%%40legacy.me')
+open(p, 'w').write(s)
+PY
+    # Confirm the DB now holds the legacy '%%' value (get() does not normalize).
+    LEG_STORED=$(rpc "RemoteMount" "get" "{\"uuid\":\"$LEG_UUID\"}" | python3 -c \
+        "import sys,json; print(json.load(sys.stdin).get('server',''))" 2>/dev/null || echo "")
+    if [ "$LEG_STORED" = "https://127.0.0.1:1/remote.php/dav/files/info%%40legacy.me" ]; then
+        _pass "injected legacy '%%40' into config DB ($LEG_UUID)"
+    else
+        _fail "injected legacy '%%40' into config DB" "stored server: $LEG_STORED"
+    fi
+
+    info "Running omv-salt deploy run remotemount (legacy '%%' collapse check)"
+    omv-salt deploy run remotemount &>/dev/null || true
+
+    LEG_UNIT="/etc/systemd/system/$(systemd-escape --path --suffix=mount \
+        "/srv/remotemount/${LEG_NAME}")"
+    LEG_SECRETS="/etc/davfs2/secrets"
+
+    # systemd unit: collapsed to single '%40' then escaped → doubled '%%40'.
+    if [ -f "$LEG_UNIT" ] && grep '^What=' "$LEG_UNIT" | grep -qF 'info%%40legacy.me'; then
+        _pass "deploy collapses legacy '%%' then escapes in unit What= (info%%40legacy.me)"
+    else
+        _fail "deploy collapses legacy '%%' in unit What=" \
+            "$( [ -f "$LEG_UNIT" ] && grep '^What=' "$LEG_UNIT" || echo "unit $LEG_UNIT missing" )"
+    fi
+
+    # secrets: collapsed to the literal single '%40'.
+    if grep -qF 'info%40legacy.me' "$LEG_SECRETS" \
+        && ! grep -qF 'info%%40legacy.me' "$LEG_SECRETS"; then
+        _pass "deploy collapses legacy '%%' to single '%40' in davfs2 secrets"
+    else
+        _fail "deploy collapses legacy '%%' to single '%40' in davfs2 secrets" \
+            "$(grep -F 'legacy.me' "$LEG_SECRETS" 2>/dev/null || echo "no matching secrets line")"
+    fi
+
+    rpc "RemoteMount" "delete" "{\"uuid\":\"$LEG_UUID\"}" &>/dev/null || true
+    omv-salt deploy run remotemount &>/dev/null || true
+else
+    _fail "deploy collapses legacy '%%' — could not create test mount or config.xml missing"
+    [ -n "$LEG_UUID" ] && [ "$LEG_UUID" != "$OMV_NEW_UUID" ] && \
+        rpc "RemoteMount" "delete" "{\"uuid\":\"$LEG_UUID\"}" &>/dev/null || true
+fi
+
+# ---------------------------------------------------------------------------
 # Integration — rclone/WebDAV with local rclone WebDAV server
 # ---------------------------------------------------------------------------
 section "Integration — rclone/WebDAV (local server, no network required)"
