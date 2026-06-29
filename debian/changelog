@@ -1,3 +1,15 @@
+openmediavault-remotemount (8.1.9) stable; urgency=low
+
+  * Fix davfs/WebDAV mounts failing when the server URL contains a '%'
+    (e.g. an encoded '@' as %40 in a Nextcloud path). The '%' is now escaped
+    to '%%' in the systemd .mount unit's What= field so systemd does not treat
+    it as a unit specifier, while /etc/davfs2/secrets keeps the literal value.
+    Enter the URL with a single '%' in the GUI; a doubled '%%' (the old
+    workaround) is now normalized back to a single '%' on save, and any
+    existing '%%' configs are collapsed at deploy time.
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Mon, 29 Jun 2026 21:39:53 +0000
+
 openmediavault-remotemount (8.1.8) stable; urgency=low
 
   * Add a "Show logs" button to the remote mounts table that streams the
