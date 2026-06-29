@@ -26,7 +26,11 @@ Requires=network-online.target
 After=network-online.target
 
 [Mount]
-What={{ share }}
+{#- First collapse any accidental run of '%' (e.g. a legacy '%%40' stored in
+    the config) to a single '%' — consecutive '%' is never valid in a URL —
+    then escape '%' as '%%' so systemd does not treat e.g. '%40' in a WebDAV
+    URL as a unit specifier. The davfs2 secrets file keeps the literal value. #}
+What={{ share | regex_replace('%+', '%') | replace('%', '%%') }}
 Where={{ mntDir }}
 Type={{ fstype }}
 Options={{ options | join(',') }}
