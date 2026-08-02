@@ -32,6 +32,7 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
     {
         $this->registerMethod("getList");
         $this->registerMethod("getListBg");
+        $this->registerMethod("enumerateMounts");
         $this->registerMethod("get");
         $this->registerMethod("set");
         $this->registerMethod("delete");
@@ -39,12 +40,8 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
         $this->registerMethod("getLogs");
     }
 
-    public function getList($params, $context)
+    private function getMountsAssoc()
     {
-        // Validate the RPC caller context.
-        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
-        // Validate the parameters of the RPC service method.
-        $this->validateMethodParams($params, "rpc.common.getlist");
         // Get the configuration object.
         $db = \OMV\Config\Database::getInstance();
         $objects = $db->get("conf.service.remotemount.mount");
@@ -63,20 +60,62 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
                 }
             }
             $objectv->add("inuse", "boolean", $inuse);
-            $objectv->add("mounted", "boolean", $fs->isMounted());
+            $mounted = $fs->isMounted();
+            $objectv->add("mounted", "boolean", $mounted);
+            // Add usage statistics so they can be surfaced in the
+            // dashboard widget. `getStatistics` runs `df` against the
+            // mount point, so it works for network filesystems too.
+            $size = $used = $available = "-1";
+            $percentage = -1;
+            $usagewarnthreshold = 0;
+            if (true === $mounted && (false !== ($stats = $fs->getStatistics()))) {
+                $size = $stats['size'];
+                $used = $stats['used'];
+                $available = $stats['available'];
+                $percentage = $stats['percentage'];
+                try {
+                    $mntobj = $db->get("conf.system.filesystem.mountpoint",
+                        $mntentref);
+                    $usagewarnthreshold = $mntobj->get('usagewarnthreshold');
+                } catch (\Exception $e) {
+                    // Mount point configuration object does not exist.
+                }
+            }
+            $objectv->add("size", "string", $size);
+            $objectv->add("used", "string", $used);
+            $objectv->add("available", "string", $available);
+            $objectv->add("percentage", "integer", $percentage);
+            $objectv->add("usagewarnthreshold", "integer", $usagewarnthreshold);
             $assoc = $objectv->getAssoc();
             if ($assoc['mounttype'] === 'rclone' && !empty($assoc['rclonetype'])) {
                 $assoc['mounttype'] = sprintf('rclone (%s)', $assoc['rclonetype']);
             }
             $objectsAssoc[] = $assoc;
         }
+        return $objectsAssoc;
+    }
+
+    public function getList($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        // Validate the parameters of the RPC service method.
+        $this->validateMethodParams($params, "rpc.common.getlist");
         // Filter the result.
+        $objectsAssoc = $this->getMountsAssoc();
         return $this->applyFilter($objectsAssoc, $params['start'], $params['limit'],
             $params['sortfield'], $params['sortdir']);
     }
 
     public function getListBg($params, $context) {
         return $this->callMethodBg("getList", $params, $context);
+    }
+
+    public function enumerateMounts($params, $context)
+    {
+        // Validate the RPC caller context.
+        $this->validateMethodContext($context, ["role" => OMV_ROLE_ADMINISTRATOR]);
+        return $this->getMountsAssoc();
     }
 
     public function get($params, $context)

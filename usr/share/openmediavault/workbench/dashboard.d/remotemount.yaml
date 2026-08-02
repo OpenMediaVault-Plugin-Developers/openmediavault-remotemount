@@ -1,0 +1,41 @@
+version: "1.0"
+type: dashboard-widget
+data:
+  id: 6504be35-833f-40a2-b8c2-49f768e0a81c
+  title: _("Remote Mounts")
+  description: _("Displays remote mounts with usage statistics.")
+  type: datatable
+  permissions:
+    role:
+      - admin
+  datatable:
+    columns:
+      - name: _("Name")
+        prop: name
+        flexGrow: 2
+        sortable: true
+      - name: _("Type")
+        prop: mounttype
+        flexGrow: 1
+        sortable: true
+      - name: _("Mounted")
+        prop: mounted
+        flexGrow: 1
+        cellTemplateName: checkIcon
+      - name: _("Used")
+        prop: percentage
+        flexGrow: 2
+        sortable: true
+        cellTemplateName: progressBar
+        cellTemplateConfig:
+          text: '{{ used | tobytes | binaryunit | notavailable("-") }}'
+          warningThreshold: '{{ usagewarnthreshold | default(0) }}'
+          decimalPlaces: 0
+    store:
+      proxy:
+        service: RemoteMount
+        get:
+          method: enumerateMounts
+    sorters:
+      - dir: asc
+        prop: name
