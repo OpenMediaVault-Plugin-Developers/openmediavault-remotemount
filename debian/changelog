@@ -1,3 +1,9 @@
+openmediavault-remotemount (8.1.10) stable; urgency=low
+
+  * Add dashboard widget
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Sun, 02 Aug 2026 15:23:51 +0000
+
 openmediavault-remotemount (8.1.9) stable; urgency=low
 
   * Fix davfs/WebDAV mounts failing when the server URL contains a '%'
