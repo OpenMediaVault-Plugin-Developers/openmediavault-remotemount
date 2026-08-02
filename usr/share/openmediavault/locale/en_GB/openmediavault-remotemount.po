@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-29 21:40+0000\n"
+"POT-Creation-Date: 2026-08-02 15:23+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: Andi Chandler <andi@gowling.com>, 2026\n"
 "Language-Team: English (United Kingdom) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/en_GB/)\n"
@@ -35,6 +35,9 @@ msgstr "Create"
 
 msgid "Created mount."
 msgstr "Created mount."
+
+msgid "Displays remote mounts with usage statistics."
+msgstr ""
 
 msgid "Docs"
 msgstr "Docs"
@@ -173,6 +176,9 @@ msgstr "Type"
 
 msgid "Unmount"
 msgstr "Unmount"
+
+msgid "Used"
+msgstr ""
 
 msgid "Username"
 msgstr "Username"

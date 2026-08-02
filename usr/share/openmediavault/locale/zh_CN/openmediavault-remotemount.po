@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openmediavault-remotemount\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-29 21:40+0000\n"
+"POT-Creation-Date: 2026-08-02 15:23+0000\n"
 "PO-Revision-Date: 2016-10-03 18:29+0000\n"
 "Last-Translator: songming <by@songming.me>, 2026\n"
 "Language-Team: Chinese (China) (https://app.transifex.com/openmediavault-plugin-developers/teams/1854/zh_CN/)\n"
@@ -36,8 +36,11 @@ msgstr "创建"
 msgid "Created mount."
 msgstr "创建挂载。"
 
-msgid "Docs"
+msgid "Displays remote mounts with usage statistics."
 msgstr ""
+
+msgid "Docs"
+msgstr "文档"
 
 msgid "Edit"
 msgstr "编辑"
@@ -55,13 +58,13 @@ msgid "Google Drive (pre-configured rclone remote)"
 msgstr "Google Drive （预配置的 rclone 远程）"
 
 msgid "Monitored"
-msgstr ""
+msgstr "已监控"
 
 msgid "Mount"
 msgstr "挂载"
 
 msgid "Mount logs"
-msgstr ""
+msgstr "挂载日志"
 
 msgid "Mount type"
 msgstr "挂载类型"
@@ -160,13 +163,16 @@ msgid "Shared"
 msgstr "已共享"
 
 msgid "Show logs"
-msgstr ""
+msgstr "显示日志"
 
 msgid "Type"
 msgstr "类型"
 
 msgid "Unmount"
 msgstr "卸载"
+
+msgid "Used"
+msgstr ""
 
 msgid "Username"
 msgstr "用户名"
@@ -180,10 +186,10 @@ msgstr "WebDAV (davfs)"
 msgid ""
 "When enabled, monit will automatically remount this filesystem if it goes "
 "offline. Uncheck to prevent auto-remounting after a deliberate unmount."
-msgstr ""
+msgstr "启用后，如果该文件系统离线，monit 会自动重新挂载它。取消勾选可防止在有意卸载后发生自动重新挂载。"
 
 msgid "omv-extras wiki"
-msgstr ""
+msgstr "omv-extras 维基"
 
 msgid "rclone"
 msgstr "rclone"
