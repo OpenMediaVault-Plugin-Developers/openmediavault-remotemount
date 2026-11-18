@@ -1,3 +1,10 @@
+openmediavault-remotemount (8.1.11) stable; urgency=low
+
+  * Add command timeouts to handle unresponsive remote mounts
+  * Don't fail config apply when a remote mount is offline
+
+ -- OpenMediaVault Plugin Developers <plugins@omv-extras.org>  Wed, 18 Nov 2026 16:07:38 +0000
+
 openmediavault-remotemount (8.1.10) stable; urgency=low
 
   * Add dashboard widget
