@@ -50,7 +50,6 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
         $objectsAssoc = [];
         foreach ($objects as $objectk => &$objectv) {
             $mntentref = $objectv->get("mntentref");
-            $fs = \OMV\System\Filesystem\Filesystem::getImpl($objectv->get('uuid'));
             $inuse = false;
             foreach ($sfobjects as $sfobject) {
                 $sfmntentref = $sfobject->get("mntentref");
@@ -60,27 +59,39 @@ class OMVRpcServiceRemoteMount extends \OMV\Rpc\ServiceAbstract
                 }
             }
             $objectv->add("inuse", "boolean", $inuse);
-            $mounted = $fs->isMounted();
-            $objectv->add("mounted", "boolean", $mounted);
             // Add usage statistics so they can be surfaced in the
             // dashboard widget. `getStatistics` runs `df` against the
             // mount point, so it works for network filesystems too.
+            // A share whose remote server is down/unreachable must still
+            // show up here (so it stays visible and editable) rather than
+            // breaking the whole list, so any failure while probing it is
+            // caught and simply reported as "not mounted, no stats".
+            $mounted = false;
             $size = $used = $available = "-1";
             $percentage = -1;
             $usagewarnthreshold = 0;
-            if (true === $mounted && (false !== ($stats = $fs->getStatistics()))) {
-                $size = $stats['size'];
-                $used = $stats['used'];
-                $available = $stats['available'];
-                $percentage = $stats['percentage'];
-                try {
-                    $mntobj = $db->get("conf.system.filesystem.mountpoint",
-                        $mntentref);
-                    $usagewarnthreshold = $mntobj->get('usagewarnthreshold');
-                } catch (\Exception $e) {
-                    // Mount point configuration object does not exist.
+            try {
+                $fs = \OMV\System\Filesystem\Filesystem::getImpl($objectv->get('uuid'));
+                $mounted = $fs->isMounted();
+                if (true === $mounted && (false !== ($stats = $fs->getStatistics()))) {
+                    $size = $stats['size'];
+                    $used = $stats['used'];
+                    $available = $stats['available'];
+                    $percentage = $stats['percentage'];
+                    try {
+                        $mntobj = $db->get("conf.system.filesystem.mountpoint",
+                            $mntentref);
+                        $usagewarnthreshold = $mntobj->get('usagewarnthreshold');
+                    } catch (\Exception $e) {
+                        // Mount point configuration object does not exist.
+                    }
                 }
+            } catch (\Exception $e) {
+                // Could not determine the status of this mount (e.g. its
+                // remote server is unreachable). Fall back to the defaults
+                // above instead of aborting the whole listing.
             }
+            $objectv->add("mounted", "boolean", $mounted);
             $objectv->add("size", "string", $size);
             $objectv->add("used", "string", $used);
             $objectv->add("available", "string", $available);

@@ -27,6 +27,25 @@ configure_remote_dir:
     - name: "{{ remotedir }}"
     - makedirs: True
 
+# A mount that was deleted from the config (or renamed, which is a
+# delete+recreate) still has a live unit backing it. Deleting the unit
+# *file* below does not stop or unmount it - systemd keeps tracking the
+# actual kernel mount independently of the static unit file - so without
+# this step a removed entry leaves its filesystem mounted and orphaned,
+# with no more UI entry to unmount it through. Stop each matching unit
+# first, best-effort: the unit's own Timeout(Stop)Sec already bounds a
+# stop against an unresponsive share to ~30s, and the outer `timeout` plus
+# `|| true` are a safety net so one stuck share can never fail the whole
+# apply for every other mount.
+stop_remotemount_mount_units:
+  cmd.run:
+    - name: >
+        for f in {{ mountsdir }}/*.mount; do
+          [ -f "$f" ] || continue;
+          grep -qE "Description(| )=(| )RemoteMount mount for" "$f" || continue;
+          timeout -k 5 35 systemctl stop "$(basename "$f")" || true;
+        done
+
 remove_remotemount_mount_files:
   module.run:
     - file.find:
@@ -35,6 +54,17 @@ remove_remotemount_mount_files:
       - grep: "Description(| )=(| )RemoteMount mount for"
       - maxdepth: 1
       - delete: "f"
+    - require:
+      - cmd: stop_remotemount_mount_units
+
+stop_remotemount_automount_units:
+  cmd.run:
+    - name: >
+        for f in {{ mountsdir }}/*.automount; do
+          [ -f "$f" ] || continue;
+          grep -qE "Description(| )=(| )RemoteMount automount for" "$f" || continue;
+          timeout -k 5 35 systemctl stop "$(basename "$f")" || true;
+        done
 
 remove_remotemount_automount_files:
   module.run:
@@ -44,6 +74,8 @@ remove_remotemount_automount_files:
       - grep: "Description(| )=(| )RemoteMount automount for"
       - maxdepth: 1
       - delete: "f"
+    - require:
+      - cmd: stop_remotemount_automount_units
 
 remove_remotemount_cifs_cred_files:
   module.run:
@@ -62,6 +94,15 @@ remove_remotemount_rclone_cred_files:
       - maxdepth: 1
       - delete: "f"
 
+stop_remotemount_rclone_units:
+  cmd.run:
+    - name: >
+        for f in {{ mountsdir }}/*.service; do
+          [ -f "$f" ] || continue;
+          grep -qE "Description(| )=(| )RemoteMount rclone for" "$f" || continue;
+          timeout -k 5 35 systemctl stop "$(basename "$f")" || true;
+        done
+
 remove_remotemount_rclone_service_files:
   module.run:
     - file.find:
@@ -70,6 +111,8 @@ remove_remotemount_rclone_service_files:
       - grep: "Description(| )=(| )RemoteMount rclone for"
       - maxdepth: 1
       - delete: "f"
+    - require:
+      - cmd: stop_remotemount_rclone_units
 
 remove_remotemount_davfs_cred_file:
   file.absent:
@@ -201,9 +244,14 @@ enable_{{ rname }}_remotemount:
     - require:
       - cmd: systemd-reload_{{ rname }}
 
+# Best-effort: a share whose remote is offline/unreachable fails to (re)start,
+# and a strict restart would fail the whole apply - blocking config changes to
+# every *other* entry until that remote comes back (omv#2331). The unit's own
+# TimeoutSec bounds the attempt; the outer `timeout` and `|| true` are a safety
+# net. A failed share simply shows as unmounted in the UI.
 restart_{{ rname }}_remotemount:
   cmd.run:
-    - name: systemctl restart '{{ unitname }}'
+    - name: timeout -k 5 40 systemctl restart '{{ unitname }}' || true
     - require:
       - service: enable_{{ rname }}_remotemount
 

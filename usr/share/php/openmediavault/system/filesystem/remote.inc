@@ -119,6 +119,14 @@ class Remote implements FilesystemInterface, SharedFolderCandidateInterface
     {
         $statistics = $this->getStatistics();
 
+        // getStatistics() returns false when the share is unmounted, or
+        // mounted but unreachable (dead server, stale handle, timeout).
+        // Say so plainly instead of rendering a misleading "0 B (0%) used"
+        // that reads like a genuinely empty, healthy share.
+        if (false === $statistics) {
+            return sprintf('%s [unavailable]', $this->getLabel());
+        }
+
         return sprintf(
             '%s [%s (%d%%) used, %s available]',
             $this->getLabel(),
@@ -255,17 +263,26 @@ class Remote implements FilesystemInterface, SharedFolderCandidateInterface
      *                    type, blocks, size, used, available, percentage and
      *                    mountpoint. Please note, the fields size, used and
      *                    available are strings and their unit is B (bytes).
-     *
-     * @throws ExecException
      */
     public function getStatistics()
     {
-        $cmd = new Process('df', '-PT', escapeshellarg($this->mountPoint));
+        // A share that is mounted but unreachable (dead server, stale NFS
+        // handle, ...) commonly makes `df` exit non-zero, or in the worst
+        // case never return at all. `setQuiet` stops that from raising an
+        // uncaught exception and `timeout` bounds the wait, so a single
+        // broken mount can't break statistics for every other mount or hang
+        // the caller.
+        $cmd = new Process('timeout', ['-k', '2', '5',
+            'df', '-PT', escapeshellarg($this->mountPoint)]);
         $cmd->setRedirect2to1();
         $cmd->setQuiet(true);
-        $cmd->execute($output);
+        $cmd->execute($output, $exitStatus);
 
         $result = false;
+
+        if (0 !== $exitStatus) {
+            return $result;
+        }
 
         foreach ($output as $line) {
             $matches = preg_split('/[\s,]+/', $line);
@@ -399,20 +416,19 @@ class Remote implements FilesystemInterface, SharedFolderCandidateInterface
      * Check if the filesystem is mounted.
      *
      * @return bool
-     *
-     * @throws ExecException
      */
     public function isMounted()
     {
-        $cmd = new Process('findmnt', escapeshellarg($this->mountPoint));
+        // findmnt canonicalizes the given path, which can block for a long
+        // time (even indefinitely on a hard-hung NFS mount) if the remote
+        // server is unreachable. Bound the wait so a single dead share can
+        // never freeze callers that enumerate all configured mounts.
+        $cmd = new Process('timeout', ['-k', '2', '5',
+            'findmnt', escapeshellarg($this->mountPoint)]);
+        $cmd->setQuiet(true);
+        $cmd->execute($output, $exitStatus);
 
-        try {
-            $cmd->execute();
-        } catch (ExecException $e) {
-            return false;
-        }
-
-        return true;
+        return (0 === $exitStatus);
     }
 
     /**
