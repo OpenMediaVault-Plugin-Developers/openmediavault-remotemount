@@ -37,7 +37,7 @@ msgid "Created mount."
 msgstr "创建挂载。"
 
 msgid "Displays remote mounts with usage statistics."
-msgstr ""
+msgstr "显示远程挂载及使用情况统计。"
 
 msgid "Docs"
 msgstr "文档"
@@ -172,7 +172,7 @@ msgid "Unmount"
 msgstr "卸载"
 
 msgid "Used"
-msgstr ""
+msgstr "已使用"
 
 msgid "Username"
 msgstr "用户名"

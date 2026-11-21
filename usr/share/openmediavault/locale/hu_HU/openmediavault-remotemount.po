@@ -39,6 +39,7 @@ msgstr "Csatolás létrehozva."
 
 msgid "Displays remote mounts with usage statistics."
 msgstr ""
+"Megjeleníti a távoli csatolásokat a használati statisztikákkal együtt."
 
 msgid "Docs"
 msgstr "Dokumentumok"
@@ -180,7 +181,7 @@ msgid "Unmount"
 msgstr "Leválaszt"
 
 msgid "Used"
-msgstr ""
+msgstr "Alkalmazva"
 
 msgid "Username"
 msgstr "Felhasználói név"

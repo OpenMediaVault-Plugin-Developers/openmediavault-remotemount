@@ -37,7 +37,7 @@ msgid "Created mount."
 msgstr "Aankoppeling aanmaken."
 
 msgid "Displays remote mounts with usage statistics."
-msgstr ""
+msgstr "Geeft externe aankoppelingen weer met gebruiksstatistieken."
 
 msgid "Docs"
 msgstr "Docs"
@@ -94,10 +94,10 @@ msgid "Protocol"
 msgstr "Protocol"
 
 msgid "Remote Mount"
-msgstr "Aankoppeling op afstand"
+msgstr "Externe aankoppeling"
 
 msgid "Remote Mounts"
-msgstr "Aankoppelingen op afstand"
+msgstr "Externe aankoppelingen"
 
 msgid "SFTP"
 msgstr "SFTP"
@@ -178,7 +178,7 @@ msgid "Unmount"
 msgstr "Loskoppelen"
 
 msgid "Used"
-msgstr ""
+msgstr "Gebruikt"
 
 msgid "Username"
 msgstr "Gebruikersnaam"
@@ -195,7 +195,7 @@ msgid ""
 msgstr ""
 "Indien ingeschakeld, zal monit dit bestandssysteem automatisch opnieuw "
 "aankoppelen als het offline gaat. Schakel deze functie uit om automatisch "
-"opnieuw aankoppelen te voorkomen na een opzettelijke ontkoppeling."
+"opnieuw aankoppelen te voorkomen na een opzettelijke loskoppeling."
 
 msgid "omv-extras wiki"
 msgstr "omv-extras wiki"
